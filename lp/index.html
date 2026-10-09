@@ -1,0 +1,797 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SmartWired EV | EV Charger Installation, Done Properly</title>
+<meta name="description" content="Fully certified EV charger installation across Yorkshire, Lancashire & the North East. Fixed price from £975 fully installed, or 0% finance. NAPIT & TrustMark approved.">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0f1722;--navy2:#172231;--ink:#0f1722;--muted:#5b6675;
+  --blue:#1a73e8;--blue-l:#e8f1fe;--orange:#ff8a00;--orange-d:#e67a00;
+  --green:#1f9d55;--green-l:#e9f8ef;--red:#d93838;--red-l:#fdeeee;
+  --card:#ffffff;--bg:#f4f6f9;--line:#e3e8ef;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
+h1,h2,h3{font-family:Outfit,sans-serif;line-height:1.15}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+
+/* header */
+header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:70px}
+.logo{font-family:Outfit;font-weight:800;font-size:22px;color:var(--blue);letter-spacing:.5px}
+.logo small{display:block;font:500 11px Inter;color:var(--muted);letter-spacing:0}
+.btn-wa{background:#25d366;color:#fff;border:0;border-radius:999px;padding:10px 18px;font-weight:600;text-decoration:none;font-size:15px}
+
+/* hero */
+.hero{background:var(--navy);color:#fff;padding:48px 0 56px}
+.hero-grid{display:grid;gap:32px;grid-template-columns:1fr}
+@media(min-width:900px){.hero-grid{grid-template-columns:1.1fr .9fr;align-items:center}}
+.hero h1{font-size:clamp(32px,5vw,52px);font-weight:800}
+.hero h1 span{color:var(--orange)}
+.hero .sub{font-size:19px;color:#cfd8e3;margin:14px 0 10px}
+.trust{font-size:14px;color:#9fb0c3;margin-bottom:22px}
+.price{background:var(--navy2);border:1px solid #2a3a50;border-radius:14px;padding:16px 18px;margin-bottom:22px}
+.price strong{font-family:Outfit;font-size:26px;color:#fff;display:block}
+.price span{color:#cfd8e3;font-size:15px}
+.price .rep{display:block;margin-top:8px;font-size:12px;color:#8193a8}
+.ticks{list-style:none;display:grid;gap:8px;font-size:15px;color:#dfe7f0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.chip{border:1px solid #2a3a50;border-radius:999px;padding:6px 12px;font-size:13px;color:#cfd8e3}
+.chip b{color:#ffc24a}
+
+/* quiz card */
+.quiz{background:#fff;color:var(--ink);border-radius:18px;padding:24px;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.steps{display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:6px}
+.dot{width:30px;height:30px;border-radius:50%;background:#dfe5ec;color:#6b7686;display:grid;place-items:center;font:700 13px Outfit}
+.dot.on{background:var(--orange);color:#fff}
+.bar{width:22px;height:2px;background:#dfe5ec}
+.quiz .time{text-align:center;font-size:13px;color:var(--muted);margin-bottom:14px}
+.quiz h3{text-align:center;font-size:21px;margin-bottom:16px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{border:2px solid var(--line);background:#fff;border-radius:12px;padding:14px 10px;font:600 15px Inter;cursor:pointer;text-align:center}
+.opt:hover{border-color:var(--orange)}
+.quiz input{width:100%;border:2px solid var(--line);border-radius:12px;padding:13px;font:16px Inter;margin-bottom:10px}
+.cta{display:block;width:100%;background:var(--orange);color:#fff;border:0;border-radius:12px;padding:15px;font:700 17px Outfit;cursor:pointer;text-align:center;text-decoration:none}
+.cta:hover{background:var(--orange-d)}
+.back{background:none;border:0;color:var(--muted);font-size:14px;cursor:pointer;margin-bottom:6px}
+.fine{text-align:center;font-size:12px;color:var(--muted);margin-top:12px}
+.oos{background:var(--red-l);color:var(--red);border-radius:10px;padding:10px;font-size:14px;margin-bottom:10px;display:none}
+
+/* sections */
+section{padding:56px 0}
+.h2{font-size:clamp(26px,3.6vw,36px);text-align:center;margin-bottom:10px}
+.lead{text-align:center;color:var(--muted);max-width:620px;margin:0 auto 32px}
+.cards{display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:700px){.cards{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.cards.four{grid-template-columns:repeat(4,1fr)}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+.card .ic{width:44px;height:44px;border-radius:12px;background:var(--blue-l);display:grid;place-items:center;font-size:22px;margin-bottom:12px}
+.card h3{font-size:19px;margin-bottom:6px}
+.card p{color:var(--muted);font-size:15px}
+
+.review{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;max-width:760px;margin:0 auto}
+.stars{color:#fbbc04;letter-spacing:2px}
+.review p{margin:10px 0;font-size:17px}
+.review small{color:var(--muted)}
+
+.flags{display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:800px){.flags{grid-template-columns:1fr 1fr}}
+.flag{border-radius:16px;padding:22px;border:2px solid}
+.flag.red{background:var(--red-l);border-color:#f6c9c9}
+.flag.green{background:var(--green-l);border-color:#bfe8cf}
+.flag h3{font-size:20px;margin-bottom:12px}
+.flag.red h3{color:var(--red)}.flag.green h3{color:var(--green)}
+.flag ul{list-style:none;display:grid;gap:9px;font-size:15px}
+
+.how{display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:800px){.how{grid-template-columns:repeat(3,1fr)}}
+.how .card{text-align:center}
+.num{width:44px;height:44px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font:700 18px Outfit;margin:0 auto 12px}
+
+.final{background:var(--navy);color:#fff;text-align:center}
+.final .lead{color:#cfd8e3}
+.final .cta{max-width:380px;margin:0 auto}
+.final .call{margin-top:14px;color:#cfd8e3}
+.areas{font-size:14px;color:#9fb0c3;margin-top:22px}
+
+.calc{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;max-width:760px;margin:0 auto}
+.calc label{display:block;font-weight:600;font-size:15px;margin:14px 0 6px}
+.calc input[type=range]{width:100%;accent-color:var(--orange)}
+.calc .val{float:right;color:var(--blue);font-weight:700}
+.res{display:grid;gap:12px;grid-template-columns:1fr 1fr;margin:22px 0}
+.res div{background:var(--bg);border-radius:12px;padding:14px;text-align:center}
+.res b{display:block;font:800 26px Outfit;color:var(--green)}
+.res small{color:var(--muted);font-size:13px}
+.assume{font-size:13px;color:var(--muted);margin-top:14px}
+.assume summary{cursor:pointer;font-weight:600}
+.assume .row{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:8px}
+.assume input{width:90px;border:1px solid var(--line);border-radius:8px;padding:6px;font:14px Inter}
+.gal{display:grid;gap:14px;grid-template-columns:1fr 1fr}
+@media(min-width:900px){.gal{grid-template-columns:1fr 1fr 1fr}}
+.gal figure{position:relative;border-radius:16px;overflow:hidden;background:#000;aspect-ratio:3/4}
+.gal .reel{grid-row:span 2;aspect-ratio:auto}
+@media(max-width:899px){.gal .reel{grid-column:span 2;grid-row:auto;aspect-ratio:9/12}}
+@media(max-width:899px){.gal .gx{display:none}}
+.gal .wide{grid-column:span 2;aspect-ratio:auto}
+.gal .wide img{position:absolute;inset:0}
+@media(max-width:899px){.gal .wide{aspect-ratio:4/3}}
+.gal img,.gal video{width:100%;height:100%;object-fit:cover;display:block}
+.gal figcaption{position:absolute;left:0;right:0;bottom:0;padding:28px 12px 10px;background:linear-gradient(transparent,rgba(0,0,0,.78));color:#fff;font-size:13px;line-height:1.35}
+.gal figcaption b{display:block;font:700 15px Outfit}
+footer{background:#0b1119;color:#8193a8;font-size:13px;padding:28px 0}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
+#quiz{scroll-margin-top:84px}
+.err{color:var(--red);font-size:13px;margin:-6px 0 10px;display:none;text-align:left}
+.call a,footer a{color:inherit}
+.done-box{text-align:center}
+.done-box .ok{width:64px;height:64px;border-radius:50%;background:var(--green-l);color:var(--green);display:grid;place-items:center;font-size:32px;margin:0 auto 12px}
+.sum{background:var(--bg);border-radius:12px;padding:12px;text-align:left;font-size:13px;color:var(--muted);margin:14px 0}
+.strip{background:#fff7e6;border-bottom:1px solid #ffe2b3}
+.strip .wrap{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:center;padding-top:14px;padding-bottom:14px;font-size:15px;text-align:center}
+.strip b{color:#9a4d00}
+.inc{display:grid;gap:10px;grid-template-columns:1fr;max-width:860px;margin:0 auto}
+@media(min-width:700px){.inc{grid-template-columns:1fr 1fr}}
+.inc li{list-style:none;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;font-size:15px}
+.inc li span{color:var(--green);font-weight:800;font-size:18px;line-height:1.2}
+.inc li b{display:block}
+.inc li small{color:var(--muted);font-size:13px}
+.total{max-width:860px;margin:16px auto 0;background:var(--navy);color:#fff;border-radius:14px;padding:16px 20px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px}
+.total b{font:800 24px Outfit}
+.reviews{display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:800px){.reviews{grid-template-columns:1fr 1fr}}
+.reviews .review{max-width:none;margin:0}
+.more{text-align:center;margin-top:18px}
+.more a{color:var(--blue);font-weight:600}
+.check{margin-top:10px;padding-top:10px;border-top:1px solid #2a3a50;font-size:14px;color:#cfd8e3}
+.check b{color:#fff}
+a.total{text-decoration:none;cursor:pointer;transition:transform .15s,box-shadow .15s}
+a.total:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(15,23,34,.25)}
+.total .tl{display:flex;flex-direction:column}
+.total .tl span{font-size:14px;color:#cfd8e3}
+.tbtn{background:var(--orange);color:#fff;border-radius:12px;padding:13px 18px;font:700 16px Outfit;text-align:center;flex:1 1 220px;max-width:340px}
+a.total:hover .tbtn{background:var(--orange-d)}
+.tiers{display:grid;gap:16px;grid-template-columns:1fr;align-items:stretch}
+@media(min-width:900px){.tiers{grid-template-columns:repeat(3,1fr)}}
+.tier{background:#fff;border:2px solid var(--line);border-radius:18px;padding:24px 22px;display:flex;flex-direction:column;position:relative}
+.tier.pop{border-color:var(--orange);box-shadow:0 14px 34px rgba(255,138,0,.18)}
+@media(min-width:900px){.tier.pop{transform:translateY(-8px)}}
+.badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;font:700 12px Outfit;letter-spacing:.5px;padding:5px 12px;border-radius:999px;white-space:nowrap}
+.tier h3{font-size:22px}
+.tier .for{color:var(--muted);font-size:14px;margin:4px 0 14px}
+.tier .amt{font:800 38px Outfit;line-height:1}
+.tier .amt small{font:500 14px Inter;color:var(--muted)}
+.tier .mo{color:var(--muted);font-size:14px;margin:6px 0 4px}
+.tier .short{display:inline-block;background:var(--green-l);color:var(--green);font-size:13px;font-weight:600;border-radius:8px;padding:5px 9px;margin:6px 0 14px}
+.tier ul{list-style:none;display:grid;gap:8px;align-content:start;font-size:15px;margin-bottom:20px;flex:1}
+.tier li::before{content:"✓ ";color:var(--green);font-weight:800}
+.tier .cta{margin-top:auto}
+.tier:not(.pop) .cta{background:var(--navy)}
+.tier:not(.pop) .cta:hover{background:#24344a}
+.tnote{text-align:center;font-size:13px;color:var(--muted);margin-top:18px}
+.cmp-wrap{margin-top:28px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.cmp{width:100%;min-width:560px;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:14px}
+.cmp th,.cmp td{padding:11px 12px;text-align:center;border-bottom:1px solid var(--line)}
+.cmp th{font:700 16px Outfit;background:var(--bg)}
+.cmp td:first-child,.cmp th:first-child{text-align:left;color:var(--muted);font-weight:500;position:sticky;left:0;background:#fff}
+.cmp th:first-child{background:var(--bg)}
+.cmp tr:last-child td{border-bottom:0}
+.cmp .hl{background:#fff7ec}
+.cmp th.hl{background:var(--orange);color:#fff}
+.cmp .yes{color:var(--green);font-weight:800;font-size:16px}
+.cmp .no{color:#b8c0cc;font-size:15px}
+.swipe{display:none;text-align:right;font-size:13px;color:var(--muted);margin:24px 0 -18px}
+@media(max-width:600px){.swipe{display:block}}
+.seg-grid{display:grid;gap:14px;grid-template-columns:1fr;margin:20px 0 6px}
+@media(min-width:640px){.seg-grid{grid-template-columns:1fr 1fr}}
+.seg-l{display:block;font-weight:600;font-size:14px;margin-bottom:6px}
+.seg{display:flex;flex-wrap:wrap;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:4px;gap:4px}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label{flex:1 1 auto;text-align:center;padding:9px 10px;border-radius:9px;font-size:14px;font-weight:600;color:var(--muted);cursor:pointer;margin:0;white-space:nowrap}
+.seg input:checked+label{background:#fff;color:var(--ink);box-shadow:0 1px 4px rgba(15,23,34,.15)}
+.seg input:focus-visible+label{outline:2px solid var(--orange);outline-offset:1px}
+.ledger{margin:18px 0 6px;border:1px solid var(--line);border-radius:14px;overflow:hidden;font-variant-numeric:tabular-nums}
+.lrow{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line);font-size:15px}
+.lrow b{font:800 20px Outfit;white-space:nowrap}
+.lrow .pos{color:var(--green)}.lrow .negv{color:var(--red)}
+.lrow.net{border-bottom:0}
+.lrow.net.up{background:var(--green-l)}.lrow.net.up b{color:var(--green)}
+.lrow.net.down{background:var(--red-l)}.lrow.net.down b{color:var(--red)}
+.lrow.net span{font-weight:700}
+.lnote{font-size:13px;color:var(--muted);padding:10px 16px;background:#fff;border-top:1px solid var(--line)}
+.grant{background:var(--green-l);border:1px dashed #9bd8b2;border-radius:12px;padding:10px 12px;font-size:13px;line-height:1.4;margin:-6px 0 16px;color:#185c36}
+.grant span{display:block;font-weight:700;margin-top:3px}
+.ozev-ok{background:var(--green-l);color:#185c36;border-radius:12px;padding:10px 12px;font-size:13px;line-height:1.45;margin-bottom:14px;text-align:left}
+.disc{font-size:12px;line-height:1.5;color:var(--muted);margin:0 0 14px;background:var(--bg);border-radius:10px;padding:10px 12px}
+.cmp-d{margin-top:24px}
+.cmp-d summary{cursor:pointer;list-style:none;text-align:center;font:700 16px Outfit;color:var(--blue);padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff;max-width:340px;margin:0 auto}
+.cmp-d summary::-webkit-details-marker{display:none}
+.cmp-d summary::after{content:" ▾"}
+.cmp-d[open] summary::after{content:" ▴"}
+.cmp-d[open] summary{margin-bottom:6px}
+.mbar{display:none}
+@media(max-width:899px){.tier.pop{order:-1;margin-top:8px}}
+@media(max-width:899px){
+  .mbar{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--navy);color:#fff;text-decoration:none;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));box-shadow:0 -6px 20px rgba(0,0,0,.2);transform:translateY(0);transition:transform .25s}
+  .mbar.hide{transform:translateY(110%)}
+  .mbar span{font-size:14px;color:#cfd8e3}.mbar b{color:#fff;font:800 16px Outfit}
+  .mbtn{background:var(--orange);color:#fff!important;font:700 15px Outfit!important;padding:11px 14px;border-radius:10px;white-space:nowrap}
+  footer{padding-bottom:84px}
+}
+@media(prefers-reduced-motion:reduce){.mbar{transition:none}}
+.ft-link{display:block;width:100%;background:none;border:0;margin-top:10px;font:500 13px Inter;color:var(--muted);cursor:pointer;text-align:center;padding:6px}
+.ft-link b{color:var(--orange-d)}
+.ft-link:hover b{text-decoration:underline}
+.ft-strip{margin-top:22px;background:var(--navy);color:#fff;border-radius:16px;padding:18px 20px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+.ft-strip div{flex:1 1 320px;min-width:0}
+.ft-strip b{display:block;font:700 18px Outfit}
+.ft-strip span{font-size:14px;color:#cfd8e3}
+.ft-strip .ft-cta{width:auto;flex:0 1 260px}
+[hidden]{display:none!important}
+.ft-ov{position:fixed;inset:0;z-index:50;background:rgba(10,16,24,.6);display:flex;align-items:flex-end;justify-content:center}
+@media(min-width:640px){.ft-ov{align-items:center;padding:16px}}
+.ft-box{background:#fff;width:100%;max-width:480px;max-height:92vh;overflow-y:auto;border-radius:18px 18px 0 0;padding:22px 20px calc(22px + env(safe-area-inset-bottom,0px));position:relative}
+@media(min-width:640px){.ft-box{border-radius:18px}}
+.ft-x{position:absolute;top:12px;right:12px;background:var(--bg);border:0;width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:15px}
+.ft-eyebrow{font:700 13px Outfit;color:var(--orange-d);letter-spacing:.4px;margin-bottom:10px}
+.ft-steps{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.ft-steps span{font-size:11px;font-weight:600;padding:4px 8px;border-radius:999px;background:var(--bg);color:var(--muted)}
+.ft-steps span.on{background:#fff1df;color:var(--orange-d)}
+.ft-box h3{font-size:21px;margin-bottom:14px}
+.ft-tiers{display:grid;gap:8px;margin-bottom:14px}
+.ft-t{display:flex;justify-content:space-between;align-items:center;border:2px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer}
+.ft-t input{position:absolute;opacity:0}
+.ft-t.sel{border-color:var(--orange);background:#fff7ec}
+.ft-t span{color:var(--muted);font-size:14px}
+.ft-list{list-style:none;display:grid;gap:6px;font-size:14px;margin-bottom:16px}
+.ft-list li::before{content:"✓ ";color:var(--green);font-weight:800}
+.ft-l{display:block;font-size:13px;font-weight:600;margin-bottom:4px}
+.ft-box input:not([type=checkbox]):not([type=radio]){width:100%;border:2px solid var(--line);border-radius:12px;padding:12px;font:16px Inter;margin-bottom:10px}
+.ft-chk{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.45;margin:6px 0 10px;cursor:pointer}
+.ft-chk input{margin-top:3px;width:18px;height:18px;flex:none;accent-color:var(--orange)}
+.ft-chk small{display:block;color:var(--muted)}
+.ft-nav{display:flex;gap:10px;align-items:center;margin-top:8px}
+.ft-nav .cta{flex:1}
+.ft-back{background:none;border:0;color:var(--muted);font-size:14px;cursor:pointer;padding:10px 4px}
+.ft-sum{border:1px solid var(--line);border-radius:12px;margin-bottom:12px;font-variant-numeric:tabular-nums}
+.ft-sum div{display:flex;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--line);font-size:14px}
+.ft-sum div:last-child{border-bottom:0}
+.ft-sum span{color:var(--muted)}
+.ft-done{text-align:center}
+.ft-done .ok{width:60px;height:60px;border-radius:50%;background:var(--green-l);color:var(--green);display:grid;place-items:center;font-size:30px;margin:0 auto 12px}
+.ft-done p{color:var(--muted);font-size:15px;margin-bottom:14px}
+.fin-link{display:block;width:100%;background:none;border:0;border-top:1px dashed var(--line);margin-top:8px;padding:10px 6px 0;font:500 13px Inter;color:var(--ink);cursor:pointer;text-align:center}
+.fin-link b{color:var(--blue)}
+.fin-link span{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+.fin-link:hover b{text-decoration:underline}
+.fin-note{text-align:center;font-size:12px;margin-top:6px}
+.ft-pay{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.ft-pay .ft-t{flex-direction:column;align-items:flex-start;gap:2px}
+.broker{display:block;font-size:12px;line-height:1.5;margin-bottom:8px}
+.logo{display:flex;align-items:center}
+.logo img{height:54px;width:auto;display:block}
+@media(max-width:400px){.logo img{height:48px}}
+.flogo{display:block;height:50px;width:auto;flex-basis:100%;max-width:160px;margin-bottom:6px}
+.accred{background:#fff;border-bottom:1px solid var(--line)}
+.accred .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px 28px;padding-top:16px;padding-bottom:16px}
+.accred img{height:48px;width:auto;display:block}
+.abadge{border:2px solid var(--navy);border-radius:10px;padding:6px 12px;font-size:13px;line-height:1.25;text-align:center;color:var(--ink)}
+.abadge b{font:800 15px Outfit}
+.abadge small{color:var(--muted)}
+@media(max-width:480px){.accred img{height:38px}.accred .wrap{gap:12px 16px}}
+.hero-grid>*{min-width:0}
+.steps{gap:4px}
+.dot{flex:0 0 auto}
+.bar{flex:1 1 22px;min-width:4px;max-width:22px}
+@media(max-width:480px){.dot{width:24px;height:24px;font-size:11px}.quiz{padding:20px 16px}}
+.xbadge{display:inline-flex;align-items:center;gap:9px;height:48px;padding:0 12px 0 6px;border-radius:12px;background:#fff;border:2px solid;text-align:left;line-height:1.1}
+.xbadge svg{width:34px;height:34px;flex:none}
+.xbadge>span{display:flex;flex-direction:column}
+.xbadge b{font:800 14px Outfit,Arial,sans-serif;letter-spacing:.6px}
+.xbadge i{font-style:normal;font-size:12px;font-weight:600;color:var(--ink)}
+.xbadge small{font-size:10.5px;color:var(--muted);margin-top:1px}
+.xb-ozev{border-color:#0b7a43}.xb-ozev b{color:#0b7a43}
+.xb-l3{border-color:var(--navy)}.xb-l3 b{color:var(--navy)}
+@media(max-width:480px){.xbadge{height:44px}.xbadge svg{width:30px;height:30px}.xbadge b{font-size:13px}}
+.rtag{display:inline-block;font:700 12px Inter;letter-spacing:.3px;color:var(--orange-d);background:#fff1df;border-radius:999px;padding:4px 10px;margin-bottom:8px}
+.acc-n{display:flex;flex-direction:column;align-items:center;gap:2px}
+.acc-n small{font-size:10.5px;color:var(--muted)}
+.ph{background:#fff3cd;color:#7a5a00;padding:0 4px;border-radius:4px}
+
+.alt-row{display:grid;gap:12px;grid-template-columns:1fr;margin-top:22px}
+@media(min-width:760px){.alt-row{grid-template-columns:1fr 1fr}}
+.alt{display:block;width:100%;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;font:500 15px Inter;color:var(--ink);cursor:pointer;text-align:left}
+.alt b{color:var(--orange-d)}
+.alt.fin-alt b{color:var(--blue)}
+.alt span{display:block;font-size:13px;color:var(--muted);margin-top:3px}
+.alt:hover{border-color:var(--orange)}
+.why{background:var(--navy);color:#fff}
+.why .h2{color:#fff}
+.why .lead{color:#cfd8e3}
+.why-g{display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:700px){.why-g{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.why-g{grid-template-columns:repeat(4,1fr)}}
+.why .card{background:var(--navy2);border-color:#24344a}
+.why .card h3{color:#fff}
+.why .card p{color:#b9c5d3}
+.why .card .ic{background:#24344a}
+.xd{max-width:900px;margin:0 auto 14px;background:#fff;border:1px solid var(--line);border-radius:16px}
+.xd>summary{cursor:pointer;list-style:none;padding:18px 20px;font:700 18px Outfit;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.xd>summary::-webkit-details-marker{display:none}
+.xd>summary span{font:500 14px Inter;color:var(--muted)}
+.xd>summary::after{content:"▾";margin-left:auto;color:var(--blue)}
+.xd[open]>summary::after{content:"▴"}
+.xd[open]{padding-bottom:20px}
+.xd>.calc,.xd>.flags{margin:0 16px}
+</style>
+</head>
+<body id="top">
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="SmartWired Electrical Contractor"><img src="https://nrl2210.github.io/smartwired-assets/lp/logo.png" alt="SmartWired Electrical Contractor" width="148" height="46"></a>
+    <a class="btn-wa" href="https://wa.me/447463584628?text=Hi%2C%20I%27d%20like%20a%20quote%20for%20an%20EV%20charger" target="_blank" rel="noopener">💬 Get in Touch</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>EV Charger Installation, <span>Done Properly</span></h1>
+      <p class="sub">Fixed price, fully certified, and an installer who still answers the phone after the job's done.</p>
+      <p class="trust">NAPIT &amp; TrustMark approved · Level 3 EV Certified · 20+ years trading</p>
+      <div class="price">
+        <strong>From £975 fully installed</strong>
+        <span>Essential, short runs up to 5m. Our most popular Pro package is £1,195 up to 10m, or £91/month at 0%</span>
+        <span class="rep">Representative example (Pro): cash price £1,195. Deposit £99. Amount of credit £1,096, repaid in 12 monthly payments of £91.33 (final payment £91.37). Total amount payable £1,195. Interest rate 0% fixed. Representative 0% APR.</span>
+        <p class="check">⚡ <b>One quick check:</b> before we lock in your price and install date, we just need to confirm your home's electrics can handle the extra load of an EV charger. Most homes can, and it takes a 15-minute video call.</p>
+      </div>
+      <ul class="ticks">
+        <li>✅ One point of contact from survey to aftercare</li>
+        <li>✅ Up to 3-year charger warranty, 1 year on labour</li>
+        <li>✅ No hidden extras, fixed price confirmed in writing</li>
+        <li>✅ Free survey. A £99 refundable deposit secures your install date.</li>
+        <li>✅ Renters &amp; flat owners: up to £500 off Pro or Premium with the OZEV grant</li>
+      </ul>
+      <div class="chips">
+        <a class="chip" href="https://search.google.com/local/reviews?placeid=ChIJQ6NubRJceUgRYvbGKR7HOj4" target="_blank" rel="noopener" style="text-decoration:none"><b>★★★★★</b> 5.0 · 173 Google reviews ↗</a>
+        <span class="chip">Yorkshire · Lancashire · North East</span>
+      </div>
+    </div>
+
+    <div class="quiz" id="quiz"></div>
+  </div>
+</div>
+
+<div class="accred" aria-label="Accreditations">
+  <div class="wrap">
+    <span class="acc-n"><img src="https://nrl2210.github.io/smartwired-assets/lp/napit.jpg" alt="NAPIT Approved Electrician, UKAS product certification" width="161" height="48"><small>Reg. no. 63536</small></span>
+    <img src="https://nrl2210.github.io/smartwired-assets/lp/trustmark.jpg" alt="TrustMark Government Endorsed Quality" width="226" height="48">
+    <span class="xbadge xb-ozev">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#0b7a43"/><path d="M22.5 7 12 22h7l-2.5 11L28 17.5h-7.2z" fill="#fff"/></svg>
+      <span><b>OZEV-APPROVED</b><i>EV chargepoint installer</i><small>Installer no. 13887</small></span>
+    </span>
+    <span class="xbadge xb-l3">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#0f1722"/><text x="20" y="26.5" text-anchor="middle" font-family="Outfit,Arial,sans-serif" font-weight="800" font-size="17" fill="#ff8a00">L3</text></svg>
+      <span><b>LEVEL 3 EV</b><i>Certified installers</i><small>IET Code of Practice</small></span>
+    </span>
+  </div>
+</div>
+
+<div class="strip"><div class="wrap"><span>⚠️ <b>Comparing quotes?</b> Cheaper prices often exclude VAT, cable over 5m, a new EV board or certification.</span><span><b>Ours includes all of it.</b></span></div></div>
+
+<section id="packages">
+  <div class="wrap">
+    <h2 class="h2">Choose your charger</h2>
+    <p class="lead">Every package is fully installed and certified, with up to 10m of cable. Pick the charger that suits you.</p>
+    <div class="tiers">
+      <div class="tier">
+        <h3>Essential</h3><p class="for">Simple smart charging, no extras</p>
+        <div class="amt">£1,075 <small>installed</small></div>
+        <p class="mo">or £81/month at 0% over 12 months</p>
+        <span class="short">5m or under: £975</span>
+        <ul><li>7.4kW smart charger</li><li>Meets UK Smart Charge Point Regulations</li><li>Charges off-peak by default</li><li>Basic app: start, stop and see your charging</li><li>Untethered: plug in your car's own cable</li><li>PEN fault protection built in</li><li>1-year warranty</li></ul>
+        <button class="cta" onclick="pickTier('Essential')">Choose Essential →</button>
+      </div>
+      <div class="tier pop">
+        <span class="badge">MOST POPULAR</span>
+        <h3>Pro</h3><p class="for">Smart charging on cheap off-peak rates</p>
+        <div class="amt">£1,195 <small>installed</small></div>
+        <p class="mo">or £91/month at 0% over 12 months</p>
+        <span class="short">5m or under: £1,095</span>
+        <ul><li>7.4kW smart charger, OZEV-approved</li><li>App control: schedule, monitor and control</li><li>Dynamic load balancing: never overloads your supply</li><li>Built-in Wi-Fi, no SIM card needed</li><li>Over-the-air (OTA) updates</li><li>Untethered as standard, <b>tethered cable +£99</b></li><li>3-year warranty</li></ul>
+        <div class="grant">🏷️ <b>Renters &amp; flat owners: up to £500 off</b> with the OZEV grant<span>Pro from £695 with grant*</span></div>
+        <button class="cta" onclick="pickTier('Pro')">Choose Pro →</button>
+      </div>
+      <div class="tier">
+        <h3>Premium</h3><p class="for">Solar, battery and faster charging</p>
+        <div class="amt">£1,495 <small>installed</small></div>
+        <p class="mo">or £116/month at 0% over 12 months</p>
+        <span class="short">5m or under: £1,395</span>
+        <ul><li>Everything in Pro</li><li>Tethered cable included</li><li>LCD screen showing live charge data</li><li>Solar &amp; battery ready</li><li>7.4kW, or 11kW/22kW on a 3-phase supply</li></ul>
+        <div class="grant">🏷️ <b>Renters &amp; flat owners: up to £500 off</b> with the OZEV grant<span>Premium from £995 with grant*</span></div>
+        <button class="cta" onclick="pickTier('Premium')">Choose Premium →</button>
+      </div>
+    </div>
+
+    <div class="alt-row">
+      <button class="alt" type="button" onclick="openFT('Pro')">⚡ <b>Already decided? Fast-track your install</b><span>£99 deposit, fully refundable if your video check shows we can't fit it</span></button>
+      <button class="alt fin-alt" type="button" onclick="preCheck(this)">💷 <b>Check your eligibility for 0% finance</b><span>Soft check, invisible to other lenders</span></button>
+    </div>
+
+    <details class="cmp-d"><summary>Compare all features</summary>
+    <p class="swipe">Swipe to compare all three →</p>
+    <div class="cmp-wrap">
+      <table class="cmp">
+        <thead><tr><th></th><th>Essential</th><th class="hl">Pro</th><th>Premium</th></tr></thead>
+        <tbody>
+          <tr><td>Installed price (up to 10m)</td><td>£1,075</td><td class="hl"><b>£1,195</b></td><td>£1,495</td></tr>
+          <tr><td>Short run (5m or under)</td><td>£975</td><td class="hl">£1,095</td><td>£1,395</td></tr>
+          <tr><td>Charging power</td><td>7.4kW</td><td class="hl">7.4kW</td><td>7.4kW, 11kW or 22kW*</td></tr>
+          <tr><td>Cable</td><td>Untethered</td><td class="hl">Untethered (tethered +£99)</td><td>Tethered</td></tr>
+          <tr><td>Smart charger (UK regulations)</td><td class="yes">✓</td><td class="hl yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>App control</td><td>Basic</td><td class="hl">Full</td><td>Full</td></tr>
+          <tr><td>Off-peak charging</td><td>Default hours</td><td class="hl">Custom schedules</td><td>Custom schedules</td></tr>
+          <tr><td>LCD screen</td><td class="no">✕</td><td class="hl no">✕</td><td class="yes">✓</td></tr>
+          <tr><td>Dynamic load balancing</td><td class="no">✕</td><td class="hl yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Built-in Wi-Fi, no SIM needed</td><td class="no">✕</td><td class="hl yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Over-the-air (OTA) updates</td><td class="no">✕</td><td class="hl yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Solar &amp; battery ready</td><td class="no">✕</td><td class="hl no">✕</td><td class="yes">✓</td></tr>
+          <tr><td>PEN fault protection</td><td class="yes">✓</td><td class="hl yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>With OZEV grant (renters &amp; flat owners)*</td><td class="no">✕</td><td class="hl">From £695</td><td>From £995</td></tr>
+          <tr><td>OZEV-approved (grant eligible)</td><td class="no">✕</td><td class="hl yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Warranty</td><td>1 year</td><td class="hl">3 years</td><td>3 years</td></tr>
+        </tbody>
+      </table>
+      <p class="tnote" style="margin-top:8px">11kW and 22kW need a 3-phase supply. We'll check yours on the video call.</p>
+    </div>
+    </details>
+    <p class="tnote">*OZEV grant of up to £500 for renters and flat owners with private off-street parking, subject to OZEV approval before installation. Homeowners in houses aren't eligible. Not available on Essential. The scheme currently runs until 31 March 2027.<br>All prices include VAT. Your exact price is confirmed on your 15-minute video check, based on your cable run. Finance: £99 deposit, 12 months at 0% APR, subject to status. Representative example (Pro): cash price £1,195. Deposit £99. Amount of credit £1,096, repaid in 12 monthly payments of £91.33 (final payment £91.37). Total amount payable £1,195. Interest rate 0% fixed. Representative 0% APR.</p>
+  </div>
+</section>
+
+<section class="why">
+  <div class="wrap">
+    <h2 class="h2">"Never heard of RiponEV?"</h2>
+    <p class="lead">Fair question. RiponEV is our own charger brand. We supply it and we fit it, so if anything ever goes wrong there's nobody else to pass the blame to.</p>
+    <div class="why-g">
+      <div class="card"><div class="ic">📞</div><h3>Backed by us, not a call centre</h3><p>One number for everything. The team that fitted your charger handles your warranty and aftercare.</p></div>
+      <div class="card"><div class="ic">✅</div><h3>Approved &amp; certified</h3><p>UKCA-marked and built to the UK Smart Charge Point Regulations. Pro &amp; Premium are OZEV-approved, so they qualify for the grant.</p></div>
+      <div class="card"><div class="ic">⚙️</div><h3>Big-brand features, fairer price</h3><p>App control, off-peak scheduling, load balancing and over-the-air updates, without paying for someone else's advertising.</p></div>
+      <div class="card"><div class="ic">🚗</div><h3>Works with every EV</h3><p>Type 2 connector, the UK standard. Tesla, BMW, BYD, Audi, Kia, VW: if it's electric, it charges.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#fff">
+  <div class="wrap">
+    <h2 class="h2">What our customers say</h2>
+    <p class="lead">Rated 5.0 from 173 Google reviews. Here's what EV customers say.</p>
+    <div class="reviews">
+      <div class="review"><span class="rtag">No hidden charges</span><div class="stars">★★★★★</div><p>"Excellent service from start to finish. The charger was installed on time with no hidden charges at all. The appointment process was efficient and well-organized, and the team was highly professional throughout. They explained everything clearly, completed the work to a high standard, and left everything tidy."</p><small>Google review</small></div>
+      <div class="review"><span class="rtag">Remote survey made it easy</span><div class="stars">★★★★★</div><p>"Huge thanks to Nurul for the EV charger installation today. From the start, going through the remote survey, text message correspondence's, to completion, he is extremely personable, friendly and helpful."</p><small>Mike · Google review</small></div>
+      <div class="review"><span class="rtag">Surveyed Sunday, fitted Tuesday</span><div class="stars">★★★★★</div><p>"Very professional and friendly 👏, I highly recommend! Inspection was done on Sunday and EV charger installed on Tuesday absolutely fantastic. 5-STARS."</p><small>Google review</small></div>
+      <div class="review"><span class="rtag">Neat, careful work</span><div class="stars">★★★★★</div><p>"The whole process was smooth and professional, from arranging the installation through to the fitting itself. Nurul was fab. He was friendly, knowledgeable and took care to complete the work neatly. The charger looks great, everything was explained clearly, and it’s working perfectly."</p><small>Google review</small></div>
+      <div class="review"><span class="rtag">Didn't rush off</span><div class="stars">★★★★★</div><p>"He was attentive, informative, friendly, and punctual from start to finish. He took the time to make sure everything was done to a high standard and didn’t rush off… He also took the time to walkthrough the set up of the app and how to navigate afterwards."</p><small>Smita B., West Yorkshire · Google review</small></div>
+      <div class="review"><span class="rtag">Tricky install, done well</span><div class="stars">★★★★★</div><p>"Nurul did a fantastic job with a difficult install. I highly recommend him."</p><small>Julie S., West Yorkshire · Google review</small></div>
+    </div>
+    <p class="more"><a href="https://search.google.com/local/reviews?placeid=ChIJQ6NubRJceUgRYvbGKR7HOj4" target="_blank" rel="noopener">Read all our Google reviews ↗</a></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="h2">Recent installs</h2>
+    <p class="lead">Real jobs by our own team, not stock photos. This is what "done properly" looks like.</p>
+    <div class="gal">
+      <figure class="reel"><video autoplay muted loop playsinline poster="https://nrl2210.github.io/smartwired-assets/lp/reel-poster.jpg" src="https://nrl2210.github.io/smartwired-assets/lp/reel.mp4"></video><figcaption><b>Fitted, tested &amp; handed over</b>Every install is tested and certified before we leave</figcaption></figure>
+      <figure><img loading="lazy" src="https://nrl2210.github.io/smartwired-assets/lp/install-van.jpg" alt="RiponEV charger installed by SmartWired with company van on the driveway"><figcaption><b>Our van, our engineers</b>No subcontractors. The team you speak to is the team who fits it.</figcaption></figure><figure><img loading="lazy" src="https://nrl2210.github.io/smartwired-assets/lp/install-rangerover.jpg" alt="EV charger installed beside a patio, charging a Range Rover"><figcaption><b>Charging on the patio</b>Positioned so the cable reaches without stretching.</figcaption></figure><figure><img loading="lazy" src="https://nrl2210.github.io/smartwired-assets/lp/install-bmw.jpg" alt="EV charger on a brick wall charging a BMW"><figcaption><b>Ready on the drive</b>Mounted where the car actually parks.</figcaption></figure><figure><img loading="lazy" src="https://nrl2210.github.io/smartwired-assets/lp/premium-lcd.jpg" alt="RiponEV Premium charger with LCD screen on a brick wall"><figcaption><b>Premium with LCD screen</b>Live power and energy readings on the charger.</figcaption></figure><figure class="wide"><img loading="lazy" src="https://nrl2210.github.io/smartwired-assets/lp/install-volvo.jpg" alt="EV charger on a period brick house charging a Volvo XC90"><figcaption><b>Charging at the front of the house</b>Mounted beside the drive, cable tidy down the wall.</figcaption></figure><figure><img loading="lazy" src="https://nrl2210.github.io/smartwired-assets/lp/ev-board.jpg" alt="EV charger with dedicated EV board and neat cable run"><figcaption><b>Its own protected circuit</b>Dedicated EV board with SPD &amp; RCBO protection.</figcaption></figure><figure><img loading="lazy" src="https://nrl2210.github.io/smartwired-assets/lp/cable-run.jpg" alt="Armoured cable clipped neatly along a house wall to an EV charger"><figcaption><b>Neat cable runs</b>Clipped tight along the wall, never left hanging.</figcaption></figure><figure class="wide"><img loading="lazy" src="https://nrl2210.github.io/smartwired-assets/lp/install-byd.jpg" alt="EV charger on a pebble-dash wall charging a BYD"><figcaption><b>Pebble-dash, no problem</b>Fixed solid and sealed on any wall finish.</figcaption></figure><figure class="gx"><img loading="lazy" src="https://nrl2210.github.io/smartwired-assets/lp/install-tesla.jpg" alt="EV charger charging a white Tesla on a driveway"><figcaption><b>Works with every EV</b>Type 2 connector fits every new EV on UK roads.</figcaption></figure><figure class="gx"><img loading="lazy" src="https://nrl2210.github.io/smartwired-assets/lp/tethered.jpg" alt="Tethered RiponEV charger with cable wrapped around it"><figcaption><b>Tethered option</b>Cable stays on the charger, ready to plug in.</figcaption></figure><figure class="gx"><img loading="lazy" src="https://nrl2210.github.io/smartwired-assets/lp/charging-green.jpg" alt="EV charger with green charging light beside a driveway"><figcaption><b>Plug in, go to bed</b>Wake up to a full battery every morning.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="savings">
+  <div class="wrap">
+    <h2 class="h2">Comparing quotes or doing the sums?</h2>
+    <p class="lead">Two quick tools if you want to dig deeper. Tap to open.</p>
+    <details class="xd"><summary>💷 How much could you save? <span>Savings calculator</span></summary>
+    <p class="lead" style="margin:16px auto 20px">Home charging costs a fraction of public charging. On 0% finance, your savings can cover your monthly payment.</p>
+    <div class="calc">
+      <label for="miles">Miles you drive per year <span class="val" id="mv">8,000</span></label>
+      <input type="range" id="miles" min="2000" max="25000" step="500" value="8000">
+
+      <div class="seg-grid">
+        <div><span class="seg-l">Charger</span><div class="seg" role="radiogroup" aria-label="Charger">
+          <input type="radio" name="model" id="m-ess" value="Essential"><label for="m-ess">Essential</label>
+          <input type="radio" name="model" id="m-pro" value="Pro" checked><label for="m-pro">Pro</label>
+          <input type="radio" name="model" id="m-pre" value="Premium"><label for="m-pre">Premium</label></div></div>
+        <div><span class="seg-l">Cable run</span><div class="seg" role="radiogroup" aria-label="Cable run">
+          <input type="radio" name="run" id="r-5" value="5"><label for="r-5">5m or under</label>
+          <input type="radio" name="run" id="r-10" value="10" checked><label for="r-10">Up to 10m</label></div></div>
+        <div><span class="seg-l">Pay over</span><div class="seg" role="radiogroup" aria-label="Finance term">
+          <input type="radio" name="term" id="t-6" value="6"><label for="t-6">6 months</label>
+          <input type="radio" name="term" id="t-9" value="9"><label for="t-9">9 months</label>
+          <input type="radio" name="term" id="t-12" value="12" checked><label for="t-12">12 months</label></div></div>
+        <div><span class="seg-l">Deposit</span><div class="seg" role="radiogroup" aria-label="Deposit">
+          <input type="radio" name="dep" id="d-99" value="99" checked><label for="d-99">£99</label>
+          <input type="radio" name="dep" id="d-0" value="0"><label for="d-0">£0</label></div></div>
+        <div><span class="seg-l">Show figures</span><div class="seg" role="radiogroup" aria-label="Show figures">
+          <input type="radio" name="per" id="p-m" value="m" checked><label for="p-m">Monthly</label>
+          <input type="radio" name="per" id="p-w" value="w"><label for="p-w">Weekly</label></div></div>
+      </div>
+
+      <div class="ledger">
+        <div class="lrow"><span>You save on charging</span><b class="pos" id="l-save">+£133</b></div>
+        <div class="lrow"><span>Your finance payment (<span id="l-desc">Pro, 12 months at 0%</span>)</span><b class="negv" id="l-fin">−£91</b></div>
+        <div class="lrow net" id="l-netrow"><span id="l-netlabel">You're better off by</span><b id="l-net">£42 a month</b></div>
+        <p class="lnote" id="l-after">Once it's paid off after 12 months, you keep the full £133 a month.</p>
+      </div>
+
+      <div class="res">
+        <div><b id="save">£1,600</b><small>saved per year vs public charging</small></div>
+        <div><b id="pay">9 months</b><small id="pay-l">to pay back a £1,195 install</small></div>
+      </div>
+      <p class="disc" id="disc">Estimates only, based on 7p/kWh home off-peak charging, 77p/kWh public charging and 3.5 miles per kWh. Your actual savings will depend on your car, your tariff, how and where you charge, and future energy prices. Savings are not guaranteed. Finance is 0% APR, subject to status. Representative example (Pro): cash price £1,195. Deposit £99. Amount of credit £1,096, repaid in 12 monthly payments of £91.33 (final payment £91.37). Total amount payable £1,195. Interest rate 0% fixed. Representative 0% APR. PayItMonthly is a form of credit, provided by PayItMonthly Ltd. Subject to status and affordability. Late or missed payments could impact your ability to access credit in the future.</p>
+      <a class="cta" href="#quiz">Confirm My Fixed Price →</a>
+      <details class="assume">
+        <summary>Assumptions (tap to edit)</summary>
+        <div class="row"><label for="home">Home off-peak tariff (p/kWh)</label> <input type="number" inputmode="decimal" id="home" value="7" step="0.5"></div>
+        <div class="row"><label for="pub">Public charging (p/kWh)</label> <input type="number" inputmode="decimal" id="pub" value="77" step="1"></div>
+        <div class="row"><label for="eff">Car efficiency (miles/kWh)</label> <input type="number" inputmode="decimal" id="eff" value="3.5" step="0.1"></div>
+        <p style="margin-top:10px">These figures are for illustration only and are not a quote or a promise of savings. They compare charging at home on an off-peak tariff with charging at public rapid chargers. If you already charge at home or work, your savings will be lower. Energy prices change. SmartWired accepts no liability for differences between these estimates and your actual costs. Your fixed installation price is confirmed in writing after your video check. Default rates: 77p/kWh is the Zapmap UK average for rapid and ultra-rapid public chargers (August 2026); 7p/kWh is a typical overnight EV tariff rate (most sit between 6.7p and 8.8p).</p>
+      </details>
+    </div>
+    </details>
+    <details class="xd"><summary>🚩 Getting other quotes? <span>7 things to check first</span></summary>
+    <p class="lead" style="margin:16px auto 20px">Cheaper quotes often leave something out. Here's how to compare like for like.</p>
+    <div class="flags">
+      <div class="flag red">
+        <h3>✕ Red flags: walk away</h3>
+        <ul>
+          <li>✕ Won't give a fixed price ("we'll see on the day")</li>
+          <li>✕ Quotes ex-VAT so it looks cheaper</li>
+          <li>✕ Cable run not included</li>
+          <li>✕ No new EV board or surge protection</li>
+          <li>✕ Can't show NAPIT or Level 3 EV certification</li>
+          <li>✕ No Building Regs notification</li>
+          <li>✕ Hard to reach after the install</li>
+        </ul>
+      </div>
+      <div class="flag green">
+        <h3>✓ Green flags: good signs</h3>
+        <ul>
+          <li>✓ Fixed price confirmed in writing, VAT included</li>
+          <li>✓ Level 3 EV Certified installers</li>
+          <li>✓ NAPIT registered and TrustMark approved</li>
+          <li>✓ OZEV-approved, UKCA-marked charger</li>
+          <li>✓ Dedicated EV board with RCBO and SPD protection</li>
+          <li>✓ Clear warranty on hardware and labour</li>
+          <li>✓ One point of contact from survey to aftercare</li>
+        </ul>
+      </div>
+    </div>
+    </details>
+  </div>
+</section>
+<script>
+(function(){
+  var PRICES={Essential:{5:975,10:1075},Pro:{5:1095,10:1195},Premium:{5:1395,10:1495}};
+  function $(id){return document.getElementById(id)}
+  function num(id,d){var v=parseFloat(String($(id).value).replace(',','.'));return isFinite(v)&&v>=0?v:d}
+  function radio(n,d){var el=document.querySelector('input[name="'+n+'"]:checked');return el?el.value:d}
+  function fmt(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,',')}
+  function calc(){
+    try{
+      var m=num('miles',8000),h=num('home',0),p=num('pub',0),e=num('eff',3.5)||3.5;
+      var model=radio('model','Pro'),run=radio('run','10'),term=+radio('term','12'),dep=+radio('dep','99'),per=radio('per','m');
+      var price=PRICES[model][run];
+      var yearSave=Math.max(0,(m/e)*(p-h)/100);
+      var finMonth=(price-dep)/term;
+      var k=per==='w'?12/52:1, unit=per==='w'?'week':'month';
+      var save=Math.round(yearSave/12*k), fin=Math.round(finMonth*k), net=save-fin;
+      $('mv').textContent=fmt(m);
+      $('l-save').textContent='+£'+fmt(save);
+      $('l-fin').textContent='−£'+fmt(fin);
+      $('l-desc').textContent=model+', '+term+' months at 0%'+(dep?', after £'+dep+' deposit':', no deposit');
+      var row=$('l-netrow');
+      if(net>=0){row.className='lrow net up';$('l-netlabel').textContent="You're better off by";$('l-net').textContent='£'+fmt(net)+' a '+unit}
+      else{row.className='lrow net down';$('l-netlabel').textContent='It costs you an extra';$('l-net').textContent='£'+fmt(-net)+' a '+unit}
+      $('l-after').textContent=yearSave>0?"Once it's paid off after "+term+" months, you keep the full £"+fmt(save)+" a "+unit+".":'Adjust the assumptions to see your savings.';
+      $('pay-l').textContent='to pay back a £'+fmt(price)+' install';
+      var dt=$('disc');if(dt&&dt.firstChild)dt.firstChild.nodeValue='Estimates only, based on '+h+'p/kWh home off-peak charging, '+p+'p/kWh public charging and '+e+' miles per kWh. Your actual savings will depend on your car, your tariff, how and where you charge, and future energy prices. Savings are not guaranteed. Finance is 0% APR, subject to status. ';
+      if(yearSave>0){$('save').textContent='£'+fmt(yearSave);$('pay').textContent=Math.ceil(price/(yearSave/12))+' months'}
+      else{$('save').textContent='£0';$('pay').textContent='n/a'}
+    }catch(err){}
+  }
+  window.__calc=calc;
+  document.querySelectorAll('#savings input').forEach(function(el){['input','change','keyup'].forEach(function(ev){el.addEventListener(ev,calc)})});
+  calc();
+})();
+</script>
+
+<section>
+  <div class="wrap">
+    <h2 class="h2">Included with every package</h2>
+    <p class="lead">Whichever charger you choose, the install is the same: one fixed price, VAT included, no add-ons on the day for a standard install.</p>
+    <ul class="inc">
+      <li><span>✓</span><div><b>Your choice of RiponEV charger</b><small>UKCA-marked with PEN fault protection built in. Pro &amp; Premium are OZEV-approved</small></div></li>
+      <li><span>✓</span><div><b>New dedicated EV consumer unit</b><small>With RCBO protection and a surge protection device (SPD)</small></div></li>
+      <li><span>✓</span><div><b>Up to 10m armoured cable with data wires</b><small>Neatly clipped and fixed</small></div></li>
+      <li><span>✓</span><div><b>Full testing &amp; new electrical certificate</b><small>Plus Building Regs notification</small></div></li>
+      <li><span>✓</span><div><b>Set-up &amp; handover</b><small>We show you how it all works, including off-peak scheduling on Pro &amp; Premium</small></div></li>
+      <li><span>✓</span><div><b>Warranty &amp; aftercare</b><small>Up to 3 years on the charger, 1 year on labour, one point of contact</small></div></li>
+    </ul>
+    <a class="total" href="#quiz"><div class="tl"><span>Fully installed, VAT included</span><b>From £975</b><span>Pro from £1,195, or £91/month at 0%</span></div><span class="tbtn">Confirm My Price &amp; Install Date →</span></a>
+  </div>
+</section>
+
+
+
+<section>
+  <div class="wrap">
+    <h2 class="h2">Confirm your price &amp; install date in 3 steps</h2>
+    <p class="lead">No home visit needed. It's all done from your sofa.</p>
+    <div class="how">
+      <div class="card"><div class="num">1</div><h3>Answer a few quick questions</h3><p>Takes under a minute.</p></div>
+      <div class="card"><div class="num">2</div><h3>Quick 15-minute video check</h3><p>We confirm your home's electrics can handle the extra load of an EV charger. Most homes can. Same-week slots available.</p></div>
+      <div class="card"><div class="num">3</div><h3>Confirm your price &amp; date</h3><p>Your exact price on the call, confirmed in writing. Happy? A £99 deposit secures your install date, fully refundable and taken off your final bill.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2 class="h2">Ready to charge at home?</h2>
+    <p class="lead">Before we lock in your price and install date, we just need to confirm your home's electrics can handle the extra load of an EV charger. Most homes can, and it takes a free 15-minute video call.</p>
+    <a class="cta" href="#quiz">Confirm My Price &amp; Install Date →</a>
+    <p class="call">Or call us: <a href="tel:+443333355767"><strong>0333 335 5767</strong></a> · WhatsApp <a href="https://wa.me/447463584628" target="_blank" rel="noopener"><strong>07463 584628</strong></a></p>
+    <p class="areas">Covering Yorkshire, Lancashire &amp; the North East</p>
+  </div>
+</section>
+
+<a class="mbar" id="mbar" href="#quiz"><span><b>Pro £1,195</b> · or £91/month</span><span class="mbtn">Confirm My Price →</span></a>
+
+<footer>
+  <div class="wrap">
+    <img class="flogo" src="https://nrl2210.github.io/smartwired-assets/lp/logo-white.png" alt="SmartWired Electrical Contractor" width="160" height="50">
+    <span>© 2026 SmartWired Electrical Contractor Ltd · Company No. 13288771 · NAPIT registered contractor no. 63536 · OZEV-approved installer no. 13887</span>
+    <span><span class="broker">SmartWired Electrical Contractor Ltd is not a lender. 0% finance is provided by PayItMonthly Ltd (company no. 09719909), Ellenborough House, Wellington Street, Cheltenham GL50 1XZ.<br>PayItMonthly is a form of credit that allows you to spread the cost of your purchase over monthly instalments. You must be 18 or over, a UK resident (excluding the Channel Islands), and meet PayItMonthly's eligibility criteria. All credit is subject to status and affordability checks. Late or missed payments could impact your ability to access credit in the future. PayItMonthly is deemed authorised and regulated by the Financial Conduct Authority for the purposes of the Temporary Permissions Regime for Regulated Deferred Payment Credit. Details of the Temporary Permissions Regime, which allows firms to carry on deferred payment credit activities while seeking full authorisation, are available on the Financial Conduct Authority's website. Terms and conditions apply. For full details, visit <a href="https://payitmonthly.uk/terms" target="_blank" rel="noopener">payitmonthly.uk/terms</a>.</span> <a href="https://smartwiredelectrical.co.uk/privacy-policy">Privacy Policy</a> · <a href="https://smartwiredelectrical.co.uk/terms">Terms</a> · <a href="mailto:hello@smartwiredelectrical.co.uk">hello@smartwiredelectrical.co.uk</a></span>
+  </div>
+</footer>
+
+<script>
+const steps=[
+  {q:"Which charger are you interested in?",opts:["Essential","Pro","Premium","Not sure yet"]},
+  {q:"What's the property?",opts:["I own a house","I own a flat","I rent (house or flat)","Business premises"]},
+  {q:"Do you have off-street parking?",opts:["Driveway","Garage","Private parking","No"]},
+  {q:"Do you have your EV yet?",opts:["Yes","Arriving within 4 weeks","Arriving later","Just researching"]},
+  {q:"Who'll be deciding on the install?",tip:"Tip: book a time when you can both join. You'll see the price together and won't need a second call.",opts:["Just me","Me and my partner: we'll both join","Me and my partner: they can't join"]},
+  {q:"Last step: where should we send your survey link?",contact:true}
+];
+let i=0;const el=document.getElementById('quiz');const ans={};
+const allowed=["LS","BD","HG","YO","WF","HD","HX","DN","S","LA","PR","BB","BL","OL","M","WN","NE","SR","DH","DL","TS"];
+const blocked=["LA7","LA8","LA9","LA10","LA11","LA12","LA13","LA14","LA15","LA16","LA17","LA18","LA19","LA20","LA21","LA22","LA23"];
+const BOOKING_URL="https://wa.me/447463584628?text=Hi%2C%20I%27d%20like%20to%20book%20my%20EV%20video%20survey"; // swap for your Google Calendar booking link
+function dots(){return '<p style="text-align:center;font:700 15px Outfit;color:var(--orange-d);margin-bottom:12px">Confirm your fixed price &amp; install date</p><div class="steps">'+steps.map((s,n)=>(n?'<span class="bar"></span>':'')+'<span class="dot '+(n<=i?'on':'')+'">'+(n<i?'✓':n+1)+'</span>').join('')+'</div><p class="time">⏱ Takes under a minute</p>'}
+function render(){
+  const s=steps[i];let h=dots()+(i?'<button class="back" onclick="back()">← Back</button>':'')+(ozevNote&&steps[i-1]&&steps[i-1].q==="What's the property?"?'<div class="ozev-ok">✅ <b>Good news: you may qualify for up to £500 off</b> Pro or Premium with the OZEV grant. You\'ll need private off-street parking, and the grant must be approved before we install. We\'ll walk you through it on your video call.</div>':'')+'<h3>'+s.q+'</h3>'+(s.tip?'<p class="fine" style="margin:-8px 0 14px;font-size:14px">'+s.tip+'</p>':'');
+  if(s.opts){h+='<div class="opts">'+s.opts.map((o,n)=>'<button class="opt" onclick="pick('+n+')">'+o+'</button>').join('')+'</div>'}
+  else{h+='<input id="pc" autocomplete="postal-code" placeholder="Postcode, e.g. LS9 7DR" value="'+(ans['Postcode']||'')+'"><p class="err" id="e-pc">Please enter a full UK postcode, e.g. LS9 7DR.</p><div class="oos" id="oos"></div><input id="nm" autocomplete="name" placeholder="Your name"><p class="err" id="e-nm">Please enter your name.</p><input id="mb" type="tel" autocomplete="tel" placeholder="Mobile number"><p class="err" id="e-mb">Please enter a valid UK mobile, e.g. 07123 456789.</p><input id="em" type="email" autocomplete="email" placeholder="Email address"><p class="err" id="e-em">Please enter a valid email address.</p><button class="cta" onclick="done()">Confirm My Price &amp; Date →</button><p class="fine">🔒 Your details are secure. No spam, ever.</p>'}
+  el.innerHTML=h;
+
+}
+function pickTier(t){ans['Which charger are you interested in?']=t;i=1;render();document.getElementById('quiz').scrollIntoView({behavior:'smooth'})}
+var ozevNote=false;
+function fwd(){i++;while(steps[i]&&steps[i].skip&&steps[i].skip())i++;render()}
+function back(){i--;while(i>0&&steps[i].skip&&steps[i].skip())i--;render()}
+function pick(n){var q=steps[i].q,v=steps[i].opts[n];ans[q]=v;
+  if(q==="What's the property?"){ozevNote=(v==="I own a flat"||v==="I rent (house or flat)");if(ozevNote)ans["OZEV grant"]="OZEV possible";else delete ans["OZEV grant"]}
+  fwd()}
+function pcCheck(){
+  const box=document.getElementById('oos');box.style.display='none';
+  const v=(document.getElementById('pc').value||'').toUpperCase().replace(/\s+/g,'');
+  if(!/^[A-Z]{1,2}\d[A-Z\d]?\d[A-Z]{2}$/.test(v)){document.getElementById('e-pc').style.display='block';return false}
+  document.getElementById('e-pc').style.display='none';
+  const out=v.slice(0,-3),area=out.match(/^[A-Z]+/)[0];
+  if(allowed.includes(area)&&!blocked.includes(out)){ans['Postcode']=out+' '+v.slice(-3);return true}
+  box.textContent="Sorry, we don't cover that postcode yet. We cover Yorkshire, Lancashire and the North East.";box.style.display='block';return false
+}
+function done(){
+  const nm=document.getElementById('nm').value.trim(),mb=document.getElementById('mb').value.replace(/[\s()-]/g,''),em=document.getElementById('em').value.trim();
+  const ok={nm:nm.length>1,mb:/^(07\d{9}|\+447\d{9}|447\d{9})$/.test(mb),em:/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)};
+  let good=pcCheck();for(const k in ok){document.getElementById('e-'+k).style.display=ok[k]?'none':'block';if(!ok[k])good=false}
+  if(!good)return;
+  const tag=ans["Do you have your EV yet?"]==="Just researching"?'<p class="fine">Tagged: Nurture</p>':'';
+  const partner=ans["Who'll be deciding on the install?"]==="Me and my partner: they can't join"?'<p class="fine">Tagged: Partner absent</p>':'';
+  el.innerHTML='<div class="done-box"><div class="ok">✓</div><h3>Thanks, '+nm.split(' ')[0].replace(/[<>&"]/g,'')+'! Now pick your survey time</h3><p class="fine" style="font-size:15px">In 15 minutes we\'ll confirm your exact price and offer you install dates.</p><div class="sum">'+Object.entries(ans).map(([k,v])=>'<b>'+k+'</b> '+v).join('<br>')+'</div><a class="cta" href="'+BOOKING_URL+'" target="_blank" rel="noopener">Choose My Survey Time →</a>'+'</div>';
+}
+render();
+(function(){var bar=document.getElementById('mbar'),q=document.getElementById('quiz');if(!bar||!q||!('IntersectionObserver' in window))return;
+new IntersectionObserver(function(es){es.forEach(function(e){bar.classList.toggle('hide',e.isIntersecting)})},{threshold:0.15}).observe(q)})();
+</script>
+
+<div class="ft-ov" id="ft" hidden>
+  <div class="ft-box" role="dialog" aria-modal="true" aria-labelledby="ft-h">
+    <button class="ft-x" type="button" onclick="closeFT()" aria-label="Close">✕</button>
+    <p class="ft-eyebrow">⚡ Fast-track your install</p>
+    <div id="ft-body"></div>
+  </div>
+</div>
+<script>
+var REVOLUT_URL=""; // paste your Revolut £99 payment link here
+var PRECHECK_URL=""; // paste your PayItMonthly Pre-Check link here
+var FIN_LINKS={Essential:"",Pro:"",Premium:""}; // paste a PayItMonthly payment link for each charger here
+var INSTALL_CAL_URL=""; // paste your install-day booking calendar link here
+var FT_PRICES={Essential:1075,Pro:1195,Premium:1495};
+var ft={tier:'Pro',step:1,d:{},pay:'card'};
+function ftEsc(v){return String(v).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function openFT(t){ft={tier:t||'Pro',step:1,d:{},pay:'card'};document.getElementById('ft').hidden=false;document.body.style.overflow='hidden';ftRender()}
+function closeFT(){document.getElementById('ft').hidden=true;document.body.style.overflow=''}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!document.getElementById('ft').hidden)closeFT()});
+function ftRender(){
+  var b=document.getElementById('ft-body'),h='';
+  var steps='<div class="ft-steps">'+['Charger','Your details','Payment','Install date'].map(function(n,k){return '<span class="'+(k+1<=ft.step?'on':'')+'">'+(k+1<ft.step?'✓ ':'')+n+'</span>'}).join('')+'</div>';
+  if(ft.step===1){
+    h=steps+'<h3 id="ft-h">Which charger would you like?</h3><div class="ft-tiers">'+['Essential','Pro','Premium'].map(function(t){return '<label class="ft-t'+(ft.tier===t?' sel':'')+'"><input type="radio" name="ftt" value="'+t+'"'+(ft.tier===t?' checked':'')+' onchange="ft.tier=this.value;ftRender()"><b>'+t+'</b><span>£'+FT_PRICES[t].toLocaleString('en-GB')+' installed</span></label>'}).join('')+'</div>'+
+      '<ul class="ft-list"><li>£99 deposit today, taken off your final bill</li><li>Pick your install date straight after</li><li>Quick 5-minute video check before your install day</li><li><b>Full refund if we can\'t install for any reason</b></li></ul>'+
+      '<button class="cta" type="button" onclick="ft.step=2;ftRender()">Continue →</button>';
+  }else if(ft.step===2){
+    var d=ft.d;
+    h=steps+'<h3 id="ft-h">Your details</h3>'+
+      '<label class="ft-l" for="ft-nm">Name</label><input id="ft-nm" autocomplete="name" value="'+ftEsc(d.nm||'')+'"><p class="err" id="fe-nm">Please enter your name.</p>'+
+      '<label class="ft-l" for="ft-mb">Mobile</label><input id="ft-mb" type="tel" autocomplete="tel" value="'+ftEsc(d.mb||'')+'"><p class="err" id="fe-mb">Please enter a valid UK mobile, e.g. 07123 456789.</p>'+
+      '<label class="ft-l" for="ft-em">Email</label><input id="ft-em" type="email" autocomplete="email" value="'+ftEsc(d.em||'')+'"><p class="err" id="fe-em">Please enter a valid email address.</p>'+
+      '<label class="ft-l" for="ft-pc">Install postcode</label><input id="ft-pc" autocomplete="postal-code" value="'+ftEsc(d.pc||'')+'"><p class="err" id="fe-pc">Please enter a full UK postcode in our area.</p>'+
+      '<label class="ft-chk"><input type="checkbox" id="ft-c1"'+(d.c1?' checked':'')+'><span>I agree to the <a href="https://smartwiredelectrical.co.uk/terms" target="_blank" rel="noopener">terms</a> and understand my £99 deposit is fully refundable if you can\'t install.</span></label><p class="err" id="fe-c1">Please tick to continue.</p>'+
+      '<label class="ft-chk"><input type="checkbox" id="ft-c2"'+(d.c2?' checked':'')+'><span>I\'d like my installation to go ahead within my 14-day cancellation period. <small>(Optional. Without this, your install date will be at least 14 days away.)</small></span></label>'+
+      '<div class="ft-nav"><button class="ft-back" type="button" onclick="ft.step=1;ftRender()">← Back</button><button class="cta" type="button" onclick="ftCheck()">Continue to payment →</button></div>';
+  }else if(ft.step===3){
+    var price=FT_PRICES[ft.tier],mo=Math.round((price-99)/12),fl=FIN_LINKS[ft.tier];
+    h=steps+'<h3 id="ft-h">How would you like to pay?</h3>'+
+      '<div class="ft-pay"><label class="ft-t'+(ft.pay==='card'?' sel':'')+'"><input type="radio" name="ftp" value="card"'+(ft.pay==='card'?' checked':'')+' onchange="ft.pay=this.value;ftRender()"><b>Pay £99 deposit</b><span>Balance after install</span></label>'+
+      '<label class="ft-t'+(ft.pay==='fin'?' sel':'')+'"><input type="radio" name="ftp" value="fin"'+(ft.pay==='fin'?' checked':'')+' onchange="ft.pay=this.value;ftRender()"><b>0% finance</b><span>£'+mo+'/month</span></label></div>'+
+      '<div class="ft-sum"><div><span>Charger</span><b>'+ft.tier+'</b></div><div><span>Installed price (up to 10m)</span><b>£'+price.toLocaleString('en-GB')+'</b></div>'+
+      (ft.pay==='card'?'<div><span>Deposit today</span><b>£99</b></div><div><span>Balance after install</span><b>£'+(price-99).toLocaleString('en-GB')+'</b></div>'
+                      :'<div><span>Deposit</span><b>£99</b></div><div><span>Then 12 monthly payments of</span><b>£'+mo+'</b></div><div><span>Interest</span><b>0% APR</b></div>')+'</div>';
+    if(ft.pay==='card'){
+      h+='<a class="cta" id="ft-pay" href="'+(REVOLUT_URL||'#')+'" target="_blank" rel="noopener" onclick="return ftGo(REVOLUT_URL)">Pay £99 Securely →</a>'+
+        (REVOLUT_URL?'':'<p class="fine"><span class="ph">[Revolut payment link goes here]</span></p>')+
+        '<p class="fine">Secure card payment via Revolut. Fully refundable if we can\'t install.</p>';
+    }else{
+      h+='<a class="cta" id="ft-fin" href="'+(fl||'#')+'" target="_blank" rel="noopener" onclick="return ftGo(FIN_LINKS[ft.tier])">Apply for 0% Finance →</a>'+
+        (fl?'':'<p class="fine"><span class="ph">[PayItMonthly link for '+ft.tier+' goes here]</span></p>')+
+        '<p class="fine">PayItMonthly is a form of credit, provided by PayItMonthly Ltd. A soft check runs first, invisible to other lenders. A full credit check only happens if you\'re approved and sign. Subject to status and affordability. Late or missed payments could impact your ability to access credit in the future. Representative example ('+ft.tier+'): cash price £'+price.toLocaleString('en-GB')+'. Deposit £99. Amount of credit £'+(price-99).toLocaleString('en-GB')+', repaid in 12 monthly payments of £'+((price-99)/12).toFixed(2)+' (final payment £'+((price-99)-Math.round((price-99)/12*100)/100*11).toFixed(2)+'). Total amount payable £'+price.toLocaleString('en-GB')+'. Interest rate 0% fixed. Representative 0% APR.</p>';
+    }
+    h+='<div class="ft-nav"><button class="ft-back" type="button" onclick="ft.step=2;ftRender()">← Back</button></div>';
+  }else{
+    var first=ftEsc((ft.d.nm||'').split(' ')[0]);
+    h=steps+'<div class="ft-done"><div class="ok">✓</div><h3 id="ft-h">Thanks'+(first?', '+first:'')+'! Now choose your install date</h3><p>'+(ft.pay==='fin'?'Once your finance is approved,':'Once your deposit comes through,')+' pick a date that suits you. We\'ll be in touch to book your 5-minute video check before then.</p>'+
+      '<a class="cta" href="'+(INSTALL_CAL_URL||'#')+'" target="_blank" rel="noopener"'+(INSTALL_CAL_URL?'':' onclick="return false"')+'>Choose My Install Date →</a>'+
+      (INSTALL_CAL_URL?'':'<p class="fine"><span class="ph">[Install calendar link goes here]</span></p>')+
+      '</div>';
+  }
+  b.innerHTML=h;
+  var first=b.querySelector('input:not([type=radio]):not([type=checkbox])');if(first&&ft.step===2)first.focus();
+}
+function ftCheck(){
+  var g=function(id){return document.getElementById(id)};
+  var nm=g('ft-nm').value.trim(),mb=g('ft-mb').value.replace(/[\s()-]/g,''),em=g('ft-em').value.trim(),pcv=g('ft-pc').value.toUpperCase().replace(/\s+/g,'');
+  ft.d={nm:nm,mb:g('ft-mb').value,em:em,pc:g('ft-pc').value,c1:g('ft-c1').checked,c2:g('ft-c2').checked};
+  var pcOk=/^[A-Z]{1,2}\d[A-Z\d]?\d[A-Z]{2}$/.test(pcv);
+  if(pcOk){var out=pcv.slice(0,-3),area=out.match(/^[A-Z]+/)[0];pcOk=allowed.indexOf(area)>-1&&blocked.indexOf(out)<0}
+  var ok={nm:nm.length>1,mb:/^(07\d{9}|\+447\d{9}|447\d{9})$/.test(mb),em:/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em),pc:pcOk,c1:ft.d.c1};
+  var good=true;for(var k in ok){g('fe-'+k).style.display=ok[k]?'none':'block';if(!ok[k])good=false}
+  if(good){ft.step=3;ftRender()}
+}
+function ftGo(url){setTimeout(function(){ft.step=4;ftRender()},url?1500:0);return !!url}
+function preCheck(btn){if(PRECHECK_URL){window.open(PRECHECK_URL,'_blank','noopener');return}
+  var n=btn.nextElementSibling;if(n&&n.classList&&n.classList.contains('fin-note'))return;
+  var p=document.createElement('p');p.className='fin-note';p.innerHTML='<span class="ph">[PayItMonthly Pre-Check link goes here]</span>';btn.insertAdjacentElement('afterend',p)}
+document.getElementById('ft').addEventListener('click',function(e){if(e.target.id==='ft')closeFT()});
+</script>
+</body>
+</html>
