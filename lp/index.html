@@ -333,6 +333,8 @@ a.total:hover .tbtn{background:var(--orange-d)}
 .pcbtn{flex:0 0 auto;height:52px;padding:0 14px;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:12px;font:700 14px Inter;cursor:pointer}
 .pc-ok{display:none;font-size:13px;color:var(--green);margin:-4px 0 10px;text-align:left}
 #addr-sel{width:100%;border:2px solid var(--blue);border-radius:12px;padding:13px;font:16px Inter;margin-bottom:10px;background:#fff;color:var(--ink)}
+.longrun{margin-top:22px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:12px;padding:14px 16px;font-size:14px;color:var(--muted);line-height:1.5}
+.longrun b{color:var(--ink)}
 </style>
 </head>
 <body id="top">
@@ -424,6 +426,7 @@ a.total:hover .tbtn{background:var(--orange-d)}
       </div>
     </div>
 
+    <div class="longrun">📏 <b>Longer cable run?</b> Most homes are within 10m. If yours is further, it's £100 per extra 5m, up to 20m. Over 20m, or for a complex install (a trench, routing through the house, or a fuse board upgrade), you get a fixed quote first. Either way, it's confirmed on your video call before you pay anything.</div>
     <div class="alt-row">
       <button class="alt" type="button" onclick="openFT('Pro')">⚡ <b>Already decided? Fast-track your install</b><span>£99 deposit, fully refundable if your video check shows we can't fit it</span></button>
       <button class="alt fin-alt" type="button" onclick="preCheck(this)">💷 <b>Check your eligibility for 0% finance</b><span>Soft check, invisible to other lenders</span></button>
@@ -456,7 +459,7 @@ a.total:hover .tbtn{background:var(--orange-d)}
       <p class="tnote" style="margin-top:8px">11kW and 22kW need a 3-phase supply. We'll check yours on the video call.</p>
     </div>
     </details>
-    <p class="tnote">*OZEV grant of up to £500 for renters and flat owners with private off-street parking, subject to OZEV approval before installation. Homeowners in houses aren't eligible. Not available on Essential. The scheme currently runs until 31 March 2027.<br>All prices include VAT. Your exact price is confirmed on your 15-minute video check, based on your cable run. Finance: £99 deposit, 12 months at 0% APR, subject to status. Representative example (Pro): cash price £1,195. Deposit £99. Amount of credit £1,096, repaid in 12 monthly payments of £91.33 (final payment £91.37). Total amount payable £1,195. Interest rate 0% fixed. Representative 0% APR.</p>
+    <p class="tnote">*OZEV grant of up to £500 for renters and flat owners with private off-street parking, subject to OZEV approval before installation. Homeowners in houses aren't eligible. Not available on Essential. The scheme currently runs until 31 March 2027.<br>All prices include VAT. Prices include up to 10m of cable (5m or under is £100 less). Longer runs are £100 per extra 5m, up to 20m. Over 20m, or for complex installs, we quote a fixed price. Your exact price is confirmed in writing on your video check, before you pay a deposit. Finance: £99 deposit, 12 months at 0% APR, subject to status. Representative example (Pro): cash price £1,195. Deposit £99. Amount of credit £1,096, repaid in 12 monthly payments of £91.33 (final payment £91.37). Total amount payable £1,195. Interest rate 0% fixed. Representative 0% APR.</p>
   </div>
 </section>
 
@@ -518,7 +521,9 @@ a.total:hover .tbtn{background:var(--orange-d)}
           <input type="radio" name="model" id="m-pre" value="Premium"><label for="m-pre">Premium</label></div></div>
         <div><span class="seg-l">Cable run</span><div class="seg" role="radiogroup" aria-label="Cable run">
           <input type="radio" name="run" id="r-5" value="5"><label for="r-5">5m or under</label>
-          <input type="radio" name="run" id="r-10" value="10" checked><label for="r-10">Up to 10m</label></div></div>
+          <input type="radio" name="run" id="r-10" value="10" checked><label for="r-10">Up to 10m</label>
+          <input type="radio" name="run" id="r-15" value="15"><label for="r-15">15m (+£100)</label>
+          <input type="radio" name="run" id="r-20" value="20"><label for="r-20">20m (+£200)</label></div></div>
         <div><span class="seg-l">Pay over</span><div class="seg" role="radiogroup" aria-label="Finance term">
           <input type="radio" name="term" id="t-6" value="6"><label for="t-6">6 months</label>
           <input type="radio" name="term" id="t-9" value="9"><label for="t-9">9 months</label>
@@ -595,7 +600,7 @@ a.total:hover .tbtn{background:var(--orange-d)}
     try{
       var m=num('miles',8000),h=num('home',0),p=num('pub',0),e=num('eff',3.5)||3.5;
       var model=radio('model','Pro'),run=radio('run','10'),term=+radio('term','12'),dep=+radio('dep','99'),per=radio('per','m');
-      var price=PRICES[model][run];
+      var price=+run>10?PRICES[model][10]+(run-10)/5*100:PRICES[model][run];
       var yearSave=Math.max(0,(m/e)*(p-h)/100);
       var finMonth=(price-dep)/term;
       var k=per==='w'?12/52:1, unit=per==='w'?'week':'month';
@@ -627,7 +632,7 @@ a.total:hover .tbtn{background:var(--orange-d)}
     <ul class="inc">
       <li><span>✓</span><div><b>Your choice of RiponEV charger</b><small>UKCA-marked with PEN fault protection built in. Pro &amp; Premium are OZEV-approved</small></div></li>
       <li><span>✓</span><div><b>New dedicated EV consumer unit</b><small>With RCBO protection and a surge protection device (SPD)</small></div></li>
-      <li><span>✓</span><div><b>Up to 10m armoured cable with data wires</b><small>Neatly clipped and fixed</small></div></li>
+      <li><span>✓</span><div><b>Up to 10m armoured cable with data wires</b><small>Neatly clipped and fixed. Longer runs: £100 per extra 5m, agreed upfront</small></div></li>
       <li><span>✓</span><div><b>Full testing &amp; new electrical certificate</b><small>Plus Building Regs notification</small></div></li>
       <li><span>✓</span><div><b>Set-up &amp; handover</b><small>We show you how it all works, including off-peak scheduling on Pro &amp; Premium</small></div></li>
       <li><span>✓</span><div><b>Warranty &amp; aftercare</b><small>Up to 3 years on the charger, 1 year on labour, one point of contact</small></div></li>
