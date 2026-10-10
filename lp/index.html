@@ -714,7 +714,7 @@ const blocked=["LA7","LA8","LA9","LA10","LA11","LA12","LA13","LA14","LA15","LA16
 var LEAD_WEBHOOK_URL=""; // paste your Zapier (or Make) webhook URL: every lead is sent there, then into TextMagic
 var REF=(function(){var d=new Date();return 'SW-'+String(d.getDate()).padStart(2,'0')+String(d.getMonth()+1).padStart(2,'0')+'-'+Math.floor(100+Math.random()*900)})();
 function escH(v){return String(v).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
-function sendLead(o){try{o.ref=REF;
+function sendLead(o){try{o.ref=REF;(function(){var d=new Date(),m=['January','February','March','April','May','June','July','August','September','October','November','December'];o.month_list=String(d.getMonth()+1).padStart(2,'0')+'_'+m[d.getMonth()]+'_'+d.getFullYear()})();
   var q=new URLSearchParams(location.search);['utm_source','utm_medium','utm_campaign','utm_content','fbclid'].forEach(function(k){if(q.get(k))o[k]=q.get(k)});
   o.page=location.href.split(/[?#]/)[0];o.submitted=new Date().toISOString();window.__lastLead=o;
   if(!LEAD_WEBHOOK_URL)return;var body=new URLSearchParams(o);
