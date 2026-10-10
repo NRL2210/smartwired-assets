@@ -348,6 +348,14 @@ a.total:hover .tbtn{background:var(--orange-d)}
 .price .pro-sub b{color:#fff}
 .price .pro-line{font-size:14px;color:#8193a8}
 .cta-note{margin-top:10px;font-size:13px;color:#cfd8e3}
+.ft-seg{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:6px;margin-bottom:12px}
+.ft-seg label{border:2px solid var(--line);border-radius:10px;padding:9px 6px;text-align:center;font-size:13px;font-weight:600;cursor:pointer;color:var(--ink)}
+.ft-seg label.sel{border-color:var(--orange);background:#fff7ed}
+.ft-seg label small{display:block;font-weight:500;color:var(--muted);font-size:12px;margin-top:2px}
+.ft-seg input{position:absolute;opacity:0;pointer-events:none}
+.ft-total{display:flex;justify-content:space-between;align-items:baseline;background:var(--bg);border-radius:12px;padding:12px 14px;margin-bottom:14px}
+.ft-total b{font:800 22px Outfit}
+.ft-seg.four{grid-template-columns:1fr 1fr}
 </style>
 </head>
 <body id="top">
@@ -444,7 +452,7 @@ a.total:hover .tbtn{background:var(--orange-d)}
     <div class="longrun">📏 <b>Longer cable run?</b> Most homes are within 10m. If yours is further, it's £100 per extra 5m, up to 20m. Over 20m, or for a complex install (a trench, routing through the house, or a fuse board upgrade), you get a fixed quote first. Either way, it's confirmed on your video call before you pay anything.</div>
     <div class="alt-row">
       <button class="alt" type="button" onclick="openFT('Pro')">⚡ <b>Car arriving soon, or already decided? Fast-track your install</b><span>£99 deposit, fully refundable if your video check shows we can't fit it</span><em class="alt-go">Order Now, £99 Deposit →</em></button>
-      <button class="alt fin-alt" type="button" onclick="preCheck(this)">💷 <b>Check your eligibility for 0% finance</b><span>Soft check, invisible to other lenders</span><em class="alt-go">Check my eligibility →</em></button>
+      <button class="alt fin-alt" type="button" onclick="openFT('Pro','fin')">💷 <b>Prefer to pay monthly at 0%?</b><span>Pick your package and check your eligibility in minutes. Soft search first; a full credit check only happens if you accept.</span><em class="alt-go">Check My Finance Options →</em></button>
     </div>
 
     <details class="cmp-d"><summary>Compare all features</summary>
@@ -785,21 +793,46 @@ new IntersectionObserver(function(es){es.forEach(function(e){bar.classList.toggl
 </div>
 <script>
 var REVOLUT_URL=""; // paste your Revolut £99 payment link here
-var PRECHECK_URL=""; // paste your PayItMonthly Pre-Check link here
-var FIN_LINKS={Essential:"",Pro:"",Premium:""}; // paste a PayItMonthly payment link for each charger here
+var FIN_LINKS={
+  "ESS-5-6M":"", "ESS-5-9M":"", "ESS-5-12M":"",
+  "ESS-10-6M":"", "ESS-10-9M":"", "ESS-10-12M":"",
+  "ESS-15-6M":"", "ESS-15-9M":"", "ESS-15-12M":"",
+  "ESS-20-6M":"", "ESS-20-9M":"", "ESS-20-12M":"",
+  "PRO-5-6M":"", "PRO-5-9M":"", "PRO-5-12M":"",
+  "PRO-10-6M":"", "PRO-10-9M":"", "PRO-10-12M":"",
+  "PRO-15-6M":"", "PRO-15-9M":"", "PRO-15-12M":"",
+  "PRO-20-6M":"", "PRO-20-9M":"", "PRO-20-12M":"",
+  "PROT-5-6M":"", "PROT-5-9M":"", "PROT-5-12M":"",
+  "PROT-10-6M":"", "PROT-10-9M":"", "PROT-10-12M":"",
+  "PROT-15-6M":"", "PROT-15-9M":"", "PROT-15-12M":"",
+  "PROT-20-6M":"", "PROT-20-9M":"", "PROT-20-12M":"",
+  "PRE-5-6M":"", "PRE-5-9M":"", "PRE-5-12M":"",
+  "PRE-10-6M":"", "PRE-10-9M":"", "PRE-10-12M":"",
+  "PRE-15-6M":"", "PRE-15-9M":"", "PRE-15-12M":"",
+  "PRE-20-6M":"", "PRE-20-9M":"", "PRE-20-12M":""
+}; // paste each PayItMonthly link (cash price, £99 deposit, term) against its name
 var INSTALL_CAL_URL=""; // paste your install-day booking calendar link here
-var FT_PRICES={Essential:1075,Pro:1195,Premium:1495};
-var ft={tier:'Pro',step:1,d:{},pay:'card'};
+var FT_BASE={Essential:975,Pro:1095,Premium:1395},FT_CODE={Essential:'ESS',Pro:'PRO',Premium:'PRE'};
+var ft={tier:'Pro',step:1,d:{},pay:'card',run:10,teth:false,term:12};
+function ftPrice(){return FT_BASE[ft.tier]+(ft.tier==='Pro'&&ft.teth?99:0)+(ft.run/5-1)*100}
+function ftKey(){return (ft.tier==='Pro'&&ft.teth?'PROT':FT_CODE[ft.tier])+'-'+ft.run+'-'+ft.term+'M'}
+function ftMo(n){var c=ftPrice()-99,m=Math.floor(c/n*100)/100;return{m:m,last:Math.round((c-m*(n-1))*100)/100,c:c}}
+function gbp(v,dp){return '£'+(dp?v.toFixed(2):Math.round(v).toString()).replace(/\B(?=(\d{3})+(?!\d))/g,',')}
+function ftSet(k,v){ft[k]=v;ftRender()}
 function ftEsc(v){return String(v).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
-function openFT(t){ft={tier:t||'Pro',step:1,d:{},pay:'card'};document.getElementById('ft').hidden=false;document.body.style.overflow='hidden';ftRender()}
+function openFT(t,pay){ft={tier:t||'Pro',step:1,d:{},pay:pay||'card',run:10,teth:false,term:12};document.querySelector('.ft-eyebrow').textContent=pay==='fin'?'💷 0% finance: choose your package':'⚡ Order your charger';document.getElementById('ft').hidden=false;document.body.style.overflow='hidden';ftRender()}
 function closeFT(){document.getElementById('ft').hidden=true;document.body.style.overflow=''}
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!document.getElementById('ft').hidden)closeFT()});
 function ftRender(){
   var b=document.getElementById('ft-body'),h='';
   var steps='<div class="ft-steps">'+['Charger','Your details','Payment','Install date'].map(function(n,k){return '<span class="'+(k+1<=ft.step?'on':'')+'">'+(k+1<ft.step?'✓ ':'')+n+'</span>'}).join('')+'</div>';
   if(ft.step===1){
-    h=steps+'<h3 id="ft-h">Which charger would you like?</h3><div class="ft-tiers">'+['Essential','Pro','Premium'].map(function(t){return '<label class="ft-t'+(ft.tier===t?' sel':'')+'"><input type="radio" name="ftt" value="'+t+'"'+(ft.tier===t?' checked':'')+' onchange="ft.tier=this.value;ftRender()"><b>'+t+'</b><span>£'+FT_PRICES[t].toLocaleString('en-GB')+' installed</span></label>'}).join('')+'</div>'+
-      '<ul class="ft-list"><li>£99 deposit today, taken off your final bill</li><li>Pick your install date straight after</li><li>Quick 5-minute video check before your install day</li><li><b>Full refund if we can\'t install for any reason</b></li></ul>'+
+    h=steps+'<h3 id="ft-h">Which charger would you like?</h3><div class="ft-tiers">'+['Essential','Pro','Premium'].map(function(t){return '<label class="ft-t'+(ft.tier===t?' sel':'')+'"><input type="radio" name="ftt" value="'+t+'"'+(ft.tier===t?' checked':'')+' onchange="ftSet(\'tier\',this.value)"><b>'+t+'</b><span>'+gbp(FT_BASE[t]+100)+' installed (up to 10m)</span></label>'}).join('')+'</div>'+
+      (ft.tier==='Pro'?'<label class="ft-chk"><input type="checkbox" id="ft-teth"'+(ft.teth?' checked':'')+' onchange="ftSet(\'teth\',this.checked)"><span>Add a tethered cable, so it stays on the charger <b>(+£99)</b></span></label>':'')+
+      '<p class="ft-l">Distance from your fuse board to where you park</p><div class="ft-seg four">'+[[5,'5m or under'],[10,'Up to 10m'],[15,'Up to 15m'],[20,'Up to 20m']].map(function(r){return '<label class="'+(ft.run===r[0]?'sel':'')+'"><input type="radio" name="ftr" value="'+r[0]+'"'+(ft.run===r[0]?' checked':'')+' onchange="ftSet(\'run\',+this.value)">'+r[1]+'</label>'}).join('')+'</div>'+
+      '<p class="fine" style="margin:-4px 0 12px">Not sure? Choose up to 10m, which covers most homes. We confirm it on your video check.</p>'+
+      '<div class="ft-total"><span>Your price, fully installed</span><b>'+gbp(ftPrice())+'</b></div>'+
+      '<ul class="ft-list"><li>£99 deposit secures your install slot, taken off your final bill</li><li>Pay the balance after install, or spread it at 0%</li><li>Quick video check before your install day</li><li><b>Full refund if we can\'t install for any reason</b></li></ul>'+
       '<button class="cta" type="button" onclick="ft.step=2;ftRender()">Continue →</button>';
   }else if(ft.step===2){
     var d=ft.d;
@@ -812,21 +845,25 @@ function ftRender(){
       '<label class="ft-chk"><input type="checkbox" id="ft-c2"'+(d.c2?' checked':'')+'><span>I\'d like my installation to go ahead within my 14-day cancellation period. <small>(Optional. Without this, your install date will be at least 14 days away.)</small></span></label>'+
       '<div class="ft-nav"><button class="ft-back" type="button" onclick="ft.step=1;ftRender()">← Back</button><button class="cta" type="button" onclick="ftCheck()">Continue to payment →</button></div>';
   }else if(ft.step===3){
-    var price=FT_PRICES[ft.tier],mo=Math.round((price-99)/12),fl=FIN_LINKS[ft.tier];
+    var price=ftPrice(),f=ftMo(ft.term),key=ftKey(),fl=FIN_LINKS[key],pkg=ft.tier+(ft.tier==='Pro'&&ft.teth?' + tethered':'')+', '+(ft.run===5?'5m or under':'up to '+ft.run+'m');
     h=steps+'<h3 id="ft-h">How would you like to pay?</h3>'+
-      '<div class="ft-pay"><label class="ft-t'+(ft.pay==='card'?' sel':'')+'"><input type="radio" name="ftp" value="card"'+(ft.pay==='card'?' checked':'')+' onchange="ft.pay=this.value;ftRender()"><b>Pay £99 deposit</b><span>Balance after install</span></label>'+
-      '<label class="ft-t'+(ft.pay==='fin'?' sel':'')+'"><input type="radio" name="ftp" value="fin"'+(ft.pay==='fin'?' checked':'')+' onchange="ft.pay=this.value;ftRender()"><b>0% finance</b><span>£'+mo+'/month</span></label></div>'+
-      '<div class="ft-sum"><div><span>Charger</span><b>'+ft.tier+'</b></div><div><span>Installed price (up to 10m)</span><b>£'+price.toLocaleString('en-GB')+'</b></div>'+
-      (ft.pay==='card'?'<div><span>Deposit today</span><b>£99</b></div><div><span>Balance after install</span><b>£'+(price-99).toLocaleString('en-GB')+'</b></div>'
-                      :'<div><span>Deposit</span><b>£99</b></div><div><span>Then 12 monthly payments of</span><b>£'+mo+'</b></div><div><span>Interest</span><b>0% APR</b></div>')+'</div>';
+      '<div class="ft-pay"><label class="ft-t'+(ft.pay==='card'?' sel':'')+'"><input type="radio" name="ftp" value="card"'+(ft.pay==='card'?' checked':'')+' onchange="ftSet(\'pay\',this.value)"><b>Pay £99 deposit</b><span>Balance after install</span></label>'+
+      '<label class="ft-t'+(ft.pay==='fin'?' sel':'')+'"><input type="radio" name="ftp" value="fin"'+(ft.pay==='fin'?' checked':'')+' onchange="ftSet(\'pay\',this.value)"><b>0% finance</b><span>From '+gbp(ftMo(12).m)+'/month</span></label></div>';
+    if(ft.pay==='fin'){
+      h+='<p class="ft-l">Spread the cost over</p><div class="ft-seg">'+[6,9,12].map(function(n){var x=ftMo(n);return '<label class="'+(ft.term===n?'sel':'')+'"><input type="radio" name="ftm" value="'+n+'"'+(ft.term===n?' checked':'')+' onchange="ftSet(\'term\',+this.value)">'+n+' months<small>'+gbp(x.m,1)+'/mo</small></label>'}).join('')+'</div>';
+    }
+    h+='<div class="ft-sum"><div><span>Package</span><b>'+pkg+'</b></div><div><span>Installed price</span><b>'+gbp(price)+'</b></div>'+
+      (ft.pay==='card'?'<div><span>Deposit today</span><b>£99</b></div><div><span>Balance after install</span><b>'+gbp(price-99)+'</b></div>'
+                      :'<div><span>Deposit</span><b>£99</b></div><div><span>Then '+ft.term+' monthly payments of</span><b>'+gbp(f.m,1)+'</b></div><div><span>Interest</span><b>0% APR</b></div>')+'</div>';
     if(ft.pay==='card'){
       h+='<a class="cta" id="ft-pay" href="'+(REVOLUT_URL||'#')+'" target="_blank" rel="noopener" onclick="return ftGo(REVOLUT_URL,1)">Pay £99 Securely →</a>'+
         (REVOLUT_URL?'':'<p class="fine"><span class="ph">[Revolut payment link goes here]</span></p>')+
         '<p class="fine">Secure card payment via Revolut. Fully refundable if we can\'t install.</p>';
     }else{
-      h+='<a class="cta" id="ft-fin" href="'+(fl||'#')+'" target="_blank" rel="noopener" onclick="return ftGo(FIN_LINKS[ft.tier],0)">Apply for 0% Finance →</a>'+
-        (fl?'':'<p class="fine"><span class="ph">[PayItMonthly link for '+ft.tier+' goes here]</span></p>')+
-        '<p class="fine">PayItMonthly is a form of credit, provided by PayItMonthly Ltd. A soft check runs first, invisible to other lenders. A full credit check only happens if you\'re approved and sign. Subject to status and affordability. Late or missed payments could impact your ability to access credit in the future. Representative example ('+ft.tier+'): cash price £'+price.toLocaleString('en-GB')+'. Deposit £99. Amount of credit £'+(price-99).toLocaleString('en-GB')+', repaid in 12 monthly payments of £'+((price-99)/12).toFixed(2)+' (final payment £'+((price-99)-Math.round((price-99)/12*100)/100*11).toFixed(2)+'). Total amount payable £'+price.toLocaleString('en-GB')+'. Interest rate 0% fixed. Representative 0% APR.</p>';
+      h+='<a class="cta" id="ft-fin" href="'+(fl||'#')+'" target="_blank" rel="noopener" onclick="return ftGo(FIN_LINKS[ftKey()],0)">Check Eligibility &amp; Apply →</a>'+
+        (fl?'':'<p class="fine"><span class="ph">[PayItMonthly link '+key+' goes here]</span></p>')+
+        '<p class="fine"><b>How it works:</b> PayItMonthly runs a soft search first, which doesn\'t affect your credit score and isn\'t visible to other lenders. A full credit check only happens if you\'re approved and choose to accept. If your video check finds a different cable run, we\'ll send you an updated link before anything is finalised.</p>'+
+        '<p class="fine">PayItMonthly is a form of credit, provided by PayItMonthly Ltd. Subject to status and affordability. Late or missed payments could impact your ability to access credit in the future. Representative example ('+pkg+'): cash price '+gbp(price)+'. Deposit £99. Amount of credit '+gbp(f.c)+', repaid in '+ft.term+' monthly payments of '+gbp(f.m,1)+(f.last!==f.m?' (final payment '+gbp(f.last,1)+')':'')+'. Total amount payable '+gbp(price)+'. Interest rate 0% fixed. Representative 0% APR.</p>';
     }
     h+='<div class="ft-nav"><button class="ft-back" type="button" onclick="ft.step=2;ftRender()">← Back</button></div>';
   }else{
@@ -850,10 +887,7 @@ function ftCheck(){
   if(good){var sn=splitName(nm);ft.lead={route:'Fast-track',first_name:sn.first,last_name:sn.last,mobile:intlMob(mb),email:em,postcode:pcv.slice(0,-3)+' '+pcv.slice(-3),charger:ft.tier||'',tags:'Landing page, Fast-track'};
     sendLead(Object.assign({stage:'Details entered'},ft.lead));ft.step=3;ftRender()}
 }
-function ftGo(url,dep){if(ft.lead)sendLead(Object.assign({},ft.lead,{stage:dep?'Clicked pay £99 deposit':'Clicked 0% finance'}));setTimeout(function(){ft.step=4;ftRender()},url?1500:0);return !!url}
-function preCheck(btn){if(PRECHECK_URL){window.open(PRECHECK_URL,'_blank','noopener');return}
-  var n=btn.nextElementSibling;if(n&&n.classList&&n.classList.contains('fin-note'))return;
-  var p=document.createElement('p');p.className='fin-note';p.innerHTML='<span class="ph">[PayItMonthly Pre-Check link goes here]</span>';btn.insertAdjacentElement('afterend',p)}
+function ftGo(url,dep){if(ft.lead)sendLead(Object.assign({},ft.lead,{charger:ft.tier+(ft.tier==='Pro'&&ft.teth?' + tethered':''),cable_run:ft.run+'m',price:ftPrice(),stage:dep?'Clicked pay £99 deposit':'Clicked 0% finance ('+ft.term+' months, '+ftKey()+')'}));setTimeout(function(){ft.step=4;ftRender()},url?1500:0);return !!url}
 document.getElementById('ft').addEventListener('click',function(e){if(e.target.id==='ft')closeFT()});
 </script>
 </body>
