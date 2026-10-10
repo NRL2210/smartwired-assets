@@ -359,6 +359,10 @@ a.total:hover .tbtn{background:var(--orange-d)}
 .priv{font-size:12px;color:var(--muted);line-height:1.45;margin:8px 0 0;text-align:left}
 .priv a{color:inherit;text-decoration:underline}
 .ref{font-size:13px;color:var(--ink);background:#fff7ed;border:1px dashed var(--orange);border-radius:10px;padding:8px 10px;margin:10px 0;text-align:center}
+.ft-two{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px}
+.ft-two>span{flex:0 0 26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font:700 13px Outfit;margin-top:12px}
+.ft-two>div{flex:1;min-width:0}
+.ft-two .cta{font-size:16px}
 </style>
 </head>
 <body id="top">
@@ -800,28 +804,16 @@ new IntersectionObserver(function(es){es.forEach(function(e){bar.classList.toggl
 <script>
 var REVOLUT_URL=""; // paste your Revolut £99 payment link here
 var FIN_LINKS={
-  "ESS-5-6M":"", "ESS-5-9M":"", "ESS-5-12M":"",
-  "ESS-10-6M":"", "ESS-10-9M":"", "ESS-10-12M":"",
-  "ESS-15-6M":"", "ESS-15-9M":"", "ESS-15-12M":"",
-  "ESS-20-6M":"", "ESS-20-9M":"", "ESS-20-12M":"",
-  "PRO-5-6M":"", "PRO-5-9M":"", "PRO-5-12M":"",
-  "PRO-10-6M":"", "PRO-10-9M":"", "PRO-10-12M":"",
-  "PRO-15-6M":"", "PRO-15-9M":"", "PRO-15-12M":"",
-  "PRO-20-6M":"", "PRO-20-9M":"", "PRO-20-12M":"",
-  "PROT-5-6M":"", "PROT-5-9M":"", "PROT-5-12M":"",
-  "PROT-10-6M":"", "PROT-10-9M":"", "PROT-10-12M":"",
-  "PROT-15-6M":"", "PROT-15-9M":"", "PROT-15-12M":"",
-  "PROT-20-6M":"", "PROT-20-9M":"", "PROT-20-12M":"",
-  "PRE-5-6M":"", "PRE-5-9M":"", "PRE-5-12M":"",
-  "PRE-10-6M":"", "PRE-10-9M":"", "PRE-10-12M":"",
-  "PRE-15-6M":"", "PRE-15-9M":"", "PRE-15-12M":"",
-  "PRE-20-6M":"", "PRE-20-9M":"", "PRE-20-12M":""
-}; // paste each PayItMonthly link (cash price, £99 deposit, term) against its name
+  "ESS-5":"", "ESS-10":"", "ESS-15":"", "ESS-20":"",
+  "PRO-5":"", "PRO-10":"", "PRO-15":"", "PRO-20":"",
+  "PROT-5":"", "PROT-10":"", "PROT-15":"", "PROT-20":"",
+  "PRE-5":"", "PRE-10":"", "PRE-15":"", "PRE-20":""
+} // paste each PayItMonthly link (cash price, £99 deposit, term) against its name
 var INSTALL_CAL_URL=""; // paste your install-day booking calendar link here
 var FT_BASE={Essential:975,Pro:1095,Premium:1395},FT_CODE={Essential:'ESS',Pro:'PRO',Premium:'PRE'};
 var ft={tier:'Pro',step:1,d:{},pay:'card',run:10,teth:false,term:12};
 function ftPrice(){return FT_BASE[ft.tier]+(ft.tier==='Pro'&&ft.teth?99:0)+(ft.run/5-1)*100}
-function ftKey(){return (ft.tier==='Pro'&&ft.teth?'PROT':FT_CODE[ft.tier])+'-'+ft.run+'-'+ft.term+'M'}
+function ftKey(){return (ft.tier==='Pro'&&ft.teth?'PROT':FT_CODE[ft.tier])+'-'+ft.run}
 function ftMo(n){var c=ftPrice()-99,m=Math.floor(c/n*100)/100;return{m:m,last:Math.round((c-m*(n-1))*100)/100,c:c}}
 function gbp(v,dp){return '£'+(dp?v.toFixed(2):Math.round(v).toString()).replace(/\B(?=(\d{3})+(?!\d))/g,',')}
 function ftSet(k,v){ft[k]=v;ftRender()}
@@ -856,7 +848,7 @@ function ftRender(){
       '<div class="ft-pay"><label class="ft-t'+(ft.pay==='card'?' sel':'')+'"><input type="radio" name="ftp" value="card"'+(ft.pay==='card'?' checked':'')+' onchange="ftSet(\'pay\',this.value)"><b>Pay £99 deposit</b><span>Balance after install</span></label>'+
       '<label class="ft-t'+(ft.pay==='fin'?' sel':'')+'"><input type="radio" name="ftp" value="fin"'+(ft.pay==='fin'?' checked':'')+' onchange="ftSet(\'pay\',this.value)"><b>0% finance</b><span>From '+gbp(ftMo(12).m)+'/month</span></label></div>';
     if(ft.pay==='fin'){
-      h+='<p class="ft-l">Spread the cost over</p><div class="ft-seg">'+[6,9,12].map(function(n){var x=ftMo(n);return '<label class="'+(ft.term===n?'sel':'')+'"><input type="radio" name="ftm" value="'+n+'"'+(ft.term===n?' checked':'')+' onchange="ftSet(\'term\',+this.value)">'+n+' months<small>'+gbp(x.m,1)+'/mo</small></label>'}).join('')+'</div>';
+      h+='<p class="ft-l">Spread the balance over</p><div class="ft-seg">'+[6,9,12].map(function(n){var x=ftMo(n);return '<label class="'+(ft.term===n?'sel':'')+'"><input type="radio" name="ftm" value="'+n+'"'+(ft.term===n?' checked':'')+' onchange="ftSet(\'term\',+this.value)">'+n+' months<small>'+gbp(x.m,1)+'/mo</small></label>'}).join('')+'</div>';
     }
     h+='<div class="ft-sum"><div><span>Package</span><b>'+pkg+'</b></div><div><span>Installed price</span><b>'+gbp(price)+'</b></div>'+
       (ft.pay==='card'?'<div><span>Deposit today</span><b>£99</b></div><div><span>Balance after install</span><b>'+gbp(price-99)+'</b></div>'
@@ -866,8 +858,11 @@ function ftRender(){
         (REVOLUT_URL?'':'<p class="fine"><span class="ph">[Revolut payment link goes here]</span></p>')+
         '<p class="fine">Secure card payment via Revolut. Fully refundable if we can\'t install.</p><p class="ref">Please use <b>'+REF+'</b> as your payment reference.</p>';
     }else{
-      h+='<a class="cta" id="ft-fin" href="'+(fl||'#')+'" target="_blank" rel="noopener" onclick="return ftGo(FIN_LINKS[ftKey()],0)">Check Eligibility &amp; Apply →</a>'+
-        (fl?'':'<p class="fine"><span class="ph">[PayItMonthly link '+key+' goes here]</span></p>')+'<p class="ref">Your reference: <b>'+REF+'</b>. If the application asks for an order reference, use this.</p>'+
+      h+='<p class="fine" style="margin:0 0 10px">You\'ll confirm the number of months in the PayItMonthly application.</p>'+
+        '<div class="ft-two"><span>1</span><div><a class="cta" id="ft-dep" href="'+(REVOLUT_URL||'#')+'" target="_blank" rel="noopener" onclick="return ftDep()">Pay £99 Deposit →</a>'+(REVOLUT_URL?'':'<p class="fine"><span class="ph">[Revolut payment link goes here]</span></p>')+'<p class="fine">Secures your install slot. Fully refunded if your finance isn\'t approved.</p></div></div>'+
+        '<div class="ft-two"><span>2</span><div><a class="cta" id="ft-fin" href="'+(fl||'#')+'" target="_blank" rel="noopener" onclick="return ftGo(FIN_LINKS[ftKey()],0)">Check Eligibility &amp; Apply for '+gbp(f.c)+' →</a>'+
+        (fl?'':'<p class="fine"><span class="ph">[PayItMonthly link '+key+' goes here]</span></p>')+'</div></div>'+
+        '<p class="ref">Your reference: <b>'+REF+'</b>. Use it as your Revolut payment reference, and if the application asks for one.</p>'+
         '<p class="fine"><b>How it works:</b> PayItMonthly runs a soft search first, which doesn\'t affect your credit score and isn\'t visible to other lenders. A full credit check only happens if you\'re approved and choose to accept. If your video check finds a different cable run, we\'ll send you an updated link before anything is finalised.</p>'+
         '<p class="fine">PayItMonthly is a form of credit, provided by PayItMonthly Ltd. Subject to status and affordability. Late or missed payments could impact your ability to access credit in the future. Representative example ('+pkg+'): cash price '+gbp(price)+'. Deposit £99. Amount of credit '+gbp(f.c)+', repaid in '+ft.term+' monthly payments of '+gbp(f.m,1)+(f.last!==f.m?' (final payment '+gbp(f.last,1)+')':'')+'. Total amount payable '+gbp(price)+'. Interest rate 0% fixed. Representative 0% APR.</p>';
     }
@@ -893,7 +888,8 @@ function ftCheck(){
   if(good){var sn=splitName(nm);ft.lead={route:'Fast-track',first_name:sn.first,last_name:sn.last,mobile:intlMob(mb),email:em,postcode:pcv.slice(0,-3)+' '+pcv.slice(-3),charger:ft.tier||'',tags:'Landing page, Fast-track'};
     sendLead(Object.assign({stage:'Details entered'},ft.lead));ft.step=3;ftRender()}
 }
-function ftGo(url,dep){if(ft.lead)sendLead(Object.assign({},ft.lead,{charger:ft.tier+(ft.tier==='Pro'&&ft.teth?' + tethered':''),cable_run:ft.run+'m',price:ftPrice(),stage:dep?'Clicked pay £99 deposit':'Clicked 0% finance ('+ft.term+' months, '+ftKey()+')'}));setTimeout(function(){ft.step=4;ftRender()},url?1500:0);return !!url}
+function ftDep(){if(ft.lead)sendLead(Object.assign({},ft.lead,{charger:ft.tier+(ft.tier==='Pro'&&ft.teth?' + tethered':''),cable_run:ft.run+'m',price:ftPrice(),stage:'Finance route: clicked pay £99 deposit'}));return !!REVOLUT_URL}
+function ftGo(url,dep){if(ft.lead)sendLead(Object.assign({},ft.lead,{charger:ft.tier+(ft.tier==='Pro'&&ft.teth?' + tethered':''),cable_run:ft.run+'m',price:ftPrice(),stage:dep?'Clicked pay £99 deposit':'Clicked apply for finance ('+ftKey()+', planned '+ft.term+' months)'}));setTimeout(function(){ft.step=4;ftRender()},url?1500:0);return !!url}
 document.getElementById('ft').addEventListener('click',function(e){if(e.target.id==='ft')closeFT()});
 </script>
 </body>
