@@ -543,9 +543,6 @@ a.total:hover .tbtn{background:var(--orange-d)}
           <input type="radio" name="term" id="t-6" value="6"><label for="t-6">6 months</label>
           <input type="radio" name="term" id="t-9" value="9"><label for="t-9">9 months</label>
           <input type="radio" name="term" id="t-12" value="12" checked><label for="t-12">12 months</label></div></div>
-        <div><span class="seg-l">Deposit</span><div class="seg" role="radiogroup" aria-label="Deposit">
-          <input type="radio" name="dep" id="d-99" value="99" checked><label for="d-99">£99</label>
-          <input type="radio" name="dep" id="d-0" value="0"><label for="d-0">£0</label></div></div>
         <div><span class="seg-l">Show figures</span><div class="seg" role="radiogroup" aria-label="Show figures">
           <input type="radio" name="per" id="p-m" value="m" checked><label for="p-m">Monthly</label>
           <input type="radio" name="per" id="p-w" value="w"><label for="p-w">Weekly</label></div></div>
@@ -614,7 +611,7 @@ a.total:hover .tbtn{background:var(--orange-d)}
   function calc(){
     try{
       var m=num('miles',8000),h=num('home',0),p=num('pub',0),e=num('eff',3.5)||3.5;
-      var model=radio('model','Pro'),run=radio('run','10'),term=+radio('term','12'),dep=+radio('dep','99'),per=radio('per','m');
+      var model=radio('model','Pro'),run=radio('run','10'),term=+radio('term','12'),dep=99,per=radio('per','m');
       var price=+run>10?PRICES[model][10]+(run-10)/5*100:PRICES[model][run];
       var yearSave=Math.max(0,(m/e)*(p-h)/100);
       var finMonth=(price-dep)/term;
