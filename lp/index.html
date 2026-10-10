@@ -347,6 +347,7 @@ a.total:hover .tbtn{background:var(--orange-d)}
 .price .pro-sub{display:block;margin-top:4px;font-size:15px;color:#cfd8e3}
 .price .pro-sub b{color:#fff}
 .price .pro-line{font-size:14px;color:#8193a8}
+.cta-note{margin-top:10px;font-size:13px;color:#cfd8e3}
 </style>
 </head>
 <body id="top">
@@ -442,7 +443,7 @@ a.total:hover .tbtn{background:var(--orange-d)}
 
     <div class="longrun">📏 <b>Longer cable run?</b> Most homes are within 10m. If yours is further, it's £100 per extra 5m, up to 20m. Over 20m, or for a complex install (a trench, routing through the house, or a fuse board upgrade), you get a fixed quote first. Either way, it's confirmed on your video call before you pay anything.</div>
     <div class="alt-row">
-      <button class="alt" type="button" onclick="openFT('Pro')">⚡ <b>Already decided? Fast-track your install</b><span>£99 deposit, fully refundable if your video check shows we can't fit it</span><em class="alt-go">Fast-track now →</em></button>
+      <button class="alt" type="button" onclick="openFT('Pro')">⚡ <b>Already decided? Fast-track your install</b><span>£99 deposit, fully refundable if your video check shows we can't fit it</span><em class="alt-go">Order Now, £99 Deposit →</em></button>
       <button class="alt fin-alt" type="button" onclick="preCheck(this)">💷 <b>Check your eligibility for 0% finance</b><span>Soft check, invisible to other lenders</span><em class="alt-go">Check my eligibility →</em></button>
     </div>
 
@@ -487,7 +488,7 @@ a.total:hover .tbtn{background:var(--orange-d)}
       <div class="card"><div class="ic">📅</div><h3>3. Book your install date</h3><p>Your fixed price confirmed in writing. Secure your date with a £99 deposit, fully refundable and taken off your final bill, or spread it at 0%.</p></div>
       <div class="card"><div class="ic">🤝</div><h3>One team, start to finish</h3><p>We supply your RiponEV charger and fit it ourselves. One number for everything, including warranty and aftercare.</p></div>
     </div>
-    <a class="cta why-cta" href="#quiz">Get My Fixed Price →</a>
+    <a class="cta why-cta" href="#quiz">Check My Home &amp; Price →</a>
   </div>
 </section>
 
@@ -562,7 +563,7 @@ a.total:hover .tbtn{background:var(--orange-d)}
         <div><b id="pay">9 months</b><small id="pay-l">to pay back a £1,195 install</small></div>
       </div>
       <p class="disc" id="disc">Estimates only, based on 7p/kWh home off-peak charging, 77p/kWh public charging and 3.5 miles per kWh. Your actual savings will depend on your car, your tariff, how and where you charge, and future energy prices. Savings are not guaranteed. Finance is 0% APR, subject to status. Representative example (Pro): cash price £1,195. Deposit £99. Amount of credit £1,096, repaid in 12 monthly payments of £91.33 (final payment £91.37). Total amount payable £1,195. Interest rate 0% fixed. Representative 0% APR. PayItMonthly is a form of credit, provided by PayItMonthly Ltd. Subject to status and affordability. Late or missed payments could impact your ability to access credit in the future.</p>
-      <a class="cta" href="#quiz">Confirm My Fixed Price →</a>
+      <a class="cta" href="#quiz">Check My Home &amp; Price →</a>
       <details class="assume">
         <summary>Assumptions (tap to edit)</summary>
         <div class="row"><label for="home">Home off-peak tariff (p/kWh)</label> <input type="number" inputmode="decimal" id="home" value="7" step="0.5"></div>
@@ -651,7 +652,7 @@ a.total:hover .tbtn{background:var(--orange-d)}
       <li><span>✓</span><div><b>Set-up &amp; handover</b><small>We show you how it all works, including off-peak scheduling on Pro &amp; Premium</small></div></li>
       <li><span>✓</span><div><b>Warranty &amp; aftercare</b><small>Up to 3 years on the charger, 1 year on labour, one point of contact</small></div></li>
     </ul>
-    <a class="total" href="#quiz"><div class="tl"><span>Fully installed, VAT included</span><b>Pro £1,195</b><span>or £91/month at 0% · Essential from £975</span></div><span class="tbtn">Confirm My Price &amp; Install Date →</span></a>
+    <a class="total" href="#quiz"><div class="tl"><span>Fully installed, VAT included</span><b>Pro £1,195</b><span>or £91/month at 0% · Essential from £975</span></div><span class="tbtn">Check My Home &amp; Price →</span></a>
   </div>
 </section>
 
@@ -661,13 +662,14 @@ a.total:hover .tbtn{background:var(--orange-d)}
   <div class="wrap">
     <h2 class="h2">Do it once. Do it properly.</h2>
     <p class="lead">A cheap install that has to be redone costs more in the end. Get a fixed price from a certified team that gets it right first time, with one point of contact from survey to aftercare.</p>
-    <a class="cta" href="#quiz">Confirm My Price &amp; Install Date →</a>
+    <a class="cta" href="#quiz">Check My Home &amp; Price →</a>
+    <p class="cta-note">Free · 60 seconds · no obligation</p>
     <p class="call">Or call us: <a href="tel:+443333355767"><strong>0333 335 5767</strong></a> · WhatsApp <a href="https://wa.me/447463584628" target="_blank" rel="noopener"><strong>07463 584628</strong></a></p>
     <p class="areas">Covering Yorkshire, Lancashire &amp; the North East</p>
   </div>
 </section>
 
-<a class="mbar" id="mbar" href="#quiz"><span><b>Pro £1,195</b> · or £91/month</span><span class="mbtn">Confirm My Price →</span></a>
+<a class="mbar" id="mbar" href="#quiz"><span><b>Pro £1,195</b> · or £91/month</span><span class="mbtn">Check My Home →</span></a>
 
 <footer>
   <div class="wrap">
@@ -689,14 +691,24 @@ const steps=[
 let i=0;const el=document.getElementById('quiz');const ans={};
 const allowed=["LS","BD","HG","YO","WF","HD","HX","DN","S","LA","PR","BB","BL","OL","M","WN","NE","SR","DH","DL","TS"];
 const blocked=["LA7","LA8","LA9","LA10","LA11","LA12","LA13","LA14","LA15","LA16","LA17","LA18","LA19","LA20","LA21","LA22","LA23"];
+var LEAD_WEBHOOK_URL=""; // paste your Zapier (or Make) webhook URL: every lead is sent there, then into TextMagic
+function sendLead(o){try{
+  var q=new URLSearchParams(location.search);['utm_source','utm_medium','utm_campaign','utm_content','fbclid'].forEach(function(k){if(q.get(k))o[k]=q.get(k)});
+  o.page=location.href.split(/[?#]/)[0];o.submitted=new Date().toISOString();window.__lastLead=o;
+  if(!LEAD_WEBHOOK_URL)return;var body=new URLSearchParams(o);
+  if(navigator.sendBeacon&&navigator.sendBeacon(LEAD_WEBHOOK_URL,body))return;
+  fetch(LEAD_WEBHOOK_URL,{method:'POST',body:body,mode:'no-cors',keepalive:true}).catch(function(){});
+}catch(e){}}
+function intlMob(m){m=(m||'').replace(/[^\d+]/g,'');if(m.indexOf('+')===0)m=m.slice(1);if(m.indexOf('07')===0)m='44'+m.slice(1);return m}
+function splitName(n){n=(n||'').trim().split(/\s+/);return{first:n[0]||'',last:n.slice(1).join(' ')}}
 var SURVEY_CAL_URL=""; // paste your SURVEY self-booking calendar link here (separate from the install calendar)
 var ADDRESS_API_KEY=""; // Ideal Postcodes API key: enables the full address dropdown. Without it, the postcode is checked and the town shown, and they type the first line.
 const BOOKING_URL=SURVEY_CAL_URL||"https://wa.me/447463584628?text=Hi%2C%20I%27d%20like%20to%20book%20my%20EV%20video%20survey";
-function dots(){return '<p style="text-align:center;font:700 15px Outfit;color:var(--orange-d);margin-bottom:12px">Confirm your fixed price &amp; install date</p><div class="steps">'+steps.map((s,n)=>(n?'<span class="bar"></span>':'')+'<span class="dot '+(n<=i?'on':'')+'">'+(n<i?'✓':n+1)+'</span>').join('')+'</div><p class="time">⏱ Takes under a minute</p>'}
+function dots(){return '<p style="text-align:center;font:700 15px Outfit;color:var(--orange-d);margin-bottom:12px">Is your home suitable? Find out in 60 seconds</p><div class="steps">'+steps.map((s,n)=>(n?'<span class="bar"></span>':'')+'<span class="dot '+(n<=i?'on':'')+'">'+(n<i?'✓':n+1)+'</span>').join('')+'</div>'}
 function render(){
   const s=steps[i];let h=dots()+(i?'<button class="back" onclick="back()">← Back</button>':'')+(ozevNote&&steps[i-1]&&steps[i-1].q==="What's the property?"?'<div class="ozev-ok">✅ <b>Good news: you may qualify for up to £500 off</b> Pro or Premium with the OZEV grant. You\'ll need private off-street parking, and the grant must be approved before we install. We\'ll walk you through it on your video call.</div>':'')+'<h3>'+s.q+'</h3>'+(s.tip?'<p class="fine" style="margin:-8px 0 14px;font-size:14px">'+s.tip+'</p>':'');
   if(s.opts){h+='<div class="opts">'+s.opts.map((o,n)=>'<button class="opt" onclick="pick('+n+')">'+o+'</button>').join('')+'</div>'}
-  else{h+='<div class="pcrow"><input id="pc" autocomplete="postal-code" placeholder="Postcode, e.g. LS9 7DR" value="'+(ans['Postcode']||'')+'"><button type="button" class="pcbtn" onclick="findAddr()">Find address</button></div><p class="err" id="e-pc">Please enter a full UK postcode, e.g. LS9 7DR.</p><div class="oos" id="oos"></div><p class="pc-ok" id="pc-ok"></p><select id="addr-sel" hidden onchange="pickAddr()"></select><input id="ad" autocomplete="address-line1" placeholder="House number &amp; street" value="'+(ans['Address']||'').replace(/"/g,'&quot;')+'"><p class="err" id="e-ad">Please enter your house number and street.</p>'+'<input id="nm" autocomplete="name" placeholder="Your name"><p class="err" id="e-nm">Please enter your name.</p><input id="mb" type="tel" autocomplete="tel" placeholder="Mobile number"><p class="err" id="e-mb">Please enter a valid UK mobile, e.g. 07123 456789.</p><input id="em" type="email" autocomplete="email" placeholder="Email address"><p class="err" id="e-em">Please enter a valid email address.</p><button class="cta" onclick="done()">Confirm My Price &amp; Date →</button><p class="fine">🔒 Your details are secure. No spam, ever.</p>'}
+  else{h+='<div class="pcrow"><input id="pc" autocomplete="postal-code" placeholder="Postcode, e.g. LS9 7DR" value="'+(ans['Postcode']||'')+'"><button type="button" class="pcbtn" onclick="findAddr()">Find address</button></div><p class="err" id="e-pc">Please enter a full UK postcode, e.g. LS9 7DR.</p><div class="oos" id="oos"></div><p class="pc-ok" id="pc-ok"></p><select id="addr-sel" hidden onchange="pickAddr()"></select><input id="ad" autocomplete="address-line1" placeholder="House number &amp; street" value="'+(ans['Address']||'').replace(/"/g,'&quot;')+'"><p class="err" id="e-ad">Please enter your house number and street.</p>'+'<input id="nm" autocomplete="name" placeholder="Your name"><p class="err" id="e-nm">Please enter your name.</p><input id="mb" type="tel" autocomplete="tel" placeholder="Mobile number"><p class="err" id="e-mb">Please enter a valid UK mobile, e.g. 07123 456789.</p><input id="em" type="email" autocomplete="email" placeholder="Email address"><p class="err" id="e-em">Please enter a valid email address.</p><button class="cta" onclick="done()">Book My Free Video Check →</button><p class="fine">🔒 Your details are secure. No spam, ever.</p>'}
   el.innerHTML=h;
   const pcEl=document.getElementById('pc');if(pcEl){pcEl.addEventListener('input',()=>{clearTimeout(pcT);pcT=setTimeout(()=>{if(PC_RE.test(pcNorm(pcEl.value)))findAddr()},350)});pcEl.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();findAddr()}})}
 
@@ -750,6 +762,13 @@ function done(){
   let good=pcCheck();for(const k in ok){document.getElementById('e-'+k).style.display=ok[k]?'none':'block';if(!ok[k])good=false}
   if(!good)return;
   ans['Address']=adv;
+  var sn=splitName(nm),tags=['Landing page'];
+  if(ans["Do you have your EV yet?"]==="Just researching")tags.push('Nurture');
+  if(ans["Who'll be deciding on the install?"]==="Me and my partner: they can't join")tags.push('Partner absent');
+  if(ans["OZEV grant"])tags.push('OZEV possible');
+  sendLead({route:'Quiz',stage:'Form submitted',first_name:sn.first,last_name:sn.last,mobile:intlMob(mb),email:em,postcode:ans['Postcode']||'',address:adv,
+    charger:ans['Which charger are you interested in?']||'',property:ans["What's the property?"]||'',parking:ans['Do you have off-street parking?']||'',
+    ev_status:ans['Do you have your EV yet?']||'',decision:ans["Who'll be deciding on the install?"]||'',tags:tags.join(', ')});
   const tag=ans["Do you have your EV yet?"]==="Just researching"?'<p class="fine">Tagged: Nurture</p>':'';
   const partner=ans["Who'll be deciding on the install?"]==="Me and my partner: they can't join"?'<p class="fine">Tagged: Partner absent</p>':'';
   el.innerHTML='<div class="done-box"><div class="ok">✓</div><h3>Thanks, '+nm.split(' ')[0].replace(/[<>&"]/g,'')+'! Now pick your survey time</h3><p class="fine" style="font-size:15px">In 15 minutes we\'ll confirm your exact price and offer you install dates.</p><div class="sum">'+Object.entries(ans).map(([k,v])=>'<b>'+k+'</b> '+v).join('<br>')+'</div><a class="cta" href="'+BOOKING_URL+'" target="_blank" rel="noopener">Choose My Survey Time →</a>'+'</div>';
@@ -803,11 +822,11 @@ function ftRender(){
       (ft.pay==='card'?'<div><span>Deposit today</span><b>£99</b></div><div><span>Balance after install</span><b>£'+(price-99).toLocaleString('en-GB')+'</b></div>'
                       :'<div><span>Deposit</span><b>£99</b></div><div><span>Then 12 monthly payments of</span><b>£'+mo+'</b></div><div><span>Interest</span><b>0% APR</b></div>')+'</div>';
     if(ft.pay==='card'){
-      h+='<a class="cta" id="ft-pay" href="'+(REVOLUT_URL||'#')+'" target="_blank" rel="noopener" onclick="return ftGo(REVOLUT_URL)">Pay £99 Securely →</a>'+
+      h+='<a class="cta" id="ft-pay" href="'+(REVOLUT_URL||'#')+'" target="_blank" rel="noopener" onclick="return ftGo(REVOLUT_URL,1)">Pay £99 Securely →</a>'+
         (REVOLUT_URL?'':'<p class="fine"><span class="ph">[Revolut payment link goes here]</span></p>')+
         '<p class="fine">Secure card payment via Revolut. Fully refundable if we can\'t install.</p>';
     }else{
-      h+='<a class="cta" id="ft-fin" href="'+(fl||'#')+'" target="_blank" rel="noopener" onclick="return ftGo(FIN_LINKS[ft.tier])">Apply for 0% Finance →</a>'+
+      h+='<a class="cta" id="ft-fin" href="'+(fl||'#')+'" target="_blank" rel="noopener" onclick="return ftGo(FIN_LINKS[ft.tier],0)">Apply for 0% Finance →</a>'+
         (fl?'':'<p class="fine"><span class="ph">[PayItMonthly link for '+ft.tier+' goes here]</span></p>')+
         '<p class="fine">PayItMonthly is a form of credit, provided by PayItMonthly Ltd. A soft check runs first, invisible to other lenders. A full credit check only happens if you\'re approved and sign. Subject to status and affordability. Late or missed payments could impact your ability to access credit in the future. Representative example ('+ft.tier+'): cash price £'+price.toLocaleString('en-GB')+'. Deposit £99. Amount of credit £'+(price-99).toLocaleString('en-GB')+', repaid in 12 monthly payments of £'+((price-99)/12).toFixed(2)+' (final payment £'+((price-99)-Math.round((price-99)/12*100)/100*11).toFixed(2)+'). Total amount payable £'+price.toLocaleString('en-GB')+'. Interest rate 0% fixed. Representative 0% APR.</p>';
     }
@@ -830,9 +849,10 @@ function ftCheck(){
   if(pcOk){var out=pcv.slice(0,-3),area=out.match(/^[A-Z]+/)[0];pcOk=allowed.indexOf(area)>-1&&blocked.indexOf(out)<0}
   var ok={nm:nm.length>1,mb:/^(07\d{9}|\+447\d{9}|447\d{9})$/.test(mb),em:/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em),pc:pcOk,c1:ft.d.c1};
   var good=true;for(var k in ok){g('fe-'+k).style.display=ok[k]?'none':'block';if(!ok[k])good=false}
-  if(good){ft.step=3;ftRender()}
+  if(good){var sn=splitName(nm);ft.lead={route:'Fast-track',first_name:sn.first,last_name:sn.last,mobile:intlMob(mb),email:em,postcode:pcv.slice(0,-3)+' '+pcv.slice(-3),charger:ft.tier||'',tags:'Landing page, Fast-track'};
+    sendLead(Object.assign({stage:'Details entered'},ft.lead));ft.step=3;ftRender()}
 }
-function ftGo(url){setTimeout(function(){ft.step=4;ftRender()},url?1500:0);return !!url}
+function ftGo(url,dep){if(ft.lead)sendLead(Object.assign({},ft.lead,{stage:dep?'Clicked pay £99 deposit':'Clicked 0% finance'}));setTimeout(function(){ft.step=4;ftRender()},url?1500:0);return !!url}
 function preCheck(btn){if(PRECHECK_URL){window.open(PRECHECK_URL,'_blank','noopener');return}
   var n=btn.nextElementSibling;if(n&&n.classList&&n.classList.contains('fin-note'))return;
   var p=document.createElement('p');p.className='fin-note';p.innerHTML='<span class="ph">[PayItMonthly Pre-Check link goes here]</span>';btn.insertAdjacentElement('afterend',p)}
