@@ -356,6 +356,9 @@ a.total:hover .tbtn{background:var(--orange-d)}
 .ft-total{display:flex;justify-content:space-between;align-items:baseline;background:var(--bg);border-radius:12px;padding:12px 14px;margin-bottom:14px}
 .ft-total b{font:800 22px Outfit}
 .ft-seg.four{grid-template-columns:1fr 1fr}
+.priv{font-size:12px;color:var(--muted);line-height:1.45;margin:8px 0 0;text-align:left}
+.priv a{color:inherit;text-decoration:underline}
+.ref{font-size:13px;color:var(--ink);background:#fff7ed;border:1px dashed var(--orange);border-radius:10px;padding:8px 10px;margin:10px 0;text-align:center}
 </style>
 </head>
 <body id="top">
@@ -697,7 +700,9 @@ let i=0;const el=document.getElementById('quiz');const ans={};
 const allowed=["LS","BD","HG","YO","WF","HD","HX","DN","S","LA","PR","BB","BL","OL","M","WN","NE","SR","DH","DL","TS"];
 const blocked=["LA7","LA8","LA9","LA10","LA11","LA12","LA13","LA14","LA15","LA16","LA17","LA18","LA19","LA20","LA21","LA22","LA23"];
 var LEAD_WEBHOOK_URL=""; // paste your Zapier (or Make) webhook URL: every lead is sent there, then into TextMagic
-function sendLead(o){try{
+var REF=(function(){var d=new Date();return 'SW-'+String(d.getDate()).padStart(2,'0')+String(d.getMonth()+1).padStart(2,'0')+'-'+Math.floor(100+Math.random()*900)})();
+function escH(v){return String(v).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function sendLead(o){try{o.ref=REF;
   var q=new URLSearchParams(location.search);['utm_source','utm_medium','utm_campaign','utm_content','fbclid'].forEach(function(k){if(q.get(k))o[k]=q.get(k)});
   o.page=location.href.split(/[?#]/)[0];o.submitted=new Date().toISOString();window.__lastLead=o;
   if(!LEAD_WEBHOOK_URL)return;var body=new URLSearchParams(o);
@@ -713,7 +718,7 @@ function dots(){return '<p style="text-align:center;font:700 15px Outfit;color:v
 function render(){
   const s=steps[i];let h=dots()+(i?'<button class="back" onclick="back()">← Back</button>':'')+(steps[i-1]&&steps[i-1].q==="Do you have your EV yet?"&&ans["Do you have your EV yet?"]==="Arriving within 2 weeks"?'<div class="ozev-ok">🚗 <b>Car arriving soon? You\'re a priority.</b> We\'ll flag your booking and offer you our earliest install slots, so you can charge at home from day one.</div>':'')+(ozevNote&&steps[i-1]&&steps[i-1].q==="What's the property?"?'<div class="ozev-ok">✅ <b>Good news: you may qualify for up to £500 off</b> Pro or Premium with the OZEV grant. You\'ll need private off-street parking, and the grant must be approved before we install. We\'ll walk you through it on your video call.</div>':'')+'<h3>'+s.q+'</h3>'+(s.tip?'<p class="fine" style="margin:-8px 0 14px;font-size:14px">'+s.tip+'</p>':'');
   if(s.opts){h+='<div class="opts">'+s.opts.map((o,n)=>'<button class="opt" onclick="pick('+n+')">'+o+'</button>').join('')+'</div>'}
-  else{h+='<div class="pcrow"><input id="pc" autocomplete="postal-code" placeholder="Postcode, e.g. LS9 7DR" value="'+(ans['Postcode']||'')+'"><button type="button" class="pcbtn" onclick="findAddr()">Find address</button></div><p class="err" id="e-pc">Please enter a full UK postcode, e.g. LS9 7DR.</p><div class="oos" id="oos"></div><p class="pc-ok" id="pc-ok"></p><select id="addr-sel" hidden onchange="pickAddr()"></select><input id="ad" autocomplete="address-line1" placeholder="House number &amp; street" value="'+(ans['Address']||'').replace(/"/g,'&quot;')+'"><p class="err" id="e-ad">Please enter your house number and street.</p>'+'<input id="nm" autocomplete="name" placeholder="Your name"><p class="err" id="e-nm">Please enter your name.</p><input id="mb" type="tel" autocomplete="tel" placeholder="Mobile number"><p class="err" id="e-mb">Please enter a valid UK mobile, e.g. 07123 456789.</p><input id="em" type="email" autocomplete="email" placeholder="Email address"><p class="err" id="e-em">Please enter a valid email address.</p><button class="cta" onclick="done()">Book My Free Video Check →</button><p class="fine">🔒 Your details are secure. No spam, ever.</p>'}
+  else{h+='<div class="pcrow"><input id="pc" autocomplete="postal-code" placeholder="Postcode, e.g. LS9 7DR" value="'+(ans['Postcode']||'')+'"><button type="button" class="pcbtn" onclick="findAddr()">Find address</button></div><p class="err" id="e-pc">Please enter a full UK postcode, e.g. LS9 7DR.</p><div class="oos" id="oos"></div><p class="pc-ok" id="pc-ok"></p><select id="addr-sel" hidden onchange="pickAddr()"></select><input id="ad" autocomplete="address-line1" placeholder="House number &amp; street" value="'+(ans['Address']||'').replace(/"/g,'&quot;')+'"><p class="err" id="e-ad">Please enter your house number and street.</p>'+'<input id="nm" autocomplete="name" placeholder="Your name"><p class="err" id="e-nm">Please enter your name.</p><input id="mb" type="tel" autocomplete="tel" placeholder="Mobile number"><p class="err" id="e-mb">Please enter a valid UK mobile, e.g. 07123 456789.</p><input id="em" type="email" autocomplete="email" placeholder="Email address"><p class="err" id="e-em">Please enter a valid email address.</p><button class="cta" onclick="done()">Book My Free Video Check →</button><p class="fine">🔒 Your details are secure. No spam, ever.</p><p class="priv">We\'ll use your details to arrange your survey and installation, and may text or email you about it. See our <a href="https://smartwiredelectrical.co.uk/privacy-policy" target="_blank" rel="noopener">privacy policy</a>.</p>'}
   el.innerHTML=h;
   const pcEl=document.getElementById('pc');if(pcEl){pcEl.addEventListener('input',()=>{clearTimeout(pcT);pcT=setTimeout(()=>{if(PC_RE.test(pcNorm(pcEl.value)))findAddr()},350)});pcEl.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();findAddr()}})}
 
@@ -737,6 +742,7 @@ function pcCheck(){
   box.textContent="Sorry, we don't cover that postcode yet. We cover Yorkshire, Lancashire and the North East.";box.style.display='block';return false
 }
 function findAddr(){
+  if(!document.getElementById('pc')||!document.getElementById('oos'))return;
   if(!pcCheck())return;
   const pc=ans['Postcode'];if(pc===lastPc)return;lastPc=pc;
   const ok=document.getElementById('pc-ok'),sel=document.getElementById('addr-sel'),ad=document.getElementById('ad');
@@ -777,7 +783,7 @@ function done(){
     ev_status:ans['Do you have your EV yet?']||'',decision:ans["Who'll be deciding on the install?"]||'',tags:tags.join(', ')});
   const tag=ans["Do you have your EV yet?"]==="Just researching"?'<p class="fine">Tagged: Nurture</p>':'';
   const partner=ans["Who'll be deciding on the install?"]==="Me and my partner: they can't join"?'<p class="fine">Tagged: Partner absent</p>':'';
-  el.innerHTML='<div class="done-box"><div class="ok">✓</div><h3>Thanks, '+nm.split(' ')[0].replace(/[<>&"]/g,'')+'! Now pick your survey time</h3><p class="fine" style="font-size:15px">In 15 minutes we\'ll confirm your exact price and offer you install dates.</p><div class="sum">'+Object.entries(ans).map(([k,v])=>'<b>'+k+'</b> '+v).join('<br>')+'</div><a class="cta" href="'+BOOKING_URL+'" target="_blank" rel="noopener">Choose My Survey Time →</a>'+'</div>';
+  el.innerHTML='<div class="done-box"><div class="ok">✓</div><h3>Thanks, '+nm.split(' ')[0].replace(/[<>&"]/g,'')+'! Now pick your survey time</h3><p class="fine" style="font-size:15px">In 15 minutes we\'ll confirm your exact price and offer you install dates.</p><div class="sum">'+Object.entries(ans).map(([k,v])=>'<b>'+escH(k)+'</b> '+escH(v)).join('<br>')+'</div><p class="ref">Your reference: <b>'+REF+'</b></p><a class="cta" href="'+BOOKING_URL+'" target="_blank" rel="noopener">Choose My Survey Time →</a>'+'</div>';
 }
 render();
 (function(){var bar=document.getElementById('mbar'),q=document.getElementById('quiz');if(!bar||!q||!('IntersectionObserver' in window))return;
@@ -841,7 +847,7 @@ function ftRender(){
       '<label class="ft-l" for="ft-mb">Mobile</label><input id="ft-mb" type="tel" autocomplete="tel" value="'+ftEsc(d.mb||'')+'"><p class="err" id="fe-mb">Please enter a valid UK mobile, e.g. 07123 456789.</p>'+
       '<label class="ft-l" for="ft-em">Email</label><input id="ft-em" type="email" autocomplete="email" value="'+ftEsc(d.em||'')+'"><p class="err" id="fe-em">Please enter a valid email address.</p>'+
       '<label class="ft-l" for="ft-pc">Install postcode</label><input id="ft-pc" autocomplete="postal-code" value="'+ftEsc(d.pc||'')+'"><p class="err" id="fe-pc">Please enter a full UK postcode in our area.</p>'+
-      '<label class="ft-chk"><input type="checkbox" id="ft-c1"'+(d.c1?' checked':'')+'><span>I agree to the <a href="https://smartwiredelectrical.co.uk/terms" target="_blank" rel="noopener">terms</a> and understand my £99 deposit is fully refundable if you can\'t install.</span></label><p class="err" id="fe-c1">Please tick to continue.</p>'+
+      '<label class="ft-chk"><input type="checkbox" id="ft-c1"'+(d.c1?' checked':'')+'><span>I agree to the <a href="https://smartwiredelectrical.co.uk/terms" target="_blank" rel="noopener">terms</a> and understand my £99 deposit is fully refundable if you can\'t install.</span></label><p class="err" id="fe-c1">Please tick to continue.</p><p class="priv">We\'ll use your details to arrange your survey and installation, and may text or email you about it. See our <a href="https://smartwiredelectrical.co.uk/privacy-policy" target="_blank" rel="noopener">privacy policy</a>.</p>'+
       '<label class="ft-chk"><input type="checkbox" id="ft-c2"'+(d.c2?' checked':'')+'><span>I\'d like my installation to go ahead within my 14-day cancellation period. <small>(Optional. Without this, your install date will be at least 14 days away.)</small></span></label>'+
       '<div class="ft-nav"><button class="ft-back" type="button" onclick="ft.step=1;ftRender()">← Back</button><button class="cta" type="button" onclick="ftCheck()">Continue to payment →</button></div>';
   }else if(ft.step===3){
@@ -858,17 +864,17 @@ function ftRender(){
     if(ft.pay==='card'){
       h+='<a class="cta" id="ft-pay" href="'+(REVOLUT_URL||'#')+'" target="_blank" rel="noopener" onclick="return ftGo(REVOLUT_URL,1)">Pay £99 Securely →</a>'+
         (REVOLUT_URL?'':'<p class="fine"><span class="ph">[Revolut payment link goes here]</span></p>')+
-        '<p class="fine">Secure card payment via Revolut. Fully refundable if we can\'t install.</p>';
+        '<p class="fine">Secure card payment via Revolut. Fully refundable if we can\'t install.</p><p class="ref">Please use <b>'+REF+'</b> as your payment reference.</p>';
     }else{
       h+='<a class="cta" id="ft-fin" href="'+(fl||'#')+'" target="_blank" rel="noopener" onclick="return ftGo(FIN_LINKS[ftKey()],0)">Check Eligibility &amp; Apply →</a>'+
-        (fl?'':'<p class="fine"><span class="ph">[PayItMonthly link '+key+' goes here]</span></p>')+
+        (fl?'':'<p class="fine"><span class="ph">[PayItMonthly link '+key+' goes here]</span></p>')+'<p class="ref">Your reference: <b>'+REF+'</b>. If the application asks for an order reference, use this.</p>'+
         '<p class="fine"><b>How it works:</b> PayItMonthly runs a soft search first, which doesn\'t affect your credit score and isn\'t visible to other lenders. A full credit check only happens if you\'re approved and choose to accept. If your video check finds a different cable run, we\'ll send you an updated link before anything is finalised.</p>'+
         '<p class="fine">PayItMonthly is a form of credit, provided by PayItMonthly Ltd. Subject to status and affordability. Late or missed payments could impact your ability to access credit in the future. Representative example ('+pkg+'): cash price '+gbp(price)+'. Deposit £99. Amount of credit '+gbp(f.c)+', repaid in '+ft.term+' monthly payments of '+gbp(f.m,1)+(f.last!==f.m?' (final payment '+gbp(f.last,1)+')':'')+'. Total amount payable '+gbp(price)+'. Interest rate 0% fixed. Representative 0% APR.</p>';
     }
     h+='<div class="ft-nav"><button class="ft-back" type="button" onclick="ft.step=2;ftRender()">← Back</button></div>';
   }else{
     var first=ftEsc((ft.d.nm||'').split(' ')[0]);
-    h=steps+'<div class="ft-done"><div class="ok">✓</div><h3 id="ft-h">Thanks'+(first?', '+first:'')+'! Now choose your install date</h3><p>'+(ft.pay==='fin'?'Once your finance is approved,':'Once your deposit comes through,')+' pick a date that suits you. We\'ll be in touch to book your 5-minute video check before then.</p>'+
+    h=steps+'<div class="ft-done"><div class="ok">✓</div><h3 id="ft-h">Thanks'+(first?', '+first:'')+'! Now choose your install date</h3><p>'+(ft.pay==='fin'?'Once your finance is approved,':'Once your deposit comes through,')+' pick a date that suits you. We\'ll be in touch to book your 5-minute video check before then.</p><p class="ref">Your order reference: <b>'+REF+'</b></p>'+
       '<a class="cta" href="'+(INSTALL_CAL_URL||'#')+'" target="_blank" rel="noopener"'+(INSTALL_CAL_URL?'':' onclick="return false"')+'>Choose My Install Date →</a>'+
       (INSTALL_CAL_URL?'':'<p class="fine"><span class="ph">[Install calendar link goes here]</span></p>')+
       '</div>';
