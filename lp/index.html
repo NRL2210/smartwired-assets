@@ -363,6 +363,14 @@ a.total:hover .tbtn{background:var(--orange-d)}
 .ft-two>span{flex:0 0 26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font:700 13px Outfit;margin-top:12px}
 .ft-two>div{flex:1;min-width:0}
 .ft-two .cta{font-size:16px}
+.ph-box{text-align:left;background:#f0fbf4;border:1px solid #bfe8cf;border-radius:14px;padding:16px;margin:16px 0}
+.ph-box h4{font:700 17px Outfit;margin:0 0 4px;color:var(--ink)}
+.ph-sub{font-size:14px;color:var(--muted);margin:0 0 10px}
+.ph-list{margin:0 0 10px;padding-left:20px;display:grid;gap:8px;font-size:13.5px;color:var(--muted)}
+.ph-list b{display:block;color:var(--ink);font-size:14.5px}
+.ph-safe{font-size:12.5px;color:#8a5a00;background:#fff7e6;border-radius:8px;padding:8px 10px;margin:0 0 12px}
+.wa-cta{display:block;text-align:center;background:#25d366;color:#fff;font:700 17px Outfit;padding:14px;border-radius:12px;text-decoration:none}
+.wa-cta:hover{background:#1fb457}
 </style>
 </head>
 <body id="top">
@@ -715,6 +723,20 @@ function sendLead(o){try{o.ref=REF;
 }catch(e){}}
 function intlMob(m){m=(m||'').replace(/[^\d+]/g,'');if(m.indexOf('+')===0)m=m.slice(1);if(m.indexOf('07')===0)m='44'+m.slice(1);return m}
 function splitName(n){n=(n||'').trim().split(/\s+/);return{first:n[0]||'',last:n.slice(1).join(' ')}}
+function photoBlock(mode,pkg){
+  var msg=mode==='order'?'Hi SmartWired, my order ref is '+REF+(pkg?' ('+pkg+')':'')+'. Here are my photos and video:':'Hi SmartWired, my ref is '+REF+'. Here are my photos before my video call:';
+  var url='https://wa.me/447463584628?text='+encodeURIComponent(msg);
+  return '<div class="ph-box"><h4>'+(mode==='order'?'📲 Speed things up: send us 5 photos on WhatsApp':'📲 Got 2 minutes? Send these before your video call')+'</h4>'+
+    '<p class="ph-sub">'+(mode==='order'?'Our engineer can then check everything before install day.':'Your video call will take half the time.')+'</p>'+
+    '<ol class="ph-list"><li><b>📸 Meter &amp; main fuse</b>Meter cupboard door open, with the meter and main fuse clearly visible</li>'+
+    '<li><b>📸 Fuse board</b>The whole fuse board with its front door open, close enough to read the labels</li>'+
+    '<li><b>📸 Where the charger goes</b>The wall, and where your car parks</li>'+
+    '<li><b>🎥 Walk-through video (30–60 secs)</b>Start at your fuse board and walk to the charger spot. Say roughly how many metres if you can</li>'+
+    '<li><b>📸 Front of your house</b>So we can find you and see the parking</li></ol>'+
+    '<p class="ph-safe">⚠️ Just open the cupboard or fuse board door. Please don\'t remove any covers.</p>'+
+    '<a class="wa-cta" href="'+url+'" target="_blank" rel="noopener" onclick="photoClick(\''+mode+'\')">💬 Send My Photos on WhatsApp →</a></div>';
+}
+function photoClick(mode){var o=mode==='order'&&ft.lead?Object.assign({},ft.lead):{route:'Quiz',first_name:(window.__lastLead||{}).first_name||'',mobile:(window.__lastLead||{}).mobile||''};o.stage='Clicked send photos on WhatsApp';sendLead(o)}
 var SURVEY_CAL_URL=""; // paste your SURVEY self-booking calendar link here (separate from the install calendar)
 var ADDRESS_API_KEY=""; // Ideal Postcodes API key: enables the full address dropdown. Without it, the postcode is checked and the town shown, and they type the first line.
 const BOOKING_URL=SURVEY_CAL_URL||"https://wa.me/447463584628?text=Hi%2C%20I%27d%20like%20to%20book%20my%20EV%20video%20survey";
@@ -787,7 +809,7 @@ function done(){
     ev_status:ans['Do you have your EV yet?']||'',decision:ans["Who'll be deciding on the install?"]||'',tags:tags.join(', ')});
   const tag=ans["Do you have your EV yet?"]==="Just researching"?'<p class="fine">Tagged: Nurture</p>':'';
   const partner=ans["Who'll be deciding on the install?"]==="Me and my partner: they can't join"?'<p class="fine">Tagged: Partner absent</p>':'';
-  el.innerHTML='<div class="done-box"><div class="ok">✓</div><h3>Thanks, '+nm.split(' ')[0].replace(/[<>&"]/g,'')+'! Now pick your survey time</h3><p class="fine" style="font-size:15px">In 15 minutes we\'ll confirm your exact price and offer you install dates.</p><div class="sum">'+Object.entries(ans).map(([k,v])=>'<b>'+escH(k)+'</b> '+escH(v)).join('<br>')+'</div><p class="ref">Your reference: <b>'+REF+'</b></p><a class="cta" href="'+BOOKING_URL+'" target="_blank" rel="noopener">Choose My Survey Time →</a>'+'</div>';
+  el.innerHTML='<div class="done-box"><div class="ok">✓</div><h3>Thanks, '+nm.split(' ')[0].replace(/[<>&"]/g,'')+'! Now pick your survey time</h3><p class="fine" style="font-size:15px">In 15 minutes we\'ll confirm your exact price and offer you install dates.</p><div class="sum">'+Object.entries(ans).map(([k,v])=>'<b>'+escH(k)+'</b> '+escH(v)).join('<br>')+'</div><p class="ref">Your reference: <b>'+REF+'</b></p><a class="cta" href="'+BOOKING_URL+'" target="_blank" rel="noopener">Choose My Survey Time →</a>'+photoBlock('quiz')+'</div>';
 }
 render();
 (function(){var bar=document.getElementById('mbar'),q=document.getElementById('quiz');if(!bar||!q||!('IntersectionObserver' in window))return;
@@ -883,7 +905,7 @@ function ftRender(){
     var first=ftEsc((ft.d.nm||'').split(' ')[0]);
     h=steps+'<div class="ft-done"><div class="ok">✓</div><h3 id="ft-h">Thanks'+(first?', '+first:'')+'! Now choose your install date</h3><p>'+(ft.pay==='fin'?'Once your finance is approved,':'Once your deposit comes through,')+' pick a date that suits you. We\'ll be in touch to book your 5-minute video check before then.</p><p class="ref">Your order reference: <b>'+REF+'</b></p>'+
       '<a class="cta" href="'+(INSTALL_CAL_URL||'#')+'" target="_blank" rel="noopener"'+(INSTALL_CAL_URL?'':' onclick="return false"')+'>Choose My Install Date →</a>'+
-      (INSTALL_CAL_URL?'':'<p class="fine"><span class="ph">[Install calendar link goes here]</span></p>')+
+      (INSTALL_CAL_URL?'':'<p class="fine"><span class="ph">[Install calendar link goes here]</span></p>')+photoBlock('order',ft.tier+(ft.tier==='Pro'&&ft.teth?' + tethered':'')+', '+(ft.run===5?'5m or under':'up to '+ft.run+'m'))+
       '</div>';
   }
   b.innerHTML=h;
