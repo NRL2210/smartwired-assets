@@ -335,6 +335,15 @@ a.total:hover .tbtn{background:var(--orange-d)}
 #addr-sel{width:100%;border:2px solid var(--blue);border-radius:12px;padding:13px;font:16px Inter;margin-bottom:10px;background:#fff;color:var(--ink)}
 .longrun{margin-top:22px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:12px;padding:14px 16px;font-size:14px;color:var(--muted);line-height:1.5}
 .longrun b{color:var(--ink)}
+.price sup{font-size:.55em;color:var(--orange);margin-left:2px}
+.price .ast{display:block;font-size:13px;color:#8193a8;margin-top:2px}
+.price .pro-line{display:block;margin-top:10px;padding-top:10px;border-top:1px solid #2a3a50;font-size:15px;color:#cfd8e3}
+.price .pro-line b{color:#fff}
+.alt{border:2px solid var(--orange);box-shadow:0 2px 10px rgba(255,138,0,.12)}
+.alt.fin-alt{border-color:var(--blue);box-shadow:0 2px 10px rgba(26,115,232,.12)}
+.alt-go{display:block;margin-top:12px;background:var(--orange);color:#fff;font:700 16px Outfit;font-style:normal;text-align:center;padding:12px;border-radius:10px}
+.fin-alt .alt-go{background:var(--blue)}
+.alt:hover .alt-go{filter:brightness(.93)}
 </style>
 </head>
 <body id="top">
@@ -353,8 +362,9 @@ a.total:hover .tbtn{background:var(--orange-d)}
       <p class="sub">Fixed price, fully certified, and an installer who still answers the phone after the job's done.</p>
       <p class="trust">NAPIT &amp; TrustMark approved · Level 3 EV Certified · 20+ years trading</p>
       <div class="price">
-        <strong>From £975 fully installed</strong>
-        <span>Essential, short runs up to 5m. Our most popular Pro package is £1,195 up to 10m, or £91/month at 0%</span>
+        <strong>From £975<sup>*</sup> fully installed</strong>
+        <span class="ast">*Essential package, cable run of 5m or under.</span>
+        <span class="pro-line"><b>Pro package</b> (most popular) from £1,095, or £1,195 up to 10m: <b>£91/month at 0%</b></span>
         <span class="rep">Representative example (Pro): cash price £1,195. Deposit £99. Amount of credit £1,096, repaid in 12 monthly payments of £91.33 (final payment £91.37). Total amount payable £1,195. Interest rate 0% fixed. Representative 0% APR.</span>
         <p class="check">⚡ <b>One quick check:</b> before we lock in your price and install date, we just need to confirm your home's electrics can handle the extra load of an EV charger. Most homes can, and it takes a 15-minute video call.</p>
       </div>
@@ -428,8 +438,8 @@ a.total:hover .tbtn{background:var(--orange-d)}
 
     <div class="longrun">📏 <b>Longer cable run?</b> Most homes are within 10m. If yours is further, it's £100 per extra 5m, up to 20m. Over 20m, or for a complex install (a trench, routing through the house, or a fuse board upgrade), you get a fixed quote first. Either way, it's confirmed on your video call before you pay anything.</div>
     <div class="alt-row">
-      <button class="alt" type="button" onclick="openFT('Pro')">⚡ <b>Already decided? Fast-track your install</b><span>£99 deposit, fully refundable if your video check shows we can't fit it</span></button>
-      <button class="alt fin-alt" type="button" onclick="preCheck(this)">💷 <b>Check your eligibility for 0% finance</b><span>Soft check, invisible to other lenders</span></button>
+      <button class="alt" type="button" onclick="openFT('Pro')">⚡ <b>Already decided? Fast-track your install</b><span>£99 deposit, fully refundable if your video check shows we can't fit it</span><em class="alt-go">Fast-track now →</em></button>
+      <button class="alt fin-alt" type="button" onclick="preCheck(this)">💷 <b>Check your eligibility for 0% finance</b><span>Soft check, invisible to other lenders</span><em class="alt-go">Check my eligibility →</em></button>
     </div>
 
     <details class="cmp-d"><summary>Compare all features</summary>
