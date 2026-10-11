@@ -206,6 +206,7 @@ a.total:hover .tbtn{background:var(--orange-d)}
 .grant{background:var(--green-l);border:1px dashed #9bd8b2;border-radius:12px;padding:10px 12px;font-size:13px;line-height:1.4;margin:-6px 0 16px;color:#185c36}
 .grant span{display:block;font-weight:700;margin-top:3px}
 .vch{display:block;margin-top:8px;font-weight:600}.vch button{margin:6px 6px 0 0;padding:7px 12px;border:1.5px solid #185c36;border-radius:999px;background:#fff;color:#185c36;font:600 13px inherit;cursor:pointer}.vch button.on{background:#185c36;color:#fff}.vch-ok{display:block;margin-top:6px}
+.ft-flex{background:var(--green-l);color:#185c36;border-radius:10px;padding:9px 12px;font-size:13px;line-height:1.45;margin:0 0 12px;text-align:left}
 .ozev-ok{background:var(--green-l);color:#185c36;border-radius:12px;padding:10px 12px;font-size:13px;line-height:1.45;margin-bottom:14px;text-align:left}
 .disc{font-size:12px;line-height:1.5;color:var(--muted);margin:0 0 14px;background:var(--bg);border-radius:10px;padding:10px 12px}
 .cmp-d{margin-top:24px}
@@ -468,7 +469,7 @@ a.total:hover .tbtn{background:var(--orange-d)}
     <div class="longrun">📏 <b>Longer cable run?</b> Most homes are within 10m. If yours is further, it's £100 per extra 5m, up to 20m. Over 20m, or for a complex install (a trench, routing through the house, or a fuse board upgrade), you get a fixed quote first. Either way, it's confirmed on your video call before you pay anything.</div>
     <div class="alt-row">
       <button class="alt" type="button" onclick="openFT('Pro')">⚡ <b>Car arriving soon, or already decided? Fast-track your install</b><span>£99 deposit, fully refundable if your video check shows we can't fit it</span><em class="alt-go">Order Now, £99 Deposit →</em></button>
-      <button class="alt fin-alt" type="button" onclick="openFT('Pro','fin')">💷 <b>Prefer to pay monthly at 0%?</b><span>Pick your package and check your eligibility in minutes. Soft search first; a full credit check only happens if you accept.</span><em class="alt-go">Check My Finance Options →</em></button>
+      <button class="alt fin-alt" type="button" onclick="openFT('Pro','fin')">💷 <b>Prefer to pay monthly at 0%?</b><span>Pick your package and check your eligibility in minutes. Pay the monthly amount or more whenever you like, always at 0%. Soft search first; a full credit check only happens if you accept.</span><em class="alt-go">Check My Finance Options →</em></button>
     </div>
 
     <details class="cmp-d"><summary>Compare all features</summary>
@@ -498,7 +499,7 @@ a.total:hover .tbtn{background:var(--orange-d)}
       <p class="tnote" style="margin-top:8px">11kW and 22kW need a 3-phase supply. We'll check yours on the video call.</p>
     </div>
     </details>
-    <p class="tnote">*OZEV grants of up to £500: the EV chargepoint grant for renters and flat owners with private off-street parking, and the Workplace Charging Scheme for eligible businesses, including registered businesses run from home. Both are subject to eligibility and OZEV approval before installation. Homeowners in houses aren't eligible unless a business qualifies. Not available on Essential. Both schemes currently run until 31 March 2027.<br>All prices include VAT. Prices include up to 10m of cable (5m or under is £100 less). Longer runs are £100 per extra 5m, up to 20m. Over 20m, or for complex installs, we quote a fixed price. Your exact price is confirmed in writing on your video check, before you pay a deposit. Finance: £99 deposit, then 6, 9 or 12 months at 0% APR, subject to status. Representative example (Pro): cash price £1,195. Deposit £99. Amount of credit £1,096, repaid in 12 monthly payments of £91.33 (final payment £91.37). Total amount payable £1,195. Interest rate 0% fixed. Representative 0% APR.</p>
+    <p class="tnote">*OZEV grants of up to £500: the EV chargepoint grant for renters and flat owners with private off-street parking, and the Workplace Charging Scheme for eligible businesses, including registered businesses run from home. Both are subject to eligibility and OZEV approval before installation. Homeowners in houses aren't eligible unless a business qualifies. Not available on Essential. Both schemes currently run until 31 March 2027.<br>All prices include VAT. Prices include up to 10m of cable (5m or under is £100 less). Longer runs are £100 per extra 5m, up to 20m. Over 20m, or for complex installs, we quote a fixed price. Your exact price is confirmed in writing on your video check, before you pay a deposit. Finance: £99 deposit, then 6, 9 or 12 months at 0% APR, subject to status. Pay at least the agreed monthly amount, or more whenever you like, as long as the balance is cleared by the end of your term. No fees for paying early. Representative example (Pro): cash price £1,195. Deposit £99. Amount of credit £1,096, repaid in 12 monthly payments of £91.33 (final payment £91.37). Total amount payable £1,195. Interest rate 0% fixed. Representative 0% APR.</p>
   </div>
 </section>
 
@@ -889,7 +890,7 @@ function ftRender(){
     }
     h+='<div class="ft-sum"><div><span>Package</span><b>'+pkg+'</b></div><div><span>Installed price</span><b>'+gbp(price)+'</b></div>'+
       (ft.pay==='card'?'<div><span>Deposit today</span><b>£99</b></div><div><span>Balance after install</span><b>'+gbp(price-99)+'</b></div>'
-                      :'<div><span>Deposit</span><b>£99</b></div><div><span>Then '+ft.term+' monthly payments of</span><b>'+gbp(f.m,1)+'</b></div><div><span>Interest</span><b>0% APR</b></div>')+'</div>';
+                      :'<div><span>Deposit</span><b>£99</b></div><div><span>Then '+ft.term+' monthly payments of</span><b>'+gbp(f.m,1)+'</b></div><div><span>Interest</span><b>0% APR</b></div>')+'</div>'+(ft.pay==='fin'?'<p class="ft-flex">💡 <b>That\'s your minimum.</b> Pay more whenever you like, or clear it early. It\'s still 0%, with no extra fees.</p>':'');
     if(ft.pay==='card'){
       h+='<a class="cta" id="ft-pay" href="'+(REVOLUT_URL||'#')+'" target="_blank" rel="noopener" onclick="return ftGo(REVOLUT_URL,1)">Pay £99 Securely →</a>'+
         (REVOLUT_URL?'':'<p class="fine"><span class="ph">[Revolut payment link goes here]</span></p>')+
