@@ -220,6 +220,7 @@ a.total:hover .tbtn{background:var(--orange-d)}
 .vch{display:block;margin-top:8px;font-weight:600}.vch button{margin:6px 6px 0 0;padding:7px 12px;border:1.5px solid #185c36;border-radius:999px;background:#fff;color:#185c36;font:600 13px inherit;cursor:pointer}.vch button.on{background:#185c36;color:#fff}.vch-ok{display:block;margin-top:6px}
 .ft-flex{background:var(--green-l);color:#185c36;border-radius:10px;padding:9px 12px;font-size:13px;line-height:1.45;margin:0 0 12px;text-align:left}
 .ft-note{background:#eef4fb;color:var(--navy);border-radius:10px;padding:9px 12px;font-size:13px;line-height:1.45;margin:6px 0 10px;text-align:left}
+.ft-two.dim{opacity:.55}.ft-nxt{margin:14px 0 4px;font-size:14px;text-align:left}.cta.off{background:#c9d1db;cursor:not-allowed}
 .ozev-ok{background:var(--green-l);color:#185c36;border-radius:12px;padding:10px 12px;font-size:13px;line-height:1.45;margin-bottom:14px;text-align:left}
 .disc{font-size:12px;line-height:1.5;color:var(--muted);margin:0 0 14px;background:var(--bg);border-radius:10px;padding:10px 12px}
 .cmp-d{margin-top:24px}
@@ -910,29 +911,41 @@ function ftRender(){
         '<p class="fine">Secure card payment via Revolut. Fully refundable if we can\'t install.</p><p class="ref">Please use <b>'+REF+'</b> as your payment reference.</p>';
     }else{
       h+='<p class="fine" style="margin:0 0 10px">You\'ll confirm the number of months in the PayItMonthly application.</p>'+
-        '<div class="ft-two"><span>1</span><div><a class="cta" id="ft-dep" href="'+(REVOLUT_URL||'#')+'" target="_blank" rel="noopener" onclick="return ftDep()">Pay £99 Deposit →</a>'+(REVOLUT_URL?'':'<p class="fine"><span class="ph">[Revolut payment link goes here]</span></p>')+'<p class="fine">Secures your install slot. Fully refunded if your finance isn\'t approved.</p></div></div>'+
-        '<div class="ft-two"><span>2</span><div><a class="cta" id="ft-fin" href="'+(fl||'#')+'" target="_blank" rel="noopener" onclick="return ftGo(FIN_LINKS[ftKey()],0)">Check Eligibility &amp; Apply for '+gbp(f.c)+' →</a>'+
-        (fl?'':'<p class="fine"><span class="ph">[PayItMonthly link '+key+' goes here]</span></p>')+'</div></div>'+
-        '<p class="ref">Your reference: <b>'+REF+'</b>. Use it as your Revolut payment reference, and if the application asks for one.</p>'+
+        '<div class="ft-two"><span>1</span><div><a class="cta" id="ft-fin" href="'+(fl||'#')+'" target="_blank" rel="noopener" onclick="return ftGo(FIN_LINKS[ftKey()],0)">Check Eligibility &amp; Apply for '+gbp(f.c)+' →</a>'+
+        (fl?'':'<p class="fine"><span class="ph">[PayItMonthly link '+key+' goes here]</span></p>')+'<p class="fine">Takes about 5 minutes. Nothing to pay yet.</p></div></div>'+
+        '<div class="ft-two dim"><span>2</span><div><p class="ft-nxt"><b>Once approved:</b> pay your £99 deposit to secure your install slot</p></div></div>'+
+        '<div class="ft-two dim"><span>3</span><div><p class="ft-nxt"><b>Then:</b> choose your install date</p></div></div>'+
+        '<p class="ref">Your reference: <b>'+REF+'</b>. Use it if the application asks for one.</p>'+
         '<p class="fine"><b>How it works:</b> PayItMonthly runs a soft search first, which doesn\'t affect your credit score and isn\'t visible to other lenders. A full credit check only happens if you\'re approved and choose to accept. If your video check finds a different cable run, we\'ll send you an updated link before anything is finalised.</p>'+
         '<p class="fine">PayItMonthly is a form of credit, provided by PayItMonthly Ltd. Subject to status and affordability. Late or missed payments could impact your ability to access credit in the future. Representative example ('+pkg+'): cash price '+gbp(price)+'. Deposit £99. Amount of credit '+gbp(f.c)+', repaid in '+ft.term+' monthly payments of '+gbp(f.m,1)+(f.last!==f.m?' (final payment '+gbp(f.last,1)+')':'')+'. Total amount payable '+gbp(price)+'. Interest rate 0% fixed. Representative 0% APR.</p>';
     }
-    h+='<p class="ft-note">🔁 This opens in a new tab. When you\'re done, <b>come back to this tab</b> to choose your install date.</p>';
+    h+='<p class="ft-note">🔁 '+(ft.pay==='fin'?'PayItMonthly opens in a new tab. Once you\'re approved, <b>come back to this tab</b> to pay your deposit and choose your date.':'This opens in a new tab. When you\'re done, <b>come back to this tab</b> to choose your install date.')+'</p>';
     h+='<div class="ft-nav"><button class="ft-back" type="button" onclick="ft.step=2;ftRender()">← Back</button></div>';
   }else{
     var first=ftEsc((ft.d.nm||'').split(' ')[0]),nmc=first?', '+first:'';
     if(ft.res==='fail'){
-      b.innerHTML=steps+'<div class="ft-done"><div class="ok" style="background:#fdecea;color:#b3261e">!</div><h3 id="ft-h">Sorry'+nmc+', your finance wasn\'t approved this time</h3><p>If you\'ve paid the £99 deposit, we\'ll refund it in full. Or you can keep it and pay the balance by card after your install.</p><p class="ref">Your order reference: <b>'+REF+'</b></p>'+
+      b.innerHTML=steps+'<div class="ft-done"><div class="ok" style="background:#fdecea;color:#b3261e">!</div><h3 id="ft-h">Sorry'+nmc+', your finance wasn\'t approved this time</h3><p>You haven\'t paid anything, so there\'s nothing to refund. You can still go ahead and pay by card: £99 deposit today and the balance after your install.</p><p class="ref">Your order reference: <b>'+REF+'</b></p>'+
         '<button class="cta" type="button" onclick="ft.res=\'\';ft.pay=\'card\';ft.step=3;ftRender()">Pay by Card Instead →</button>'+
         '<a class="ft-link" href="https://wa.me/447463584628?text='+encodeURIComponent('Hi SmartWired, my ref is '+REF+'. My finance wasn\'t approved, can we talk it through?')+'" target="_blank" rel="noopener">Prefer to talk it through? <b>WhatsApp us</b></a></div>';
       return;
     }
+    if(ft.pay==='fin'&&ft.res!=='refer'){
+      var hd2=ft.res==='pass'?'Great news'+nmc+'! Your finance is approved':(ft.back?'Welcome back':'Application started')+nmc+(ft.back?'!':'');
+      var pd2=ft.res==='pass'?'Two quick steps to lock in your install:':'Once PayItMonthly approves you (usually within minutes), finish here:';
+      h=steps+'<div class="ft-done"><div class="ok">✓</div><h3 id="ft-h">'+hd2+'</h3><p>'+pd2+'</p>'+
+        '<div class="ft-two"><span>1</span><div><a class="cta" id="ft-dep" href="'+(REVOLUT_URL||'#')+'" target="_blank" rel="noopener" onclick="return ftDep()">Pay £99 Deposit →</a>'+(REVOLUT_URL?'':'<p class="fine"><span class="ph">[Revolut payment link goes here]</span></p>')+'<p class="fine">'+(ft.res==='pass'?'':'Only pay once you\'re approved. ')+'Use <b>'+REF+'</b> as your payment reference.</p></div></div>'+
+        '<div class="ft-two'+(ft.dep?'':' dim')+'"><span>2</span><div><a class="cta'+(ft.dep?'':' off')+'" href="'+(INSTALL_CAL_URL||'#')+'" target="_blank" rel="noopener" onclick="'+(ft.dep?'ftBooked();return '+(INSTALL_CAL_URL?'true':'false'):'return false')+'">Choose My Install Date →</a>'+
+        (ft.dep?(INSTALL_CAL_URL?'':'<p class="fine"><span class="ph">[Install calendar link goes here]</span></p>'):'<p class="fine">Unlocks once you\'ve paid your deposit.</p>')+'</div></div>'+
+        photoBlock('order',ft.tier+(ft.tier==='Pro'&&ft.teth?' + tethered':'')+', '+(ft.run===5?'5m or under':'up to '+ft.run+'m'))+
+        '</div>';
+    }else{
     var hd=ft.res==='pass'?'Great news'+nmc+'! Your finance is approved':ft.res==='refer'?'Thanks'+nmc+'. Your application is being checked':(ft.back?'Welcome back':'Thanks')+nmc+'! Now choose your install date';
-    var pd=ft.res==='pass'?'Now pick an install date that suits you. We\'ll be in touch to book your 5-minute video check before then.':ft.res==='refer'?'PayItMonthly is doing a quick manual check, usually within one working day. You can choose a provisional install date now, and we\'ll confirm it once you\'re approved.':(ft.pay==='fin'?'Once your finance is approved,':'Once your deposit comes through,')+' pick a date that suits you. We\'ll be in touch to book your 5-minute video check before then.';
+    var pd=ft.res==='pass'?'Now pick an install date that suits you. We\'ll be in touch to book your 5-minute video check before then.':ft.res==='refer'?'PayItMonthly is doing a quick manual check, usually within one working day. We\'ll text you as soon as you\'re approved, then you can pay your £99 deposit and choose your date.':(ft.pay==='fin'?'Once your finance is approved,':'Once your deposit comes through,')+' pick a date that suits you. We\'ll be in touch to book your 5-minute video check before then.';
     h=steps+'<div class="ft-done"><div class="ok">✓</div><h3 id="ft-h">'+hd+'</h3><p>'+pd+'</p><p class="ref">Your order reference: <b>'+REF+'</b></p>'+
       '<a class="cta" href="'+(INSTALL_CAL_URL||'#')+'" target="_blank" rel="noopener"'+' onclick="ftBooked();return '+(INSTALL_CAL_URL?'true':'false')+'"'+'>Choose My Install Date →</a>'+
       (INSTALL_CAL_URL?'':'<p class="fine"><span class="ph">[Install calendar link goes here]</span></p>')+photoBlock('order',ft.tier+(ft.tier==='Pro'&&ft.teth?' + tethered':'')+', '+(ft.run===5?'5m or under':'up to '+ft.run+'m'))+
       '</div>';
+    }
   }
   b.innerHTML=h;
   var first=b.querySelector('input:not([type=radio]):not([type=checkbox])');if(first&&ft.step===2)first.focus();
@@ -948,13 +961,13 @@ function ftCheck(){
   if(good){var sn=splitName(nm);ft.lead={route:'Fast-track',first_name:sn.first,last_name:sn.last,mobile:intlMob(mb),email:em,postcode:pcv.slice(0,-3)+' '+pcv.slice(-3),charger:ft.tier||'',tags:'Landing page, Fast-track'};
     sendLead(Object.assign({stage:'Details entered'},ft.lead));ft.step=3;ftRender()}
 }
-function ftDep(){ftSave();ft.left=true;if(ft.lead)sendLead(Object.assign({},ft.lead,{charger:ft.tier+(ft.tier==='Pro'&&ft.teth?' + tethered':''),cable_run:ft.run+'m',price:ftPrice(),stage:'Finance route: clicked pay £99 deposit'}));return !!REVOLUT_URL}
+function ftDep(){ft.dep=true;ft.left=true;ftSave();if(ft.lead)sendLead(Object.assign({},ft.lead,{charger:ft.tier+(ft.tier==='Pro'&&ft.teth?' + tethered':''),cable_run:ft.run+'m',price:ftPrice(),stage:'Finance approved: clicked pay £99 deposit'}));var me=ft;setTimeout(function(){if(ft===me)ftRender()},REVOLUT_URL?1200:0);return !!REVOLUT_URL}
 function ftGo(url,dep){ftSave();ft.left=true;if(ft.lead)sendLead(Object.assign({},ft.lead,{charger:ft.tier+(ft.tier==='Pro'&&ft.teth?' + tethered':''),cable_run:ft.run+'m',price:ftPrice(),stage:dep?'Clicked pay £99 deposit':'Clicked apply for finance ('+ftKey()+', planned '+ft.term+' months)'}));var me=ft;setTimeout(function(){if(ft===me&&!document.getElementById('ft').hidden){ft.step=4;ftRender()}},url?1500:0);return !!url}
 var SAVE_KEY='sw_order';
-function ftSave(extra){try{var o=ftLoad()||{};if(!extra){o={ref:REF,tier:ft.tier,teth:ft.teth,run:ft.run,pay:ft.pay,term:ft.term,nm:(ft.d&&ft.d.nm)||'',lead:ft.lead||null,t:Date.now()}}else{for(var k in extra)o[k]=extra[k]}localStorage.setItem(SAVE_KEY,JSON.stringify(o))}catch(e){}}
+function ftSave(extra){try{var o=ftLoad()||{};if(!extra){o={ref:REF,dep:!!ft.dep,res:ft.res||o.res||'',tier:ft.tier,teth:ft.teth,run:ft.run,pay:ft.pay,term:ft.term,nm:(ft.d&&ft.d.nm)||'',lead:ft.lead||null,t:Date.now()}}else{for(var k in extra)o[k]=extra[k]}localStorage.setItem(SAVE_KEY,JSON.stringify(o))}catch(e){}}
 function ftLoad(){try{var o=JSON.parse(localStorage.getItem(SAVE_KEY)||'null');if(o&&o.ref&&Date.now()-o.t<14*864e5)return o}catch(e){}return null}
 function ftBooked(){ftSave({booked:true});return true}
-function ftResume(o,res){REF=o.ref;ft={tier:o.tier||'Pro',step:4,d:{nm:o.nm||''},pay:o.pay||'fin',run:o.run||10,teth:!!o.teth,term:o.term||12,lead:o.lead||null,back:true,res:res||''};
+function ftResume(o,res){REF=o.ref;ft={tier:o.tier||'Pro',step:4,d:{nm:o.nm||''},pay:o.pay||'fin',run:o.run||10,teth:!!o.teth,term:o.term||12,lead:o.lead||null,back:true,res:res||'',dep:!!o.dep};
   document.querySelector('.ft-eyebrow').textContent='✅ Your order '+REF;document.getElementById('ft').hidden=false;document.body.style.overflow='hidden';ftRender()}
 document.addEventListener('visibilitychange',function(){if(document.visibilityState!=='visible'||!ft||!ft.left)return;ft.back=true;
   if(document.getElementById('ft').hidden){var o=ftLoad();if(o&&!o.booked&&!o.dismissed)ftResume(o)}else if(ft.step===4)ftRender()});
