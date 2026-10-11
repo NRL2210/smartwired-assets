@@ -870,7 +870,7 @@ function gbp(v,dp){return '£'+(dp?v.toFixed(2):Math.round(v).toString()).replac
 function ftSet(k,v){ft[k]=v;ftRender()}
 function ftEsc(v){return String(v).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function openFT(t,pay){ft={tier:t||'Pro',step:1,d:{},pay:pay||'card',run:10,teth:false,term:12};document.querySelector('.ft-eyebrow').textContent=pay==='fin'?'💷 0% finance: choose your package':'⚡ Order your charger';document.getElementById('ft').hidden=false;document.body.style.overflow='hidden';ftRender()}
-function closeFT(){if(ft&&ft.back)ftSave({dismissed:true});document.getElementById('ft').hidden=true;document.body.style.overflow=''}
+function closeFT(){if(ft&&ft.back)ftSave({dismissed:true});if(ft)ft.left=false;document.getElementById('ft').hidden=true;document.body.style.overflow=''}
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!document.getElementById('ft').hidden)closeFT()});
 function ftRender(){
   var b=document.getElementById('ft-body'),h='';
@@ -949,7 +949,7 @@ function ftCheck(){
     sendLead(Object.assign({stage:'Details entered'},ft.lead));ft.step=3;ftRender()}
 }
 function ftDep(){ftSave();ft.left=true;if(ft.lead)sendLead(Object.assign({},ft.lead,{charger:ft.tier+(ft.tier==='Pro'&&ft.teth?' + tethered':''),cable_run:ft.run+'m',price:ftPrice(),stage:'Finance route: clicked pay £99 deposit'}));return !!REVOLUT_URL}
-function ftGo(url,dep){ftSave();ft.left=true;if(ft.lead)sendLead(Object.assign({},ft.lead,{charger:ft.tier+(ft.tier==='Pro'&&ft.teth?' + tethered':''),cable_run:ft.run+'m',price:ftPrice(),stage:dep?'Clicked pay £99 deposit':'Clicked apply for finance ('+ftKey()+', planned '+ft.term+' months)'}));setTimeout(function(){ft.step=4;ftRender()},url?1500:0);return !!url}
+function ftGo(url,dep){ftSave();ft.left=true;if(ft.lead)sendLead(Object.assign({},ft.lead,{charger:ft.tier+(ft.tier==='Pro'&&ft.teth?' + tethered':''),cable_run:ft.run+'m',price:ftPrice(),stage:dep?'Clicked pay £99 deposit':'Clicked apply for finance ('+ftKey()+', planned '+ft.term+' months)'}));var me=ft;setTimeout(function(){if(ft===me&&!document.getElementById('ft').hidden){ft.step=4;ftRender()}},url?1500:0);return !!url}
 var SAVE_KEY='sw_order';
 function ftSave(extra){try{var o=ftLoad()||{};if(!extra){o={ref:REF,tier:ft.tier,teth:ft.teth,run:ft.run,pay:ft.pay,term:ft.term,nm:(ft.d&&ft.d.nm)||'',lead:ft.lead||null,t:Date.now()}}else{for(var k in extra)o[k]=extra[k]}localStorage.setItem(SAVE_KEY,JSON.stringify(o))}catch(e){}}
 function ftLoad(){try{var o=JSON.parse(localStorage.getItem(SAVE_KEY)||'null');if(o&&o.ref&&Date.now()-o.t<14*864e5)return o}catch(e){}return null}
@@ -957,7 +957,7 @@ function ftBooked(){ftSave({booked:true});return true}
 function ftResume(o,res){REF=o.ref;ft={tier:o.tier||'Pro',step:4,d:{nm:o.nm||''},pay:o.pay||'fin',run:o.run||10,teth:!!o.teth,term:o.term||12,lead:o.lead||null,back:true,res:res||''};
   document.querySelector('.ft-eyebrow').textContent='✅ Your order '+REF;document.getElementById('ft').hidden=false;document.body.style.overflow='hidden';ftRender()}
 document.addEventListener('visibilitychange',function(){if(document.visibilityState!=='visible'||!ft||!ft.left)return;ft.back=true;
-  if(document.getElementById('ft').hidden){var o=ftLoad();if(o&&!o.booked)ftResume(o)}else if(ft.step===4)ftRender()});
+  if(document.getElementById('ft').hidden){var o=ftLoad();if(o&&!o.booked&&!o.dismissed)ftResume(o)}else if(ft.step===4)ftRender()});
 (function(){var q=new URLSearchParams(location.search),res=q.get('fin');if(['pass','fail','refer'].indexOf(res)<0)res='';
   var o=ftLoad();
   if(res){if(!o)o={ref:q.get('ref')||REF,pay:'fin',t:Date.now()};
