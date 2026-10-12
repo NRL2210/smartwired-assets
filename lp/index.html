@@ -908,7 +908,7 @@ function ftRender(){
     if(ft.pay==='card'){
       h+='<a class="cta" id="ft-pay" href="'+(REVOLUT_URL||'#')+'" target="_blank" rel="noopener" onclick="return ftGo(REVOLUT_URL,1)">Pay £99 Securely →</a>'+
         (REVOLUT_URL?'':'<p class="fine"><span class="ph">[Revolut payment link goes here]</span></p>')+
-        '<p class="fine">Secure card payment via Revolut. Fully refundable if we can\'t install.</p><p class="ref">Please use <b>'+REF+'</b> as your payment reference.</p>';
+        '<p class="fine">Secure card payment via Revolut, taken by Ripon Group Ltd (RiponEV), our charger supply company. Fully refundable if we can\'t install.</p><p class="ref">Tap Pay and your reference <b>'+REF+'</b> is copied. <b>Paste it into the Ref box</b> on the payment page.</p>';
     }else{
       h+='<p class="fine" style="margin:0 0 10px">You\'ll confirm the number of months in the PayItMonthly application.</p>'+
         '<div class="ft-two"><span>1</span><div><a class="cta" id="ft-fin" href="'+(fl||'#')+'" target="_blank" rel="noopener" onclick="return ftGo(FIN_LINKS[ftKey()],0)">Check Eligibility &amp; Apply for '+gbp(f.c)+' →</a>'+
@@ -933,7 +933,7 @@ function ftRender(){
       var hd2=ft.res==='pass'?'Great news'+nmc+'! Your finance is approved':(ft.back?'Welcome back':'Application started')+nmc+(ft.back?'!':'');
       var pd2=ft.res==='pass'?'Two quick steps to lock in your install:':'Once PayItMonthly approves you (usually within minutes), finish here:';
       h=steps+'<div class="ft-done"><div class="ok">✓</div><h3 id="ft-h">'+hd2+'</h3><p>'+pd2+'</p>'+
-        '<div class="ft-two"><span>1</span><div><a class="cta" id="ft-dep" href="'+(REVOLUT_URL||'#')+'" target="_blank" rel="noopener" onclick="return ftDep()">Pay £99 Deposit →</a>'+(REVOLUT_URL?'':'<p class="fine"><span class="ph">[Revolut payment link goes here]</span></p>')+'<p class="fine">'+(ft.res==='pass'?'':'Only pay once you\'re approved. ')+'Use <b>'+REF+'</b> as your payment reference.</p></div></div>'+
+        '<div class="ft-two"><span>1</span><div><a class="cta" id="ft-dep" href="'+(REVOLUT_URL||'#')+'" target="_blank" rel="noopener" onclick="return ftDep()">Pay £99 Deposit →</a>'+(REVOLUT_URL?'':'<p class="fine"><span class="ph">[Revolut payment link goes here]</span></p>')+'<p class="fine">'+(ft.res==='pass'?'':'Only pay once you\'re approved. ')+'Your reference <b>'+REF+'</b> is copied when you tap Pay. <b>Paste it into the Ref box.</b> Payment goes to Ripon Group Ltd (RiponEV), our charger supply company.</p></div></div>'+
         '<div class="ft-two'+(ft.dep?'':' dim')+'"><span>2</span><div><a class="cta'+(ft.dep?'':' off')+'" href="'+(INSTALL_CAL_URL||'#')+'" target="_blank" rel="noopener" onclick="'+(ft.dep?'ftBooked();return '+(INSTALL_CAL_URL?'true':'false'):'return false')+'">Choose My Install Date →</a>'+
         (ft.dep?(INSTALL_CAL_URL?'':'<p class="fine"><span class="ph">[Install calendar link goes here]</span></p>'):'<p class="fine">Unlocks once you\'ve paid your deposit.</p>')+'</div></div>'+
         photoBlock('order',ft.tier+(ft.tier==='Pro'&&ft.teth?' + tethered':'')+', '+(ft.run===5?'5m or under':'up to '+ft.run+'m'))+
@@ -961,8 +961,9 @@ function ftCheck(){
   if(good){var sn=splitName(nm);ft.lead={route:'Fast-track',first_name:sn.first,last_name:sn.last,mobile:intlMob(mb),email:em,postcode:pcv.slice(0,-3)+' '+pcv.slice(-3),charger:ft.tier||'',tags:'Landing page, Fast-track'};
     sendLead(Object.assign({stage:'Details entered'},ft.lead));ft.step=3;ftRender()}
 }
-function ftDep(){ft.dep=true;ft.left=true;ftSave();if(ft.lead)sendLead(Object.assign({},ft.lead,{charger:ft.tier+(ft.tier==='Pro'&&ft.teth?' + tethered':''),cable_run:ft.run+'m',price:ftPrice(),stage:'Finance approved: clicked pay £99 deposit'}));var me=ft;setTimeout(function(){if(ft===me)ftRender()},REVOLUT_URL?1200:0);return !!REVOLUT_URL}
-function ftGo(url,dep){ftSave();ft.left=true;if(ft.lead)sendLead(Object.assign({},ft.lead,{charger:ft.tier+(ft.tier==='Pro'&&ft.teth?' + tethered':''),cable_run:ft.run+'m',price:ftPrice(),stage:dep?'Clicked pay £99 deposit':'Clicked apply for finance ('+ftKey()+', planned '+ft.term+' months)'}));var me=ft;setTimeout(function(){if(ft===me&&!document.getElementById('ft').hidden){ft.step=4;ftRender()}},url?1500:0);return !!url}
+function ftDep(){ftCopyRef();ft.dep=true;ft.left=true;ftSave();if(ft.lead)sendLead(Object.assign({},ft.lead,{charger:ft.tier+(ft.tier==='Pro'&&ft.teth?' + tethered':''),cable_run:ft.run+'m',price:ftPrice(),stage:'Finance approved: clicked pay £99 deposit'}));var me=ft;setTimeout(function(){if(ft===me)ftRender()},REVOLUT_URL?1200:0);return !!REVOLUT_URL}
+function ftCopyRef(){try{if(navigator.clipboard)navigator.clipboard.writeText(REF).catch(function(){})}catch(e){}}
+function ftGo(url,dep){if(dep)ftCopyRef();ftSave();ft.left=true;if(ft.lead)sendLead(Object.assign({},ft.lead,{charger:ft.tier+(ft.tier==='Pro'&&ft.teth?' + tethered':''),cable_run:ft.run+'m',price:ftPrice(),stage:dep?'Clicked pay £99 deposit':'Clicked apply for finance ('+ftKey()+', planned '+ft.term+' months)'}));var me=ft;setTimeout(function(){if(ft===me&&!document.getElementById('ft').hidden){ft.step=4;ftRender()}},url?1500:0);return !!url}
 var SAVE_KEY='sw_order';
 function ftSave(extra){try{var o=ftLoad()||{};if(!extra){o={ref:REF,dep:!!ft.dep,res:ft.res||o.res||'',tier:ft.tier,teth:ft.teth,run:ft.run,pay:ft.pay,term:ft.term,nm:(ft.d&&ft.d.nm)||'',lead:ft.lead||null,t:Date.now()}}else{for(var k in extra)o[k]=extra[k]}localStorage.setItem(SAVE_KEY,JSON.stringify(o))}catch(e){}}
 function ftLoad(){try{var o=JSON.parse(localStorage.getItem(SAVE_KEY)||'null');if(o&&o.ref&&Date.now()-o.t<14*864e5)return o}catch(e){}return null}
