@@ -842,7 +842,7 @@ new IntersectionObserver(function(es){es.forEach(function(e){bar.classList.toggl
   </div>
 </div>
 <script>
-var REVOLUT_URL="https://checkout.revolut.com/pay/b3472096-f20c-4667-a341-ad680ca0509e"; // paste your Revolut £99 payment link here
+var REVOLUT_URL="https://checkout.revolut.com/pay/5480977c-14ef-40c3-9b40-b2f4fba8ad57"; // paste your Revolut £99 payment link here
 var FIN_LINKS={
   "ESS-5":"https://app.payitmonthly.uk/agreement/pay-by-link/ec19220e-3b96-40a0-91e1-147b0de3e61d/NI2LqTmvFNJGOlsowCKNUi3Zh/website",
   "ESS-10":"https://app.payitmonthly.uk/agreement/pay-by-link/7dcffff9-275e-4a8f-a654-0b70691d4475/vh6MfIM6mltGN4Pm8URbLQ1bu/website",
@@ -908,7 +908,7 @@ function ftRender(){
     if(ft.pay==='card'){
       h+='<a class="cta" id="ft-pay" href="'+(REVOLUT_URL||'#')+'" target="_blank" rel="noopener" onclick="return ftGo(REVOLUT_URL,1)">Pay £99 Securely →</a>'+
         (REVOLUT_URL?'':'<p class="fine"><span class="ph">[Revolut payment link goes here]</span></p>')+
-        '<p class="fine">Secure card payment via Revolut, taken by Ripon Group Ltd (RiponEV), our charger supply company. Fully refundable if we can\'t install.</p><p class="ref">Tap Pay and your reference <b>'+REF+'</b> is copied. <b>Paste it into the Ref box</b> on the payment page.</p>';
+        '<p class="fine">Secure card payment via Revolut. Fully refundable if we can\'t install.</p><p class="ref">Tap Pay and your reference <b>'+REF+'</b> is copied. <b>Paste it into the Ref box</b> on the payment page.</p>';
     }else{
       h+='<p class="fine" style="margin:0 0 10px">You\'ll confirm the number of months in the PayItMonthly application.</p>'+
         '<div class="ft-two"><span>1</span><div><a class="cta" id="ft-fin" href="'+(fl||'#')+'" target="_blank" rel="noopener" onclick="return ftGo(FIN_LINKS[ftKey()],0)">Check Eligibility &amp; Apply for '+gbp(f.c)+' →</a>'+
@@ -933,7 +933,7 @@ function ftRender(){
       var hd2=ft.res==='pass'?'Great news'+nmc+'! Your finance is approved':(ft.back?'Welcome back':'Application started')+nmc+(ft.back?'!':'');
       var pd2=ft.res==='pass'?'Two quick steps to lock in your install:':'Once PayItMonthly approves you (usually within minutes), finish here:';
       h=steps+'<div class="ft-done"><div class="ok">✓</div><h3 id="ft-h">'+hd2+'</h3><p>'+pd2+'</p>'+
-        '<div class="ft-two"><span>1</span><div><a class="cta" id="ft-dep" href="'+(REVOLUT_URL||'#')+'" target="_blank" rel="noopener" onclick="return ftDep()">Pay £99 Deposit →</a>'+(REVOLUT_URL?'':'<p class="fine"><span class="ph">[Revolut payment link goes here]</span></p>')+'<p class="fine">'+(ft.res==='pass'?'':'Only pay once you\'re approved. ')+'Your reference <b>'+REF+'</b> is copied when you tap Pay. <b>Paste it into the Ref box.</b> Payment goes to Ripon Group Ltd (RiponEV), our charger supply company.</p></div></div>'+
+        '<div class="ft-two"><span>1</span><div><a class="cta" id="ft-dep" href="'+(REVOLUT_URL||'#')+'" target="_blank" rel="noopener" onclick="return ftDep()">Pay £99 Deposit →</a>'+(REVOLUT_URL?'':'<p class="fine"><span class="ph">[Revolut payment link goes here]</span></p>')+'<p class="fine">'+(ft.res==='pass'?'':'Only pay once you\'re approved. ')+'Your reference <b>'+REF+'</b> is copied when you tap Pay. <b>Paste it into the Ref box.</b></p></div></div>'+
         '<div class="ft-two'+(ft.dep?'':' dim')+'"><span>2</span><div><a class="cta'+(ft.dep?'':' off')+'" href="'+(INSTALL_CAL_URL||'#')+'" target="_blank" rel="noopener" onclick="'+(ft.dep?'ftBooked();return '+(INSTALL_CAL_URL?'true':'false'):'return false')+'">Choose My Install Date →</a>'+
         (ft.dep?(INSTALL_CAL_URL?'':'<p class="fine"><span class="ph">[Install calendar link goes here]</span></p>'):'<p class="fine">Unlocks once you\'ve paid your deposit.</p>')+'</div></div>'+
         photoBlock('order',ft.tier+(ft.tier==='Pro'&&ft.teth?' + tethered':'')+', '+(ft.run===5?'5m or under':'up to '+ft.run+'m'))+
