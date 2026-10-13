@@ -225,6 +225,19 @@ a.total:hover .tbtn{background:var(--orange-d)}
 @keyframes refglow{0%,100%{box-shadow:0 0 0 0 rgba(255,138,0,0)}50%{box-shadow:0 0 0 5px rgba(255,138,0,.22),0 0 18px rgba(255,138,0,.45)}}
 @media(prefers-reduced-motion:reduce){.ref.glow{animation:none;box-shadow:0 0 0 4px rgba(255,138,0,.25)}}
 .gal .reel{background:#0b0f14}.gal .reel video{object-fit:contain}
+.m-top{display:none}
+@media(max-width:899px){
+.hero{padding:16px 0 28px}
+.hero-grid{display:flex;flex-direction:column;gap:0}
+.hero-grid>div:first-child{display:contents}
+.hero h1{order:1;font-size:28px;line-height:1.15}
+.hero .sub,.hero .trust{display:none}
+.m-top{display:block;order:2;margin:8px 0 14px}
+.m-price{font-size:15px;color:#fff;margin:0 0 4px}.m-price b{color:var(--orange)}
+.m-trust{font-size:13px;color:#9fb0c3;margin:0}.m-trust span{color:#fbbf24;letter-spacing:1px}
+.hero .quiz{order:3;margin:0 0 22px}
+.hero .price{order:4}.hero .ticks{order:5;font-size:14px;gap:6px;margin-top:18px}.hero .chips{display:none}
+}
 .ozev-ok{background:var(--green-l);color:#185c36;border-radius:12px;padding:10px 12px;font-size:13px;line-height:1.45;margin-bottom:14px;text-align:left}
 .disc{font-size:12px;line-height:1.5;color:var(--muted);margin:0 0 14px;background:var(--bg);border-radius:10px;padding:10px 12px}
 .cmp-d{margin-top:24px}
@@ -408,6 +421,7 @@ a.total:hover .tbtn{background:var(--orange-d)}
       <h1>EV Charger Installation, <span>Done Properly</span></h1>
       <p class="sub">Fixed price, fully certified, and an installer who still answers the phone after the job's done.</p>
       <p class="trust">NAPIT &amp; TrustMark approved · Level 3 EV Certified · 20+ years trading</p>
+      <div class="m-top"><p class="m-price"><b>Pro £1,195</b> fully installed · 0% finance available</p><p class="m-trust"><span>★★★★★</span> 5.0 · 173 Google reviews · NAPIT · TrustMark</p></div>
       <div class="price">
         <strong>Pro package: £1,195 fully installed</strong>
         <span class="pro-sub">Up to 10m of cable, or <b>£91/month at 0%</b>. Short cable run? 5m or under: £1,095. Save £100</span>
@@ -709,7 +723,7 @@ a.total:hover .tbtn{background:var(--orange-d)}
   </div>
 </section>
 
-<a class="mbar" id="mbar" href="#quiz"><span><b>Pro £1,195</b> · or £91/month</span><span class="mbtn">Check My Home →</span></a>
+<a class="mbar" id="mbar" href="#quiz"><span><b>Pro £1,195</b> · 0% finance</span><span class="mbtn">Check My Home →</span></a>
 
 <footer>
   <div class="wrap">
