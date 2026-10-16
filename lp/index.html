@@ -21,8 +21,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#0f1722;--navy2:#172231;--ink:#0f1722;--muted:#5b6675;
-  --blue:#1a73e8;--blue-l:#e8f1fe;--orange:#ff8a00;--orange-d:#e67a00;
+  --navy:#0b1a2c;--navy2:#12263d;--ink:#0f1722;--muted:#5b6675;
+  --blue:#0077C0;--blue-l:#e6f2fa;--orange:#0077C0;--orange-d:#00649f;
   --green:#1f9d55;--green-l:#e9f8ef;--red:#d93838;--red-l:#fdeeee;
   --card:#ffffff;--bg:#f4f6f9;--line:#e3e8ef;
 }
@@ -143,9 +143,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
 .done-box{text-align:center}
 .done-box .ok{width:64px;height:64px;border-radius:50%;background:var(--green-l);color:var(--green);display:grid;place-items:center;font-size:32px;margin:0 auto 12px}
 .sum{background:var(--bg);border-radius:12px;padding:12px;text-align:left;font-size:13px;color:var(--muted);margin:14px 0}
-.strip{background:#fff7e6;border-bottom:1px solid #ffe2b3}
+.strip{background:#eaf4fb;border-bottom:1px solid #cfe5f4}
 .strip .wrap{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:center;padding-top:14px;padding-bottom:14px;font-size:15px;text-align:center}
-.strip b{color:#9a4d00}
+.strip b{color:#00649f}
 .inc{display:grid;gap:10px;grid-template-columns:1fr;max-width:860px;margin:0 auto}
 @media(min-width:700px){.inc{grid-template-columns:1fr 1fr}}
 .inc li{list-style:none;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;font-size:15px}
@@ -170,7 +170,7 @@ a.total:hover .tbtn{background:var(--orange-d)}
 .tiers{display:grid;gap:16px;grid-template-columns:1fr;align-items:stretch}
 @media(min-width:900px){.tiers{grid-template-columns:repeat(3,1fr)}}
 .tier{background:#fff;border:2px solid var(--line);border-radius:18px;padding:24px 22px;display:flex;flex-direction:column;position:relative}
-.tier.pop{border-color:var(--orange);box-shadow:0 14px 34px rgba(255,138,0,.18)}
+.tier.pop{border-color:var(--orange);box-shadow:0 14px 34px rgba(0,119,192,.18)}
 @media(min-width:900px){.tier.pop{transform:translateY(-8px)}}
 .badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;font:700 12px Outfit;letter-spacing:.5px;padding:5px 12px;border-radius:999px;white-space:nowrap}
 .tier h3{font-size:22px}
@@ -222,8 +222,8 @@ a.total:hover .tbtn{background:var(--orange-d)}
 .ft-note{background:#eef4fb;color:var(--navy);border-radius:10px;padding:9px 12px;font-size:13px;line-height:1.45;margin:6px 0 10px;text-align:left}
 .ft-two.dim{opacity:.55}.ft-nxt{margin:14px 0 4px;font-size:14px;text-align:left}.cta.off{background:#c9d1db;cursor:not-allowed}
 .ref.glow{border:2px solid var(--orange);font-size:14px;animation:refglow 1.6s ease-in-out infinite}.ref.glow b{font-size:15px}.ref.done{background:var(--green-l);border:2px solid var(--green);color:#185c36}
-@keyframes refglow{0%,100%{box-shadow:0 0 0 0 rgba(255,138,0,0)}50%{box-shadow:0 0 0 5px rgba(255,138,0,.22),0 0 18px rgba(255,138,0,.45)}}
-@media(prefers-reduced-motion:reduce){.ref.glow{animation:none;box-shadow:0 0 0 4px rgba(255,138,0,.25)}}
+@keyframes refglow{0%,100%{box-shadow:0 0 0 0 rgba(0,119,192,0)}50%{box-shadow:0 0 0 5px rgba(0,119,192,.22),0 0 18px rgba(0,119,192,.45)}}
+@media(prefers-reduced-motion:reduce){.ref.glow{animation:none;box-shadow:0 0 0 4px rgba(0,119,192,.25)}}
 .gal .reel{background:#0b0f14}.gal .reel video{object-fit:contain}
 .m-top{display:none}
 @media(max-width:899px){
@@ -251,7 +251,7 @@ svg.i{width:20px;height:20px;flex:none;vertical-align:-4px}
 .btn-wa{display:inline-flex;align-items:center;gap:7px}.btn-wa svg.i{width:18px;height:18px}
 .check svg.i{color:var(--orange);width:17px;height:17px;margin-right:6px;vertical-align:-3px}
 .ticks li{position:relative;padding-left:28px}
-.ticks li::before{content:"";position:absolute;left:0;top:3px;width:18px;height:18px;border-radius:50%;background:rgba(255,138,0,.16) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff8a00' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E") center/12px no-repeat}
+.ticks li::before{content:"";position:absolute;left:0;top:3px;width:18px;height:18px;border-radius:50%;background:rgba(0,119,192,.16) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233aa6e8' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E") center/12px no-repeat}
 .strip{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.strip b{color:var(--ink)}.strip span:last-child b{color:var(--orange-d)}
 .ask-l b{position:relative;padding-left:24px}
 .ask-l b::before{content:"";position:absolute;left:0;top:3px;width:16px;height:16px;border-radius:50%;background:var(--green-l) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231f9d55' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E") center/11px no-repeat}
@@ -277,6 +277,12 @@ svg.i{width:20px;height:20px;flex:none;vertical-align:-4px}
 .reviews:not(.all) .review:nth-child(n+4){display:none}
 .rmore{display:block;margin:18px auto 0;background:#fff;color:var(--ink);border:2px solid var(--ink);border-radius:12px;padding:12px 22px;font:700 15px Outfit;cursor:pointer}
 .rmore:hover{background:var(--ink);color:#fff}
+:root{--brand-hi:#3aa6e8}
+.hero h1 span,.m-price b{color:var(--brand-hi)}
+.check svg.i,.why .ic,.ic{color:var(--brand-hi)}
+.badge{background:var(--orange)}
+.cta,.mbtn,.tbtn,.alt-go{box-shadow:0 6px 18px rgba(0,119,192,.28)}
+.tier:not(.pop) .cta,.rmore,.alt-row .fin-alt .alt-go{box-shadow:none}
 .cmp-d summary{color:var(--ink)!important}.more a{color:var(--orange-d)!important}.xd>summary::after{color:var(--orange-d)!important}
 @media(max-width:899px){
 .why .card{display:grid;grid-template-columns:44px 1fr;column-gap:14px;padding:16px}
@@ -418,7 +424,7 @@ svg.i{width:20px;height:20px;flex:none;vertical-align:-4px}
 .price .ast{display:block;font-size:13px;color:#8193a8;margin-top:2px}
 .price .pro-line{display:block;margin-top:10px;padding-top:10px;border-top:1px solid #2a3a50;font-size:15px;color:#cfd8e3}
 .price .pro-line b{color:#fff}
-.alt{border:2px solid var(--orange);box-shadow:0 2px 10px rgba(255,138,0,.12)}
+.alt{border:2px solid var(--orange);box-shadow:0 2px 10px rgba(0,119,192,.12)}
 .alt.fin-alt{border-color:var(--blue);box-shadow:0 2px 10px rgba(26,115,232,.12)}
 .alt-go{display:block;margin-top:12px;background:var(--orange);color:#fff;font:700 16px Outfit;font-style:normal;text-align:center;padding:12px;border-radius:10px}
 .fin-alt .alt-go{background:var(--blue)}
@@ -429,7 +435,7 @@ svg.i{width:20px;height:20px;flex:none;vertical-align:-4px}
 .cta-note{margin-top:10px;font-size:13px;color:#cfd8e3}
 .ft-seg{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:6px;margin-bottom:12px}
 .ft-seg label{border:2px solid var(--line);border-radius:10px;padding:9px 6px;text-align:center;font-size:13px;font-weight:600;cursor:pointer;color:var(--ink)}
-.ft-seg label.sel{border-color:var(--orange);background:#fff7ed}
+.ft-seg label.sel{border-color:var(--orange);background:#eaf4fb}
 .ft-seg label small{display:block;font-weight:500;color:var(--muted);font-size:12px;margin-top:2px}
 .ft-seg input{position:absolute;opacity:0;pointer-events:none}
 .ft-total{display:flex;justify-content:space-between;align-items:baseline;background:var(--bg);border-radius:12px;padding:12px 14px;margin-bottom:14px}
@@ -437,7 +443,7 @@ svg.i{width:20px;height:20px;flex:none;vertical-align:-4px}
 .ft-seg.four{grid-template-columns:1fr 1fr}
 .priv{font-size:12px;color:var(--muted);line-height:1.45;margin:8px 0 0;text-align:left}
 .priv a{color:inherit;text-decoration:underline}
-.ref{font-size:13px;color:var(--ink);background:#fff7ed;border:1px dashed var(--orange);border-radius:10px;padding:8px 10px;margin:10px 0;text-align:center}
+.ref{font-size:13px;color:var(--ink);background:#eaf4fb;border:1px dashed var(--orange);border-radius:10px;padding:8px 10px;margin:10px 0;text-align:center}
 .ft-two{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px}
 .ft-two>span{flex:0 0 26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font:700 13px Outfit;margin-top:12px}
 .ft-two>div{flex:1;min-width:0}
@@ -447,7 +453,7 @@ svg.i{width:20px;height:20px;flex:none;vertical-align:-4px}
 .ph-sub{font-size:14px;color:var(--muted);margin:0 0 10px}
 .ph-list{margin:0 0 10px;padding-left:20px;display:grid;gap:8px;font-size:13.5px;color:var(--muted)}
 .ph-list b{display:block;color:var(--ink);font-size:14.5px}
-.ph-safe{font-size:12.5px;color:#8a5a00;background:#fff7e6;border-radius:8px;padding:8px 10px;margin:0 0 12px}
+.ph-safe{font-size:12.5px;color:#8a5a00;background:#eaf4fb;border-radius:8px;padding:8px 10px;margin:0 0 12px}
 .wa-cta{display:block;text-align:center;background:#25d366;color:#fff;font:700 17px Outfit;padding:14px;border-radius:12px;text-decoration:none}
 .wa-cta:hover{background:#1fb457}
 </style>
@@ -502,7 +508,7 @@ svg.i{width:20px;height:20px;flex:none;vertical-align:-4px}
       <span><b>OZEV-APPROVED</b><i>EV chargepoint installer</i><small>Installer no. 13887</small></span>
     </span>
     <span class="xbadge xb-l3">
-      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#0f1722"/><text x="20" y="26.5" text-anchor="middle" font-family="Outfit,Arial,sans-serif" font-weight="800" font-size="17" fill="#ff8a00">L3</text></svg>
+      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#0f1722"/><text x="20" y="26.5" text-anchor="middle" font-family="Outfit,Arial,sans-serif" font-weight="800" font-size="17" fill="#3aa6e8">L3</text></svg>
       <span><b>LEVEL 3 EV</b><i>Certified installers</i><small>IET Code of Practice</small></span>
     </span>
   </div>
@@ -631,7 +637,7 @@ svg.i{width:20px;height:20px;flex:none;vertical-align:-4px}
     <h2 class="h2">Recent installs</h2>
     <p class="lead">Real jobs by our own team, not stock photos. This is what "done properly" looks like.</p>
     <div class="gal">
-      <figure class="reel"><video id="reel" muted loop playsinline preload="none" poster="https://nrl2210.github.io/smartwired-assets/lp/reel2-poster.jpg" src="https://nrl2210.github.io/smartwired-assets/lp/reel3.mp4" aria-label="SmartWired EV charger installs: every make, app-controlled, tidy installs, fully certified"></video></figure>
+      <figure class="reel"><video id="reel" muted loop playsinline preload="none" poster="https://nrl2210.github.io/smartwired-assets/lp/reel2-poster.jpg" src="https://nrl2210.github.io/smartwired-assets/lp/reel4.mp4" aria-label="SmartWired EV charger installs: every make, app-controlled, tidy installs, fully certified"></video></figure>
       <figure><img loading="lazy" src="https://nrl2210.github.io/smartwired-assets/lp/install-van.jpg" alt="RiponEV charger installed by SmartWired with company van on the driveway"><figcaption><b>Our van, our engineers</b>No subcontractors. The team you speak to is the team who fits it.</figcaption></figure><figure class="mx"><img loading="lazy" src="https://nrl2210.github.io/smartwired-assets/lp/install-rangerover.jpg" alt="EV charger installed beside a patio, charging a Range Rover"><figcaption><b>Charging on the patio</b>Positioned so the cable reaches without stretching.</figcaption></figure><figure class="mx"><img loading="lazy" src="https://nrl2210.github.io/smartwired-assets/lp/install-bmw.jpg" alt="EV charger on a brick wall charging a BMW"><figcaption><b>Ready on the drive</b>Mounted where the car actually parks.</figcaption></figure><figure><img loading="lazy" src="https://nrl2210.github.io/smartwired-assets/lp/premium-lcd.jpg" alt="RiponEV Premium charger with LCD screen on a brick wall"><figcaption><b>Premium with LCD screen</b>Live power and energy readings on the charger.</figcaption></figure><figure class="wide"><img loading="lazy" src="https://nrl2210.github.io/smartwired-assets/lp/install-volvo.jpg" alt="EV charger on a period brick house charging a Volvo XC90"><figcaption><b>Charging at the front of the house</b>Mounted beside the drive, cable tidy down the wall.</figcaption></figure><figure><img loading="lazy" src="https://nrl2210.github.io/smartwired-assets/lp/ev-board.jpg" alt="EV charger with dedicated EV board and neat cable run"><figcaption><b>Its own protected circuit</b>Dedicated EV board with SPD &amp; RCBO protection.</figcaption></figure><figure><img loading="lazy" src="https://nrl2210.github.io/smartwired-assets/lp/cable-run.jpg" alt="Armoured cable clipped neatly along a house wall to an EV charger"><figcaption><b>Neat cable runs</b>Clipped tight along the wall, never left hanging.</figcaption></figure><figure class="wide"><img loading="lazy" src="https://nrl2210.github.io/smartwired-assets/lp/install-byd.jpg" alt="EV charger on a pebble-dash wall charging a BYD"><figcaption><b>Pebble-dash, no problem</b>Fixed solid and sealed on any wall finish.</figcaption></figure><figure class="gx"><img loading="lazy" src="https://nrl2210.github.io/smartwired-assets/lp/install-tesla.jpg" alt="EV charger charging a white Tesla on a driveway"><figcaption><b>Works with every EV</b>Type 2 connector fits every new EV on UK roads.</figcaption></figure><figure class="gx"><img loading="lazy" src="https://nrl2210.github.io/smartwired-assets/lp/tethered.jpg" alt="Tethered RiponEV charger with cable wrapped around it"><figcaption><b>Tethered option</b>Cable stays on the charger, ready to plug in.</figcaption></figure><figure class="gx"><img loading="lazy" src="https://nrl2210.github.io/smartwired-assets/lp/charging-green.jpg" alt="EV charger with green charging light beside a driveway"><figcaption><b>Plug in, go to bed</b>Wake up to a full battery every morning.</figcaption></figure>
     </div>
   </div>
