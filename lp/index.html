@@ -495,7 +495,7 @@ svg.i{width:20px;height:20px;flex:none;vertical-align:-4px}
       </ul>
       <div class="chips">
         <a class="chip" href="https://search.google.com/local/reviews?placeid=ChIJQ6NubRJceUgRYvbGKR7HOj4" target="_blank" rel="noopener" style="text-decoration:none"><b>★★★★★</b> 5.0 · 173 Google reviews ↗</a>
-        <span class="chip"><img src="https://nrl2210.github.io/smartwired-assets/awards/prestige-awards-icon.png" alt="" width="20" height="20" style="vertical-align:-5px;border-radius:50%;background:#fff" /> EV Installation Specialist of the Year 2026/27</span>
+        <span class="chip"><b>🏆</b> EV Installation Specialist of the Year 2026/27</span>
         <span class="chip">Yorkshire · Lancashire · North East</span>
       </div>
     </div>
@@ -850,6 +850,10 @@ function photoBlock(mode,pkg){
 function photoClick(mode){var o=mode==='order'&&ft.lead?Object.assign({},ft.lead):{route:'Quiz',first_name:(window.__lastLead||{}).first_name||'',mobile:(window.__lastLead||{}).mobile||''};o.stage='Clicked send photos on WhatsApp';sendLead(o)}
 var SURVEY_CAL_URL=""; // paste your SURVEY self-booking calendar link here (separate from the install calendar)
 var ADDRESS_API_KEY=""; // Ideal Postcodes API key: enables the full address dropdown. Without it, the postcode is checked and the town shown, and they type the first line.
+function calLink(base,extra){if(!base)return '';var q=new URLSearchParams(location.search),p=new URLSearchParams();
+  p.set('source','landing-page');p.set('ref',REF);var c=q.get('utm_campaign');if(c)p.set('campaign',c);var s=q.get('utm_source');if(s)p.set('utm_source',s);
+  for(var k in (extra||{}))if(extra[k])p.set(k,extra[k]);
+  return base+(base.indexOf('?')<0?'?':'&')+p.toString()}
 const BOOKING_URL=SURVEY_CAL_URL||"https://wa.me/447463584628?text=Hi%2C%20I%27d%20like%20to%20book%20my%20EV%20video%20survey";
 function dots(){return '<p style="text-align:center;font:700 15px Outfit;color:var(--orange-d);margin-bottom:12px">Is your home suitable? Find out in 60 seconds</p><div class="steps">'+steps.map((s,n)=>(n?'<span class="bar"></span>':'')+'<span class="dot '+(n<=i?'on':'')+'">'+(n<i?'✓':n+1)+'</span>').join('')+'</div>'}
 function render(){
@@ -924,7 +928,7 @@ function done(){
     ev_status:ans['Do you have your EV yet?']||'',decision:ans["Who'll be deciding on the install?"]||'',tags:tags.join(', ')});
   const tag=ans["Do you have your EV yet?"]==="Just researching"?'<p class="fine">Tagged: Nurture</p>':'';
   const partner=ans["Who'll be deciding on the install?"]==="Me and my partner: they can't join"?'<p class="fine">Tagged: Partner absent</p>':'';
-  el.innerHTML='<div class="done-box"><div class="ok">✓</div><h3>Thanks, '+nm.split(' ')[0].replace(/[<>&"]/g,'')+'! Now pick your survey time</h3><p class="fine" style="font-size:15px">In 15 minutes we\'ll confirm your exact price and offer you install dates.</p><div class="sum">'+Object.entries(ans).map(([k,v])=>'<b>'+escH(k)+'</b> '+escH(v)).join('<br>')+'</div><p class="ref">Your reference: <b>'+REF+'</b></p><a class="cta" href="'+BOOKING_URL+'" target="_blank" rel="noopener">Choose My Survey Time →</a>'+photoBlock('quiz')+'</div>';
+  el.innerHTML='<div class="done-box"><div class="ok">✓</div><h3>Thanks, '+nm.split(' ')[0].replace(/[<>&"]/g,'')+'! Now pick your survey time</h3><p class="fine" style="font-size:15px">In 15 minutes we\'ll confirm your exact price and offer you install dates.</p><div class="sum">'+Object.entries(ans).map(([k,v])=>'<b>'+escH(k)+'</b> '+escH(v)).join('<br>')+'</div><p class="ref">Your reference: <b>'+REF+'</b></p><a class="cta" href="'+escH(SURVEY_CAL_URL?calLink(SURVEY_CAL_URL,{name:nm,email:em,attendeePhoneNumber:'+'+intlMob(mb)}):BOOKING_URL)+'" target="_blank" rel="noopener">Choose My Survey Time →</a>'+photoBlock('quiz')+'</div>';
 }
 render();
 (function(){var bar=document.getElementById('mbar'),q=document.getElementById('quiz');if(!bar||!q||!('IntersectionObserver' in window))return;
@@ -1031,7 +1035,7 @@ function ftRender(){
       var pd2=ft.res==='pass'?'Two quick steps to lock in your install:':'Once PayItMonthly approves you (usually within minutes), finish here:';
       h=steps+'<div class="ft-done"><div class="ok">✓</div><h3 id="ft-h">'+hd2+'</h3><p>'+pd2+'</p>'+
         '<div class="ft-two"><span>1</span><div><a class="cta" id="ft-dep" href="'+(REVOLUT_URL||'#')+'" target="_blank" rel="noopener" onclick="return ftDep()">Pay £99 Deposit →</a>'+(REVOLUT_URL?'':'<p class="fine"><span class="ph">[Revolut payment link goes here]</span></p>')+''+(ft.res==='pass'?'':'<p class="fine">Only pay once you\'re approved.</p>')+''+refBox()+'</div></div>'+
-        '<div class="ft-two'+(ft.dep?'':' dim')+'"><span>2</span><div><a class="cta'+(ft.dep?'':' off')+'" href="'+(INSTALL_CAL_URL||'#')+'" target="_blank" rel="noopener" onclick="'+(ft.dep?'ftBooked();return '+(INSTALL_CAL_URL?'true':'false'):'return false')+'">Choose My Install Date →</a>'+
+        '<div class="ft-two'+(ft.dep?'':' dim')+'"><span>2</span><div><a class="cta'+(ft.dep?'':' off')+'" href="'+escH(INSTALL_CAL_URL?calLink(INSTALL_CAL_URL,{name:(ft.d&&ft.d.nm)||''}):'#')+'" target="_blank" rel="noopener" onclick="'+(ft.dep?'ftBooked();return '+(INSTALL_CAL_URL?'true':'false'):'return false')+'">Choose My Install Date →</a>'+
         (ft.dep?(INSTALL_CAL_URL?'':'<p class="fine"><span class="ph">[Install calendar link goes here]</span></p>'):'<p class="fine">Unlocks once you\'ve paid your deposit.</p>')+'</div></div>'+
         photoBlock('order',ft.tier+(ft.tier==='Pro'&&ft.teth?' + tethered':'')+', '+(ft.run===5?'5m or under':'up to '+ft.run+'m'))+
         '</div>';
@@ -1039,7 +1043,7 @@ function ftRender(){
     var hd=ft.res==='pass'?'Great news'+nmc+'! Your finance is approved':ft.res==='refer'?'Thanks'+nmc+'. Your application is being checked':(ft.back?'Welcome back':'Thanks')+nmc+'! Now choose your install date';
     var pd=ft.res==='pass'?'Now pick an install date that suits you. We\'ll be in touch to book your 5-minute video check before then.':ft.res==='refer'?'PayItMonthly is doing a quick manual check, usually within one working day. We\'ll text you as soon as you\'re approved, then you can pay your £99 deposit and choose your date.':(ft.pay==='fin'?'Once your finance is approved,':'Once your deposit comes through,')+' pick a date that suits you. We\'ll be in touch to book your 5-minute video check before then.';
     h=steps+'<div class="ft-done"><div class="ok">✓</div><h3 id="ft-h">'+hd+'</h3><p>'+pd+'</p>'+(ft.copied&&ft.pay==='card'?'<p class="ref done">✅ Your reference <b>'+REF+'</b> was copied. If you haven\'t paid yet, paste it into the Ref box on the payment page.</p>':'<p class="ref">Your order reference: <b>'+REF+'</b></p>')+
-      '<a class="cta" href="'+(INSTALL_CAL_URL||'#')+'" target="_blank" rel="noopener"'+' onclick="ftBooked();return '+(INSTALL_CAL_URL?'true':'false')+'"'+'>Choose My Install Date →</a>'+
+      '<a class="cta" href="'+escH(INSTALL_CAL_URL?calLink(INSTALL_CAL_URL,{name:(ft.d&&ft.d.nm)||''}):'#')+'" target="_blank" rel="noopener"'+' onclick="ftBooked();return '+(INSTALL_CAL_URL?'true':'false')+'"'+'>Choose My Install Date →</a>'+
       (INSTALL_CAL_URL?'':'<p class="fine"><span class="ph">[Install calendar link goes here]</span></p>')+photoBlock('order',ft.tier+(ft.tier==='Pro'&&ft.teth?' + tethered':'')+', '+(ft.run===5?'5m or under':'up to '+ft.run+'m'))+
       '</div>';
     }
