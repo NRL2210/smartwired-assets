@@ -192,7 +192,7 @@ a.total:hover .tbtn{background:var(--orange-d)}
 .cmp td:first-child,.cmp th:first-child{text-align:left;color:var(--muted);font-weight:500;position:sticky;left:0;background:#fff}
 .cmp th:first-child{background:var(--bg)}
 .cmp tr:last-child td{border-bottom:0}
-.cmp .hl{background:#fff7ec}
+.cmp .hl{background:#eaf4fb}
 .cmp th.hl{background:var(--orange);color:#fff}
 .cmp .yes{color:var(--green);font-weight:800;font-size:16px}
 .cmp .no{color:#b8c0cc;font-size:15px}
@@ -329,12 +329,12 @@ svg.i{width:20px;height:20px;flex:none;vertical-align:-4px}
 .ft-eyebrow{font:700 13px Outfit;color:var(--orange-d);letter-spacing:.4px;margin-bottom:10px}
 .ft-steps{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
 .ft-steps span{font-size:11px;font-weight:600;padding:4px 8px;border-radius:999px;background:var(--bg);color:var(--muted)}
-.ft-steps span.on{background:#fff1df;color:var(--orange-d)}
+.ft-steps span.on{background:#e6f2fa;color:var(--orange-d)}
 .ft-box h3{font-size:21px;margin-bottom:14px}
 .ft-tiers{display:grid;gap:8px;margin-bottom:14px}
 .ft-t{display:flex;justify-content:space-between;align-items:center;border:2px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer}
 .ft-t input{position:absolute;opacity:0}
-.ft-t.sel{border-color:var(--orange);background:#fff7ec}
+.ft-t.sel{border-color:var(--orange);background:#eaf4fb}
 .ft-t span{color:var(--muted);font-size:14px}
 .ft-list{list-style:none;display:grid;gap:6px;font-size:14px;margin-bottom:16px}
 .ft-list li::before{content:"✓ ";color:var(--green);font-weight:800}
@@ -386,7 +386,7 @@ svg.i{width:20px;height:20px;flex:none;vertical-align:-4px}
 .xb-ozev{border-color:#0b7a43}.xb-ozev b{color:#0b7a43}
 .xb-l3{border-color:var(--navy)}.xb-l3 b{color:var(--navy)}
 @media(max-width:480px){.xbadge{height:44px}.xbadge svg{width:30px;height:30px}.xbadge b{font-size:13px}}
-.rtag{display:inline-block;font:700 12px Inter;letter-spacing:.3px;color:var(--orange-d);background:#fff1df;border-radius:999px;padding:4px 10px;margin-bottom:8px}
+.rtag{display:inline-block;font:700 12px Inter;letter-spacing:.3px;color:var(--orange-d);background:#e6f2fa;border-radius:999px;padding:4px 10px;margin-bottom:8px}
 .acc-n{display:flex;flex-direction:column;align-items:center;gap:2px}
 .acc-n small{font-size:10.5px;color:var(--muted)}
 .ph{background:#fff3cd;color:#7a5a00;padding:0 4px;border-radius:4px}
@@ -848,7 +848,7 @@ function photoBlock(mode,pkg){
     '<a class="wa-cta" href="'+url+'" target="_blank" rel="noopener" onclick="photoClick(\''+mode+'\')">💬 Send My Photos on WhatsApp →</a></div>';
 }
 function photoClick(mode){var o=mode==='order'&&ft.lead?Object.assign({},ft.lead):{route:'Quiz',first_name:(window.__lastLead||{}).first_name||'',mobile:(window.__lastLead||{}).mobile||''};o.stage='Clicked send photos on WhatsApp';sendLead(o)}
-var SURVEY_CAL_URL=""; // paste your SURVEY self-booking calendar link here (separate from the install calendar)
+var SURVEY_CAL_URL="https://cal.com/smartwired/ev-charger-video-survey"; // paste your SURVEY self-booking calendar link here (separate from the install calendar)
 var ADDRESS_API_KEY=""; // Ideal Postcodes API key: enables the full address dropdown. Without it, the postcode is checked and the town shown, and they type the first line.
 function calLink(base,extra){if(!base)return '';var q=new URLSearchParams(location.search),p=new URLSearchParams();
   p.set('source','landing-page');p.set('ref',REF);var c=q.get('utm_campaign');if(c)p.set('campaign',c);var s=q.get('utm_source');if(s)p.set('utm_source',s);
@@ -976,7 +976,7 @@ function closeFT(){if(ft&&ft.back)ftSave({dismissed:true});if(ft)ft.left=false;d
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!document.getElementById('ft').hidden)closeFT()});
 function ftRender(){
   var b=document.getElementById('ft-body'),h='';
-  var steps='<div class="ft-steps">'+['Charger','Your details','Payment','Install date'].map(function(n,k){return '<span class="'+(k+1<=ft.step?'on':'')+'">'+(k+1<ft.step?'✓ ':'')+n+'</span>'}).join('')+'</div>';
+  var steps='<div class="ft-steps">'+['Charger','Your details','Payment','Video check'].map(function(n,k){return '<span class="'+(k+1<=ft.step?'on':'')+'">'+(k+1<ft.step?'✓ ':'')+n+'</span>'}).join('')+'</div>';
   if(ft.step===1){
     h=steps+'<h3 id="ft-h">Which charger would you like?</h3><div class="ft-tiers">'+['Essential','Pro','Premium'].map(function(t){return '<label class="ft-t'+(ft.tier===t?' sel':'')+'"><input type="radio" name="ftt" value="'+t+'"'+(ft.tier===t?' checked':'')+' onchange="ftSet(\'tier\',this.value)"><b>'+t+'</b><span>'+gbp(FT_BASE[t]+100)+' installed (up to 10m)</span></label>'}).join('')+'</div>'+
       (ft.tier==='Pro'?'<label class="ft-chk"><input type="checkbox" id="ft-teth"'+(ft.teth?' checked':'')+' onchange="ftSet(\'teth\',this.checked)"><span>Add a tethered cable, so it stays on the charger <b>(+£99)</b></span></label>':'')+
@@ -1015,12 +1015,12 @@ function ftRender(){
         '<div class="ft-two"><span>1</span><div><a class="cta" id="ft-fin" href="'+(fl||'#')+'" target="_blank" rel="noopener" onclick="return ftGo(FIN_LINKS[ftKey()],0)">Check Eligibility &amp; Apply for '+gbp(f.c)+' →</a>'+
         (fl?'':'<p class="fine"><span class="ph">[PayItMonthly link '+key+' goes here]</span></p>')+'<p class="fine">Takes about 5 minutes. Nothing to pay yet.</p></div></div>'+
         '<div class="ft-two dim"><span>2</span><div><p class="ft-nxt"><b>Once approved:</b> pay your £99 deposit to secure your install slot</p></div></div>'+
-        '<div class="ft-two dim"><span>3</span><div><p class="ft-nxt"><b>Then:</b> choose your install date</p></div></div>'+
+        '<div class="ft-two dim"><span>3</span><div><p class="ft-nxt"><b>Then:</b> book your 15-minute video check</p></div></div>'+
         '<p class="ref">Your reference: <b>'+REF+'</b>. Use it if the application asks for one.</p>'+
         '<p class="fine"><b>How it works:</b> PayItMonthly runs a soft search first, which doesn\'t affect your credit score and isn\'t visible to other lenders. A full credit check only happens if you\'re approved and choose to accept. If your video check finds a different cable run, we\'ll send you an updated link before anything is finalised.</p>'+
         '<p class="fine">PayItMonthly is a form of credit, provided by PayItMonthly Ltd. Subject to status and affordability. Late or missed payments could impact your ability to access credit in the future. Representative example ('+pkg+'): cash price '+gbp(price)+'. Deposit £99. Amount of credit '+gbp(f.c)+', repaid in '+ft.term+' monthly payments of '+gbp(f.m,1)+(f.last!==f.m?' (final payment '+gbp(f.last,1)+')':'')+'. Total amount payable '+gbp(price)+'. Interest rate 0% fixed. Representative 0% APR.</p>';
     }
-    h+='<p class="ft-note">🔁 '+(ft.pay==='fin'?'PayItMonthly opens in a new tab. Once you\'re approved, <b>come back to this tab</b> to pay your deposit and choose your date.':'This opens in a new tab. When you\'re done, <b>come back to this tab</b> to choose your install date.')+'</p>';
+    h+='<p class="ft-note">🔁 '+(ft.pay==='fin'?'PayItMonthly opens in a new tab. Once you\'re approved, <b>come back to this tab</b> to pay your deposit and book your video check.':'This opens in a new tab. When you\'re done, <b>come back to this tab</b> to book your video check.')+'</p>';
     h+='<div class="ft-nav"><button class="ft-back" type="button" onclick="ft.step=2;ftRender()">← Back</button></div>';
   }else{
     var first=ftEsc((ft.d.nm||'').split(' ')[0]),nmc=first?', '+first:'';
@@ -1035,16 +1035,16 @@ function ftRender(){
       var pd2=ft.res==='pass'?'Two quick steps to lock in your install:':'Once PayItMonthly approves you (usually within minutes), finish here:';
       h=steps+'<div class="ft-done"><div class="ok">✓</div><h3 id="ft-h">'+hd2+'</h3><p>'+pd2+'</p>'+
         '<div class="ft-two"><span>1</span><div><a class="cta" id="ft-dep" href="'+(REVOLUT_URL||'#')+'" target="_blank" rel="noopener" onclick="return ftDep()">Pay £99 Deposit →</a>'+(REVOLUT_URL?'':'<p class="fine"><span class="ph">[Revolut payment link goes here]</span></p>')+''+(ft.res==='pass'?'':'<p class="fine">Only pay once you\'re approved.</p>')+''+refBox()+'</div></div>'+
-        '<div class="ft-two'+(ft.dep?'':' dim')+'"><span>2</span><div><a class="cta'+(ft.dep?'':' off')+'" href="'+escH(INSTALL_CAL_URL?calLink(INSTALL_CAL_URL,{name:(ft.d&&ft.d.nm)||''}):'#')+'" target="_blank" rel="noopener" onclick="'+(ft.dep?'ftBooked();return '+(INSTALL_CAL_URL?'true':'false'):'return false')+'">Choose My Install Date →</a>'+
-        (ft.dep?(INSTALL_CAL_URL?'':'<p class="fine"><span class="ph">[Install calendar link goes here]</span></p>'):'<p class="fine">Unlocks once you\'ve paid your deposit.</p>')+'</div></div>'+
+        '<div class="ft-two'+(ft.dep?'':' dim')+'"><span>2</span><div><a class="cta'+(ft.dep?'':' off')+'" href="'+escH(SURVEY_CAL_URL?calLink(SURVEY_CAL_URL,{source:'landing-page-order',name:(ft.d&&ft.d.nm)||'',email:(ft.lead&&ft.lead.email)||'',attendeePhoneNumber:(ft.lead&&ft.lead.mobile)?'+'+ft.lead.mobile:''}):BOOKING_URL)+'" target="_blank" rel="noopener" onclick="'+(ft.dep?'ftBooked();return true':'return false')+'">Book My Video Check →</a>'+
+        (ft.dep?'<p class="fine">Once your price is confirmed, we\'ll send you a link to choose your install date.</p>':'<p class="fine">Unlocks once you\'ve paid your deposit.</p>')+'</div></div>'+
         photoBlock('order',ft.tier+(ft.tier==='Pro'&&ft.teth?' + tethered':'')+', '+(ft.run===5?'5m or under':'up to '+ft.run+'m'))+
         '</div>';
     }else{
-    var hd=ft.res==='pass'?'Great news'+nmc+'! Your finance is approved':ft.res==='refer'?'Thanks'+nmc+'. Your application is being checked':(ft.back?'Welcome back':'Thanks')+nmc+'! Now choose your install date';
-    var pd=ft.res==='pass'?'Now pick an install date that suits you. We\'ll be in touch to book your 5-minute video check before then.':ft.res==='refer'?'PayItMonthly is doing a quick manual check, usually within one working day. We\'ll text you as soon as you\'re approved, then you can pay your £99 deposit and choose your date.':(ft.pay==='fin'?'Once your finance is approved,':'Once your deposit comes through,')+' pick a date that suits you. We\'ll be in touch to book your 5-minute video check before then.';
+    var hd=ft.res==='pass'?'Great news'+nmc+'! Your finance is approved':ft.res==='refer'?'Thanks'+nmc+'. Your application is being checked':(ft.back?'Welcome back':'Thanks')+nmc+'! Now book your video check';
+    var pd=ft.res==='pass'?'Now book your 15-minute video check at a time that suits you.':ft.res==='refer'?'PayItMonthly is doing a quick manual check, usually within one working day. We\'ll text you as soon as you\'re approved, then you can pay your £99 deposit and book your video check.':(ft.pay==='fin'?'Once your finance is approved,':'Once your deposit comes through,')+' book your 15-minute video check at a time that suits you.';
     h=steps+'<div class="ft-done"><div class="ok">✓</div><h3 id="ft-h">'+hd+'</h3><p>'+pd+'</p>'+(ft.copied&&ft.pay==='card'?'<p class="ref done">✅ Your reference <b>'+REF+'</b> was copied. If you haven\'t paid yet, paste it into the Ref box on the payment page.</p>':'<p class="ref">Your order reference: <b>'+REF+'</b></p>')+
-      '<a class="cta" href="'+escH(INSTALL_CAL_URL?calLink(INSTALL_CAL_URL,{name:(ft.d&&ft.d.nm)||''}):'#')+'" target="_blank" rel="noopener"'+' onclick="ftBooked();return '+(INSTALL_CAL_URL?'true':'false')+'"'+'>Choose My Install Date →</a>'+
-      (INSTALL_CAL_URL?'':'<p class="fine"><span class="ph">[Install calendar link goes here]</span></p>')+photoBlock('order',ft.tier+(ft.tier==='Pro'&&ft.teth?' + tethered':'')+', '+(ft.run===5?'5m or under':'up to '+ft.run+'m'))+
+      '<a class="cta" href="'+escH(SURVEY_CAL_URL?calLink(SURVEY_CAL_URL,{source:'landing-page-order',name:(ft.d&&ft.d.nm)||'',email:(ft.lead&&ft.lead.email)||'',attendeePhoneNumber:(ft.lead&&ft.lead.mobile)?'+'+ft.lead.mobile:''}):BOOKING_URL)+'" target="_blank" rel="noopener"'+' onclick="ftBooked();return true"'+'>Book My Video Check →</a>'+
+      '<p class="fine">Once your price is confirmed, we\'ll send you a link to choose your install date.</p>'+photoBlock('order',ft.tier+(ft.tier==='Pro'&&ft.teth?' + tethered':'')+', '+(ft.run===5?'5m or under':'up to '+ft.run+'m'))+
       '</div>';
     }
   }
